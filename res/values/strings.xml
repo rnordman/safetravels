@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Safe Travels</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="beatnumber">"Enter a Beat Number: "</string>
+    <string name="getbeatcrime">Get Beat Crime</string>
+    <string name="backtomain">Go Back to Main</string>
+    <string name="getwardcrime">Get Ward Crime</string>
+    <string name="enterward">Enter Ward:</string>
+    <string name="locationscreen">Location Screen</string>
+    <string name="sTotalCrimes">Total Crimes</string>
+    <string name="lblcurrentlongitude">Current Longitude</string>
+    <string name="lblcurrentlatitude">Current Latitude</string>
+    <string name="msgWifiOff">The Wifi Connection is Off.</string>
+    <string name="msgWiFiOn">WiFi Connection is On!</string>
+    <string name="msgMobileOff">Data Network is Not Available</string>
+    <string name="msgMobileOn">Data Network is Available!</string>
+    <string name="msgNoConnection">No Connection Available - Safe Travels Cannot Run</string>
+    <string name="msgNoGPS">No GPS Available - Safe Travels Cannot Run</string>
+    <string name="dlgConnectionLost">Connection Lost - Try to Restore?</string>
+    <string name="startlocatonlistener">Start Location Listener</string>
+    <string name="stoplocationlistener">Stop Location Listener</string>
+    <string name="fraglocbuttonstartlocation">Start Location Updates</string>
+    <string name="fraglocmanstop">Stop Location Updates</string>
+    <string name="btntrend">Trend</string>
+    <string name="btnspot">Spot</string>
+    <string name="btndrive">Drive</string>
+    <string name="btnsettings">Settings</string>
+    <string name="btnfilters">Filters</string>
+    <string name="btnbackground">Background</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="radSet2Blocks">2 Blocks (approx. 400 meters)</string>
+    <string name="radSet4Blocks">4 Blocks (approx. 800 meters)</string>
+    <string name="radSet3MetersTest">3 meters for testing</string>
+    <string name="radSet8Blocks">8 Blocks (approx. 1 Mile or 1600 meters)</string>
+    <string name="radSet100Meters">100 Meters</string>
+    <string name="txtRefreshInterval">Choose Refresh Interval</string>
+    <string name="btnSetSave">Save Settings</string>
+    <string name="txtNoConnectPleaseWait">Getting count please wait ...</string>
+
+</resources>

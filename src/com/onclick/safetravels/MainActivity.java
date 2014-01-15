@@ -1,0 +1,385 @@
+package com.onclick.safetravels;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.view.Menu;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.onclick.chicagodata.model.ChicagoCrime;
+import com.onclick.utils.CheckNetwork;
+import com.onclick.utils.DialogNoConnection;
+
+
+public class MainActivity extends FragmentActivity implements LocationListener {
+
+	private LocationManager mLocationManager;
+	public Location mCurrentLocation;
+
+	//ChicagoCrimeDataSource chicDS;
+	//CheckNetwork checkNetwork;
+	
+	//ArrayAdapter<ChicagoCrime> adapter;
+
+	FragmentCrimeCount fragmentMiddle;
+	//private boolean isConnected;	
+		
+		
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		setContentView(R.layout.activity_main);
+	
+		SharedPreferences SPsettings = this.getSharedPreferences(SafeTravelsPreferences.APIFILE,0);
+		String refreshInterval = SPsettings.getString(SafeTravelsPreferences.REFRESHINTERVALKEY, SafeTravelsPreferences.REFRESHINTERVALVAL);
+		int refreshInt = Integer.parseInt(refreshInterval);
+		
+		this.mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		this.mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, refreshInt, this);
+		
+		
+		// Current location - if no GPS_Provide available his will be null
+		this.mCurrentLocation = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		
+			
+		
+		//	Use to reset values and simulate new start
+		
+		// Last Location that a read was taken
+		// this.lastLocation = new LastLocationCounted(this);
+		
+		//	long lastLat = this.lastLocation.LastLatitude;
+		//	long lastLong = this.lastLocation.LastLongitude;
+					
+		//	lastLocation.setLastLatitude(this.mPrevLocation.getLatitude());
+		//  lastLocation.setLastLongitude(this.mPrevLocation.getLongitude());
+		
+		
+		/*	LastLocationCounted lastLocation = new LastLocationCounted(this);
+				  
+			lastLocation.setLongitude(0);
+			lastLocation.setLatitude(0);
+		*/
+		
+		//lastLong = this.lastLocation.getLastLongitude();
+		//lastLat = this.lastLocation.getLastLatitude();
+		
+	//this.isConnected = CheckNetwork.sfConnected(this);
+		
+		if (savedInstanceState == null) {
+
+			this.fragmentInflater();
+			
+		} else {
+			
+			FragmentManager fm = getSupportFragmentManager();
+			this.fragmentMiddle = (FragmentCrimeCount) fm.findFragmentByTag("frag_mid");
+			
+		}
+
+	}
+
+		
+		
+
+@Override
+protected void onResume() {
+	
+	 IntentFilter filter = new IntentFilter();
+     filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+     registerReceiver(receiver, filter);
+     super.onResume();
+		
+		}
+
+@Override
+protected void onPause() {
+		super.onPause();
+		
+		unregisterReceiver(receiver);
+		
+}
+
+
+
+@Override
+protected void onDestroy() {
+	// TODO Auto-generated method stub
+	super.onDestroy();
+	
+	
+}
+
+
+@Override
+protected void onSaveInstanceState(Bundle outState) {
+	// TODO Auto-generated method stub
+	super.onSaveInstanceState(outState);
+	
+	
+}
+/* (non-Javadoc)
+ * @see android.app.Activity#onRestoreInstanceState(android.os.Bundle)
+ */
+@Override
+protected void onRestoreInstanceState(Bundle savedInstanceState) {
+	// TODO Auto-generated method stub
+	super.onRestoreInstanceState(savedInstanceState);
+	
+	
+}
+
+
+@Override
+protected void onStart() {
+	// TODO Auto-generated method stub
+	super.onStart();
+	
+}
+
+
+@Override
+protected void onStop() {
+	// TODO Auto-generated method stub
+	super.onStop();
+		
+	
+}
+
+
+// START INFLATING VIEWS
+
+public void fragmentInflater() {
+	
+	boolean xactcomplete;
+	
+	FragmentManager fm = getSupportFragmentManager();
+			
+	Fragment fragmentTop = fm.findFragmentById(R.id.fragmentcontainertop);
+	
+	if (fragmentTop == null) {
+		fragmentTop = new FragmentMode();
+		fm.beginTransaction()
+		.add(R.id.fragmentcontainertop, fragmentTop)
+		.commit();
+		
+	}
+	
+	Fragment fragmentBottom = fm.findFragmentById(R.id.fragmentcontainerbottom);
+	
+	if (fragmentBottom == null) {
+		fragmentBottom = new FragmentChoices();
+		fm.beginTransaction()
+		.add(R.id.fragmentcontainerbottom, fragmentBottom)
+		.commit();
+		
+	}
+	
+
+	this.fragmentMiddle = (FragmentCrimeCount) fm.findFragmentById(R.id.fragmentcontainermid);
+		
+	
+	if (this.fragmentMiddle == null) {
+		
+		this.fragmentMiddle = new FragmentCrimeCount();
+
+		fm.beginTransaction()
+		.add(R.id.fragmentcontainermid, this.fragmentMiddle, "frag_mid")
+		.commit();
+	
+		// ensures fragment view is inflated before any listeners are invoked
+		xactcomplete = fm.executePendingTransactions();
+		
+		//this.middleFragmentContentHandler();
+		
+	}
+	
+	
+}
+
+
+
+// *************************
+// LOCATION LISTENER METHODS
+// *************************
+@Override
+public void onLocationChanged(Location location) {
+		
+	int pLat = 0, pLong = 0;
+	int lLat, lLong;
+	
+	Location tLocation = location;
+	
+		
+	
+	// Mostly used for debugging	
+	lLat = (int) (location.getLatitude() * 10000);
+	lLong = (int) (location.getLongitude() * 10000);
+	
+	if (this.mCurrentLocation != null) {
+		pLat = (int) (this.mCurrentLocation.getLatitude() * 10000);
+		pLong = (int) (this.mCurrentLocation.getLongitude() * 10000);
+	}
+		
+	
+	TextView prevLat = (TextView) this.fragmentMiddle.lView.findViewById(R.id.txtPrevLat);
+	TextView prevLong = (TextView) this.fragmentMiddle.lView.findViewById(R.id.txtPrevLong);
+		
+	TextView currLat = (TextView) this.fragmentMiddle.lView.findViewById(R.id.txtCurrentLat);
+	TextView currLong = (TextView) this.fragmentMiddle.lView.findViewById(R.id.txtCurrentLong);
+	
+	prevLat.setText("Previous Lat: " + String.valueOf(pLat));
+	prevLong.setText("Previous Long: " + String.valueOf(pLong));
+		
+	currLat.setText("Current Lat: " + String.valueOf(lLat));
+	currLong.setText("Current Long: " + String.valueOf(lLong));
+		
+	
+	// Set new location and call ContentHandler
+	this.mCurrentLocation = tLocation;	
+	this.middleFragmentContentHandler();
+	
+		
+}
+	
+	
+	
+	/*FragmentManager fm = getSupportFragmentManager();
+	ListFragment lf = (ListFragment) fm.findFragmentById(R.id.fragmentcontainer3);
+	
+	
+	adapter = (ArrayAdapter<ChicagoCrime>) lf.getListAdapter();
+	
+	if (adapter != null) {
+		
+		
+		adapter.clear();
+		adapter.notifyDataSetChanged();
+	
+	}
+	*/
+
+@Override
+public void onProviderDisabled(String provider) {
+	
+	TextView prevLat = (TextView) this.fragmentMiddle.lView.findViewById(R.id.txtPrevLat);	
+	this.middleFragmentContentHandler();
+		
+}
+
+@Override
+public void onProviderEnabled(String provider) {
+	
+	/*Location pLocation = this.mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+	
+	if (LastLocationCounted.didLocationChange(pLocation)) {
+		
+		fragmentMiddle();
+
+		this.mPrevLocation = pLocation;
+		lastLocation.setNewLocation(pLocation);
+		
+	}
+	if (this.mPrevLocation == null) {
+		this.mPrevLocation = pLocation;
+		
+	}*/
+	
+	this.middleFragmentContentHandler();
+}
+
+
+
+@Override
+public void onStatusChanged(String provider, int status, Bundle extras) {
+	
+	//this.isConnected = CheckNetwork.sfConnected(this);
+	
+	//fragmentMiddle();
+	
+	this.middleFragmentContentHandler();
+		
+	
+	
+}
+
+// END OF LOCATION LISTENER METHODS
+
+// BROADCAST RECEVIER FOR CHANGE IN NETWORK STATUS
+
+public void middleFragmentContentHandler () {
+	
+	// If there is no connection just show message and alert dialog
+	if (!CheckNetwork.sfConnected(this)) {
+				
+		this.fragmentMiddle.changeNoConnectText();
+			
+		DialogFragment newFragment = new DialogNoConnection();
+		FragmentManager dfm = getSupportFragmentManager();
+		
+		try {
+			newFragment.show(dfm, "noconnection");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	} else
+		
+		// Location did not enough to refresh crime count
+		if (!LastLocationCounted.didLocationChange(this.mCurrentLocation)) {
+					
+				this.fragmentMiddle.showLastCrimeCountText();
+				
+	} else {
+		if (this.fragmentMiddle.isAdded()) {
+		this.fragmentMiddle.prepareCrimeQuery();
+		
+		LastLocationCounted.setNewLocation(this, this.mCurrentLocation);
+		
+		}
+	}
+	
+	
+}
+
+private BroadcastReceiver receiver = new BroadcastReceiver() {
+
+	@Override
+	public void onReceive(Context context, Intent intent) {
+
+
+		//   String wAction = intent.getAction();
+		//	String wConnectionChange = ConnectivityManager.CONNECTIVITY_ACTION;
+
+			//MainActivity wContext = (MainActivity) context.getApplicationContext();
+		// Only true when action is Network Connectivity Changed action
+		
+		
+		middleFragmentContentHandler();
+		
+
+
+	} // End of onReceive
+	
+
+
+
+}; // End of BroadcastReceiver
+
+
+}// end of activity code
