@@ -29,15 +29,15 @@ public final class R {
         public static final int RadioButton3Meters=0x7f080013;
         public static final int RadioButton4Blocks=0x7f080016;
         public static final int RadioButton8Blocks=0x7f080014;
-        public static final int action_settings=0x7f080024;
+        public static final int action_settings=0x7f080029;
         public static final int button4=0x7f080006;
         public static final int buttonSave=0x7f080018;
         public static final int buttonbackground=0x7f080005;
-        public static final int buttondrive=0x7f080022;
+        public static final int buttondrive=0x7f080027;
         public static final int buttonfilters=0x7f08001b;
         public static final int buttonsettings=0x7f08001a;
-        public static final int buttonspot=0x7f080021;
-        public static final int buttontrend=0x7f080023;
+        public static final int buttonspot=0x7f080026;
+        public static final int buttontrend=0x7f080028;
         public static final int fragmentcontainerbottom=0x7f080002;
         public static final int fragmentcontainermid=0x7f080001;
         public static final int fragmentcontainertop=0x7f080000;
@@ -57,8 +57,13 @@ public final class R {
         public static final int textView6=0x7f08000f;
         public static final int textViewCrimeCount=0x7f08001c;
         public static final int tvFragmentBlank=0x7f080019;
+        public static final int txtAheadLat=0x7f080022;
+        public static final int txtAheadLong=0x7f080023;
+        public static final int txtCrimeAhead=0x7f080025;
+        public static final int txtCurrentBearing=0x7f080021;
         public static final int txtCurrentLat=0x7f08001f;
         public static final int txtCurrentLong=0x7f080020;
+        public static final int txtDistanceAhead=0x7f080024;
         public static final int txtPrevLat=0x7f08001d;
         public static final int txtPrevLong=0x7f08001e;
     }

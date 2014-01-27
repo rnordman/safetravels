@@ -34,8 +34,32 @@ public class LastLocationCounted {
 		
 	public static int lastLongitude;
 	public static int lastLatitude;
+	public static int lastBearing;
 	
 			
+	public static int getLastBearing() {
+
+		SharedPreferences SPsettings = pContext.getSharedPreferences(SafeTravelsPreferences.APIFILE, 0);
+		
+		int LastBearing = SPsettings.getInt(SafeTravelsPreferences.LASTBEARINGKEY, SafeTravelsPreferences.LASTBEARINGVAL);
+		
+		return LastBearing;
+	}
+
+	public static void setLastBearing(int lastBearingint) {
+		
+		SharedPreferences SPsettings = pContext.getSharedPreferences(SafeTravelsPreferences.APIFILE, 0);
+				
+		SharedPreferences.Editor settingsEditor = SPsettings.edit();
+		
+		settingsEditor.putInt(SafeTravelsPreferences.LASTBEARINGKEY, lastBearingint);
+		
+		settingsEditor.commit();
+		
+		lastBearing = lastBearingint;
+	}
+	
+
 	public int getLastLongitude() {
 		
 		SharedPreferences SPsettings = pContext.getSharedPreferences(SafeTravelsPreferences.APIFILE, 0);
@@ -50,8 +74,7 @@ public class LastLocationCounted {
 		int lastLongitudeLong = (int) (lastLongitudeDouble * SafeTravelsPreferences.LOCATIONDOUBLETOINTMULTIPLIER);
 				
 		SharedPreferences SPsettings = pContext.getSharedPreferences(SafeTravelsPreferences.APIFILE, 0);
-		SPsettings = pContext.getSharedPreferences(SafeTravelsPreferences.APIFILE, 0);
-		
+				
 		SharedPreferences.Editor settingsEditor = SPsettings.edit();
 		
 		settingsEditor.putInt(SafeTravelsPreferences.LASTLONGITUDEKEY, lastLongitudeLong);
@@ -76,8 +99,7 @@ public class LastLocationCounted {
 		int lastLatitudeLong = (int) (lastLatitudeDouble * SafeTravelsPreferences.LOCATIONDOUBLETOINTMULTIPLIER);	
 		
 		SharedPreferences SPsettings = pContext.getSharedPreferences(SafeTravelsPreferences.APIFILE, 0);
-		SPsettings = pContext.getSharedPreferences(SafeTravelsPreferences.APIFILE, 0);
-		
+				
 		SharedPreferences.Editor settingsEditor = SPsettings.edit();
 		
 		settingsEditor.putInt(SafeTravelsPreferences.LASTLATITUDEKEY, lastLatitudeLong);
@@ -125,27 +147,94 @@ public class LastLocationCounted {
 		pContext = context;
 		setLastLatitude(newLocation.getLatitude());
 		setLastLongitude(newLocation.getLongitude());
+		setLastBearing((int) newLocation.getBearing());
 				
 	}
 	
-	public static double[] getLocationSearchCoordinates() {
+	public static double[] getLocationAheadCoordinates(Context lContext) {
 		
-		double[] coordinates;
+		double[] coordinates = { 0.0d , 0.0d };
+			
+		int LatitudeFactor = 111000;  // Meters per 1 degree of latitude
+		int LongitudeFactor = 85000;  // Meters per 1 degree of longitude at 40 north
+	
 		
-		int lastLat = lastLatitude;
-		int lastLong = lastLongitude;
+		SharedPreferences SPsettings = lContext.getSharedPreferences(SafeTravelsPreferences.APIFILE, 0);
 		
-		double nwCoordinate, neCoordinate, swCoordinate, seCoordinate;
+		int lastLat = SPsettings.getInt(SafeTravelsPreferences.LASTLATITUDEKEY, SafeTravelsPreferences.LASTLATITUDEVAL);
+		int lastLong = SPsettings.getInt(SafeTravelsPreferences.LASTLONGITUDEKEY, SafeTravelsPreferences.LASTLONGITUDEVAL);
+		int lastBearing = SPsettings.getInt(SafeTravelsPreferences.LASTBEARINGKEY, SafeTravelsPreferences.LASTBEARINGVAL);
+				
+		int metersDistanceAhead = SPsettings.getInt(SafeTravelsPreferences.ALERTAHEADDISTANCEKEY, SafeTravelsPreferences.ALERTAHEADDISTANCEVAL);
+						
+		double aheadLatitude = 0.0d, aheadLongitude = 0.0d;
 		
-		nwCoordinate = (lastLat + 145) / 10000;
+		double cosLastBearing = 0.0d; 
+		double sinLastBearing = 0.0d; 
 		
-		neCoordinate = (lastLat - 145) / 10000;
+		int metersLatitudeAhead = 0;
+		int metersLongitudeAhead = 0;
 		
-		swCoordinate = (lastLong - 145) / 10000;
+		if (lastBearing == 0){
+			
+			coordinates[0] = (double)lastLat / 10000;
+			coordinates[1] = (double)lastLong / 10000;
+			
+			return coordinates;
+			
+		} else {
+			
+			int newBearing = lastBearing % 90;
+			cosLastBearing = Math.cos(Math.toRadians((double)newBearing));
+			sinLastBearing = Math.sin(Math.toRadians((double)newBearing));
+		}
+			
 		
-		seCoordinate = (lastLong + 145) / 10000;
+		 
+		if (lastBearing <= 90) {
+			
+			// QUARDRANT 1						
+			metersLatitudeAhead = (int) (cosLastBearing * metersDistanceAhead);
+			metersLongitudeAhead = (int) (sinLastBearing * metersDistanceAhead);
+			
 		
-		coordinates[ nwCoordinate, neCoordinate, swCoordinate, seCoordinate ];
+		} else if (lastBearing > 90 && lastBearing <= 180) {
+			
+			//Quadrant 2
+						
+			metersLatitudeAhead = (int) -(sinLastBearing * metersDistanceAhead);
+			metersLongitudeAhead = (int) (cosLastBearing * metersDistanceAhead);
+			
+		} else if (lastBearing > 180 && lastBearing <= 270) {
+			
+			// Quadrant 3
+						
+			metersLatitudeAhead = (int) -(cosLastBearing * metersDistanceAhead);
+			metersLongitudeAhead = (int) -(sinLastBearing * metersDistanceAhead);
+			
+			
+		} else if (lastBearing > 270) {
+			
+			// Quadrant 4
+						
+			metersLatitudeAhead = (int) (sinLastBearing * metersDistanceAhead);
+			metersLongitudeAhead = (int) -(cosLastBearing * metersDistanceAhead);
+			
+		}
+			
+		double newLatitude = (double)metersLatitudeAhead / (double)LatitudeFactor;
+		double newLongitude = (double)metersLongitudeAhead / (double)LongitudeFactor;
+		
+		double newLastLat = (double)lastLat / 10000;
+		double newLastlong = (double)lastLong / 10000;
+				
+		
+		aheadLatitude = newLatitude + newLastLat;
+		aheadLongitude = newLongitude + newLastlong;
+		
+				
+		coordinates[0] = aheadLatitude;
+		coordinates[1] = aheadLongitude;
 		
 		return coordinates;
 	}

@@ -54,7 +54,7 @@ public class SafeTravelsPreferences {
 	public static final String DRIVEMODERADIUSVAL=".25";
 	
 	public static final String ALERTAHEADDISTANCEKEY="alert_ahead_distance";
-	public static final String ALERTAHEADDISTANCEVAL="1";
+	public static final int ALERTAHEADDISTANCEVAL=1600;
 	
 	public static final String SPOTCHECKRADIUSKEY="spot_check_radius";
 	public static final String SPOTCHECKRADIUSVAL=".125";
@@ -72,12 +72,15 @@ public class SafeTravelsPreferences {
 	public static final int LASTLATITUDEVAL = 0;
 	public static final int LASTLONGITUDEVAL = 0;
 	
+	public static final String LASTBEARINGKEY = "last_bearing";
+	public static final int LASTBEARINGVAL = 0;
+		
 	public static final int LOCATIONDOUBLETOINTMULTIPLIER = 10000;
 	public static final int LOCATIONCHANGETOLERANCEFACTOR = 1;
 	
 	public static final String CRIMECOUNTMESSAGEKEY = "crime_count_message";
 	private static final String CRIMECOUNTMESSAGEVAL = null;
-		
+	
 
 	public SafeTravelsPreferences() {
 	}
@@ -105,7 +108,7 @@ public class SafeTravelsPreferences {
 		settingsEditor.putString(TRENDDAYSKEY, TRENDDAYSVAL);
 		settingsEditor.putString(REFRESHINTERVALKEY,REFRESHINTERVALVAL);
 		settingsEditor.putString(DRIVEMODERADIUSKEY,DRIVEMODERADIUSVAL);
-		settingsEditor.putString(ALERTAHEADDISTANCEKEY,ALERTAHEADDISTANCEVAL);
+		settingsEditor.putInt(ALERTAHEADDISTANCEKEY,ALERTAHEADDISTANCEVAL);
 		settingsEditor.putString(SPOTCHECKRADIUSKEY,SPOTCHECKRADIUSVAL);
 
 		settingsEditor.commit();

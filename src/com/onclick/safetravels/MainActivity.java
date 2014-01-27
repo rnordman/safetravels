@@ -69,11 +69,11 @@ public class MainActivity extends FragmentActivity implements LocationListener {
 		//  lastLocation.setLastLongitude(this.mPrevLocation.getLongitude());
 		
 		
-		/*	LastLocationCounted lastLocation = new LastLocationCounted(this);
+	/*		LastLocationCounted lastLocation = new LastLocationCounted(this);
 				  
 			lastLocation.setLongitude(0);
 			lastLocation.setLatitude(0);
-		*/
+	*/
 		
 		//lastLong = this.lastLocation.getLastLongitude();
 		//lastLat = this.lastLocation.getLastLatitude();
@@ -222,32 +222,56 @@ public void onLocationChanged(Location location) {
 	int pLat = 0, pLong = 0;
 	int lLat, lLong;
 	
+	float fBearing = 0.0f;
+	
 	Location tLocation = location;
 	
-		
+	double aheadCoordinates[] = {0.0d,0.0d};
+	
+	aheadCoordinates = LastLocationCounted.getLocationAheadCoordinates(this);
 	
 	// Mostly used for debugging	
 	lLat = (int) (location.getLatitude() * 10000);
 	lLong = (int) (location.getLongitude() * 10000);
 	
+	float[] distanceAheadF = {0.0f};
+	double aLat = location.getLatitude();
+	double aLong = location.getLongitude();
+	
+	Location.distanceBetween(aLat,aLong, aheadCoordinates[0], aheadCoordinates[1], distanceAheadF);
+	
+	
 	if (this.mCurrentLocation != null) {
 		pLat = (int) (this.mCurrentLocation.getLatitude() * 10000);
 		pLong = (int) (this.mCurrentLocation.getLongitude() * 10000);
+		fBearing = this.mCurrentLocation.getBearing();
+				
 	}
 		
+	String sBearing = String.valueOf(fBearing);
 	
 	TextView prevLat = (TextView) this.fragmentMiddle.lView.findViewById(R.id.txtPrevLat);
 	TextView prevLong = (TextView) this.fragmentMiddle.lView.findViewById(R.id.txtPrevLong);
 		
 	TextView currLat = (TextView) this.fragmentMiddle.lView.findViewById(R.id.txtCurrentLat);
 	TextView currLong = (TextView) this.fragmentMiddle.lView.findViewById(R.id.txtCurrentLong);
+	TextView currBearing = (TextView) this.fragmentMiddle.lView.findViewById(R.id.txtCurrentBearing);
+	
+	TextView aheadLat = (TextView) this.fragmentMiddle.lView.findViewById(R.id.txtAheadLat);
+	TextView aheadLong = (TextView) this.fragmentMiddle.lView.findViewById(R.id.txtAheadLong);
+	TextView distanceAhead = (TextView) this.fragmentMiddle.lView.findViewById(R.id.txtDistanceAhead);
+	
 	
 	prevLat.setText("Previous Lat: " + String.valueOf(pLat));
 	prevLong.setText("Previous Long: " + String.valueOf(pLong));
 		
 	currLat.setText("Current Lat: " + String.valueOf(lLat));
 	currLong.setText("Current Long: " + String.valueOf(lLong));
-		
+	currBearing.setText("Current Bearing: "+ sBearing);
+			
+	aheadLat.setText("Ahead Lat: " + String.valueOf(aheadCoordinates[0]));
+	aheadLong.setText("Ahead Long: " + String.valueOf(aheadCoordinates[1]));
+	distanceAhead.setText("Distance Ahead: "+ String.valueOf(distanceAheadF[0]));
 	
 	// Set new location and call ContentHandler
 	this.mCurrentLocation = tLocation;	
@@ -334,7 +358,7 @@ public void middleFragmentContentHandler () {
 		try {
 			newFragment.show(dfm, "noconnection");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
@@ -347,9 +371,11 @@ public void middleFragmentContentHandler () {
 				
 	} else {
 		if (this.fragmentMiddle.isAdded()) {
-		this.fragmentMiddle.prepareCrimeQuery();
 		
-		LastLocationCounted.setNewLocation(this, this.mCurrentLocation);
+			LastLocationCounted.setNewLocation(this, this.mCurrentLocation);
+			this.fragmentMiddle.prepareCrimeQuery();
+		
+		
 		
 		}
 	}

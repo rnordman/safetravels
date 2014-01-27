@@ -4,10 +4,14 @@
 package com.onclick.safetravels;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONException;
 
 import android.content.Context;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -92,15 +96,23 @@ public class FragmentCrimeCount extends Fragment {
 	public void prepareCrimeQuery() {
 
 		String chicagoAPI = null;
+		String aheadAPI = null;
 
-		RestAPICaller chicagoJson = new RestAPICaller();
+		RestAPICaller chicagoJson = new RestAPICaller(tContext);
 		chicagoAPI = chicagoJson.buildAPIQuery();
-
-		startFetch(chicagoAPI);
+		aheadAPI = chicagoJson.buildAheadQuery();
+		
+		
+		List<String> queryList = new ArrayList<String>();
+		
+		queryList.add(chicagoAPI);
+		queryList.add(aheadAPI);
+		
+		startFetch(queryList);
 
 	}
 
-	private void startFetch(String urlAPI) {
+	private void startFetch(List<String> urlAPI) {
 
 		new FetchItemsTask().execute(urlAPI);
 
@@ -114,7 +126,7 @@ public class FragmentCrimeCount extends Fragment {
 		Log.i("AsyncTask Cancelled","ASC");
 
 	}
-	private class FetchItemsTask extends AsyncTask<String,Void,String> {
+	private class FetchItemsTask extends AsyncTask<List<String>,Void,List<String>> {
 
 
 		@Override
@@ -123,19 +135,40 @@ public class FragmentCrimeCount extends Fragment {
 		}
 
 		@Override
-		protected String doInBackground(String... params) {
+		protected List<String> doInBackground(List<String>... params) {
 
 			RestAPICaller jCrimeQuery = new RestAPICaller();
 
-			String result = null;
+			String result1 = null;
+			String result2 = null;
 
-			String resultString = null;
+			String resultString1 = null;
+			String resultString2 = null;
+			
+			String firstQueryString = params[0].get(0);
+			String secondQueryString = params[0].get(1);
 
 			try {
 
-				result = RestAPICaller.getUrl(params[0]);
+				result1 = RestAPICaller.getUrl(firstQueryString);
 				try {
-					resultString = jCrimeQuery.serializeJsonDataListString(result);
+					resultString1 = jCrimeQuery.serializeJsonDataListString(result1);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			try {
+
+				result2 = RestAPICaller.getUrl(secondQueryString);
+				try {
+					resultString2 = jCrimeQuery.serializeJsonDataListString(result2);
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -147,16 +180,21 @@ public class FragmentCrimeCount extends Fragment {
 				e.printStackTrace();
 			}
 
+			List<String> resultList = new ArrayList<String>();
+			
+			resultList.add(resultString1);
+			resultList.add(resultString2);
+			
 			//chicDS.insertObjectArray(resultArrayObject);
 
 			//Log.i("CRIMEDATA", "Failed");
-			return resultString;
+			return resultList;
 		}
 
 
-		protected void onPostExecute(String result) {
+		protected void onPostExecute(List<String> resultList) {
 
-			super.onPostExecute(result);
+			super.onPostExecute(resultList);
 
 			Log.i("ASYNC HERE", "Here we are");
 			Messages.LongToast(tContext, "Made it to FragmentCrimeList");
@@ -169,12 +207,17 @@ public class FragmentCrimeCount extends Fragment {
 			}
 
 			TextView tvCrimeCount = (TextView) lView.findViewById(R.id.textViewCrimeCount);
-
-			tvCrimeCount.setText(result+refreshInd);
-
+			TextView tvAheadCount = (TextView) lView.findViewById(R.id.txtCrimeAhead);
+			
+			tvCrimeCount.setText((resultList.get(0).toString()+refreshInd));
+			
+			tvAheadCount.setText(resultList.get(1).toString());
+			
 			SafeTravelsPreferences.putCrimeCountMessage(tContext, tvCrimeCount.getText().toString());
 			
-
+			ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 500);
+			toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 2000); 
+			
 			return;
 
 		}

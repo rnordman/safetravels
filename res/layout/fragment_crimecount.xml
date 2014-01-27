@@ -36,7 +36,7 @@
         android:id="@+id/txtCurrentLat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/txtPrevLong"
+        android:layout_alignLeft="@+id/txtPrevLong"
         android:layout_below="@+id/txtPrevLong"
         android:layout_marginTop="39dp"
         android:text="Current Lat: " />
@@ -48,5 +48,48 @@
         android:layout_alignLeft="@+id/txtCurrentLat"
         android:layout_below="@+id/txtCurrentLat"
         android:text="Current Long: " />
+    
+     <TextView
+        android:id="@+id/txtCurrentBearing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtCurrentLong"
+        android:layout_below="@+id/txtCurrentLong"
+        android:text="Current Bearing: " />
+     
+      <TextView
+        android:id="@+id/txtAheadLat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtCurrentBearing"
+        android:layout_below="@+id/txtCurrentBearing"
+        android:layout_marginTop="39dp"
+        android:text="Ahead Lat: " />
+
+    <TextView
+        android:id="@+id/txtAheadLong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtAheadLat"
+        android:layout_below="@+id/txtAheadLat"
+        android:text="Ahead Long: " />
+    
+     <TextView
+        android:id="@+id/txtDistanceAhead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtAheadLong"
+        android:layout_below="@+id/txtAheadLong"
+        android:text="Distance Ahead: " />
+     
+      <TextView
+        android:id="@+id/txtCrimeAhead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtDistanceAhead"
+        android:layout_below="@+id/txtDistanceAhead"
+        android:layout_marginTop="50dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Crime Ahead: " />
 
 </RelativeLayout>
