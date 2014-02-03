@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.json.JSONException;
 
-import android.R.color;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
@@ -23,9 +22,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.onclick.apicaller.RestAPICaller;
-import com.onclick.safetravels.R;
-import com.onclick.safetravels.R.id;
-import com.onclick.safetravels.R.layout;
 import com.onclick.utils.Messages;
 
 /**

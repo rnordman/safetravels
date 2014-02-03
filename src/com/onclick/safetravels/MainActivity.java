@@ -29,13 +29,8 @@ public class MainActivity extends AFragmentActivity implements LocationListener 
 	private LocationManager mLocationManager;
 	public Location mCurrentLocation;
 
-	//ChicagoCrimeDataSource chicDS;
-	//CheckNetwork checkNetwork;
-	
-	//ArrayAdapter<ChicagoCrime> adapter;
-
 	FragmentCrimeCount fragmentMiddle;
-	//private boolean isConnected;	
+	
 		
 		
 	@Override
@@ -102,6 +97,17 @@ protected void onResume() {
 	 IntentFilter filter = new IntentFilter();
      filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
      registerReceiver(receiver, filter);
+     
+     if (this.mLocationManager == null) {
+    	 
+    	 SharedPreferences SPsettings = this.getSharedPreferences(SafeTravelsPreferences.APIFILE,0);
+ 		String refreshInterval = SPsettings.getString(SafeTravelsPreferences.REFRESHINTERVALKEY, SafeTravelsPreferences.REFRESHINTERVALVAL);
+ 		int refreshInt = Integer.parseInt(refreshInterval);
+    	 this.mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+ 			this.mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, refreshInt, this);
+ 			
+		}
+     
      super.onResume();
 		
 		}
@@ -111,6 +117,10 @@ protected void onPause() {
 		super.onPause();
 		
 		unregisterReceiver(receiver);
+		if (this.mLocationManager != null) {
+			this.mLocationManager = null;
+		}
+			
 		
 }
 
@@ -160,6 +170,8 @@ protected void onStop() {
 	
 }
 
+// end of activity life cycle status handlers
+
 
 // START INFLATING VIEWS
 
@@ -170,27 +182,6 @@ public void fragmentInflater() {
 	boolean xactcomplete;
 	
 	FragmentManager fm = getSupportFragmentManager();
-			
-	Fragment fragmentTop = fm.findFragmentById(R.id.fragmentcontainertop);
-	
-	if (fragmentTop == null) {
-		fragmentTop = new FragmentMode();
-		fm.beginTransaction()
-		.add(R.id.fragmentcontainertop, fragmentTop)
-		.commit();
-		
-	}
-	
-	Fragment fragmentBottom = fm.findFragmentById(R.id.fragmentcontainerbottom);
-	
-	if (fragmentBottom == null) {
-		fragmentBottom = new FragmentChoices();
-		fm.beginTransaction()
-		.add(R.id.fragmentcontainerbottom, fragmentBottom)
-		.commit();
-		
-	}
-	
 
 	this.fragmentMiddle = (FragmentCrimeCount) fm.findFragmentById(R.id.fragmentcontainermid);
 		
@@ -211,8 +202,45 @@ public void fragmentInflater() {
 	}
 	
 	
-}
+} /* End of Fragment Inflater */
 
+public void middleFragmentContentHandler () {
+	
+	// If there is no connection just show message and alert dialog
+	if (!CheckNetwork.sfConnected(this)) {
+				
+		this.fragmentMiddle.changeNoConnectText();
+			
+		DialogFragment newFragment = new DialogNoConnection();
+		FragmentManager dfm = getSupportFragmentManager();
+		
+		try {
+			newFragment.show(dfm, "noconnection");
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+	} else
+		
+		// Location did not enough to refresh crime count
+		if (!LastLocationCounted.didLocationChange(this.mCurrentLocation)) {
+					
+				this.fragmentMiddle.showLastCrimeCountText();
+				
+	} else {
+		if (this.fragmentMiddle.isAdded()) {
+		
+			LastLocationCounted.setNewLocation(this, this.mCurrentLocation);
+			this.fragmentMiddle.prepareCrimeQuery();
+		
+		
+		
+		}
+	}
+	
+	
+}  // End of middle fragment content handler
 
 
 // *************************
@@ -282,22 +310,6 @@ public void onLocationChanged(Location location) {
 		
 }
 	
-	
-	
-	/*FragmentManager fm = getSupportFragmentManager();
-	ListFragment lf = (ListFragment) fm.findFragmentById(R.id.fragmentcontainer3);
-	
-	
-	adapter = (ArrayAdapter<ChicagoCrime>) lf.getListAdapter();
-	
-	if (adapter != null) {
-		
-		
-		adapter.clear();
-		adapter.notifyDataSetChanged();
-	
-	}
-	*/
 
 @Override
 public void onProviderDisabled(String provider) {
@@ -310,21 +322,7 @@ public void onProviderDisabled(String provider) {
 @Override
 public void onProviderEnabled(String provider) {
 	
-	/*Location pLocation = this.mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-	
-	if (LastLocationCounted.didLocationChange(pLocation)) {
 		
-		fragmentMiddle();
-
-		this.mPrevLocation = pLocation;
-		lastLocation.setNewLocation(pLocation);
-		
-	}
-	if (this.mPrevLocation == null) {
-		this.mPrevLocation = pLocation;
-		
-	}*/
-	
 	this.middleFragmentContentHandler();
 }
 
@@ -333,10 +331,7 @@ public void onProviderEnabled(String provider) {
 @Override
 public void onStatusChanged(String provider, int status, Bundle extras) {
 	
-	//this.isConnected = CheckNetwork.sfConnected(this);
-	
-	//fragmentMiddle();
-	
+		
 	this.middleFragmentContentHandler();
 		
 	
@@ -345,45 +340,8 @@ public void onStatusChanged(String provider, int status, Bundle extras) {
 
 // END OF LOCATION LISTENER METHODS
 
-// BROADCAST RECEVIER FOR CHANGE IN NETWORK STATUS
 
-public void middleFragmentContentHandler () {
-	
-	// If there is no connection just show message and alert dialog
-	if (!CheckNetwork.sfConnected(this)) {
-				
-		this.fragmentMiddle.changeNoConnectText();
-			
-		DialogFragment newFragment = new DialogNoConnection();
-		FragmentManager dfm = getSupportFragmentManager();
-		
-		try {
-			newFragment.show(dfm, "noconnection");
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
-		
-	} else
-		
-		// Location did not enough to refresh crime count
-		if (!LastLocationCounted.didLocationChange(this.mCurrentLocation)) {
-					
-				this.fragmentMiddle.showLastCrimeCountText();
-				
-	} else {
-		if (this.fragmentMiddle.isAdded()) {
-		
-			LastLocationCounted.setNewLocation(this, this.mCurrentLocation);
-			this.fragmentMiddle.prepareCrimeQuery();
-		
-		
-		
-		}
-	}
-	
-	
-}
+//BROADCAST RECEVIER FOR CHANGE IN NETWORK STATUS
 
 private BroadcastReceiver receiver = new BroadcastReceiver() {
 

@@ -55,17 +55,20 @@ public class FragmentMode extends Fragment implements OnClickListener {
 		switch (v.getId()) {
 		
 			case R.id.buttondrive:
-					//Log.i("SAFETRAVELS","Button Drive tapped");
-					//getBeatCrime(v);
+				
+				Intent intentMain = new Intent(context, MainActivity.class);
+				//intent.putExtra("thetext", et.getText().toString());
+				startActivity(intentMain);
+			
 			break;
 		
 			case R.id.buttonspot:
-				if (context.getApplicationInfo().className != "SpotCheckActivity") {
+				
 					Intent intent = new Intent(context, SpotCheckActivity.class);
 					//intent.putExtra("thetext", et.getText().toString());
 					startActivity(intent);
 				
-				}
+		
 			
 			break;
 			
