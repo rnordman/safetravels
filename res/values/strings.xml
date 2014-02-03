@@ -39,5 +39,7 @@
     <string name="txtRefreshInterval">Choose Refresh Interval</string>
     <string name="btnSetSave">Save Settings</string>
     <string name="txtNoConnectPleaseWait">Getting count please wait ...</string>
+    <string name="title_activity_spot_check">SpotCheckActivity</string>
+    <string name="title_activity_afragment">AFragmentActivity</string>
 
 </resources>

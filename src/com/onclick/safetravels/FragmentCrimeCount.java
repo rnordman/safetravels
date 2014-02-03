@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.json.JSONException;
 
+import android.R.color;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
@@ -22,6 +23,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.onclick.apicaller.RestAPICaller;
+import com.onclick.safetravels.R;
+import com.onclick.safetravels.R.id;
+import com.onclick.safetravels.R.layout;
 import com.onclick.utils.Messages;
 
 /**
@@ -200,7 +204,7 @@ public class FragmentCrimeCount extends Fragment {
 			Messages.LongToast(tContext, "Made it to FragmentCrimeList");
 
 			if (refreshInd.equals("")) {
-				refreshInd = " ************";
+				refreshInd = "";
 			} else
 			{
 				refreshInd = "";
@@ -211,11 +215,27 @@ public class FragmentCrimeCount extends Fragment {
 			
 			tvCrimeCount.setText((resultList.get(0).toString()+refreshInd));
 			
+			if (Integer.parseInt(resultList.get(0)) < 12000) {
+				tvCrimeCount.setTextColor(getResources().getColor(R.color.green));
+			} else if (Integer.parseInt(resultList.get(0)) >= 12000 && Integer.parseInt(resultList.get(0)) < 24000) {
+				tvCrimeCount.setTextColor(getResources().getColor(R.color.yellow));
+			} else  {
+				tvCrimeCount.setTextColor(getResources().getColor(R.color.red));
+			}
+			
 			tvAheadCount.setText(resultList.get(1).toString());
+			
+			if (Integer.parseInt(resultList.get(1)) < 12000) {
+				tvAheadCount.setTextColor(getResources().getColor(R.color.green));
+			} else if (Integer.parseInt(resultList.get(1)) >= 12000 && Integer.parseInt(resultList.get(1)) < 24000) {
+				tvAheadCount.setTextColor(getResources().getColor(R.color.yellow));
+			} else  {
+				tvAheadCount.setTextColor(getResources().getColor(R.color.red));
+			}
 			
 			SafeTravelsPreferences.putCrimeCountMessage(tContext, tvCrimeCount.getText().toString());
 			
-			ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 500);
+			ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 200);
 			toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 2000); 
 			
 			return;

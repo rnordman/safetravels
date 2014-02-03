@@ -1,6 +1,7 @@
 package com.onclick.safetravels;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -12,6 +13,9 @@ import android.widget.Button;
 
 import com.onclick.apicaller.RestAPICaller;
 import com.onclick.chicagodata.db.ChicagoCrimeDataSource;
+import com.onclick.safetravels.R;
+import com.onclick.safetravels.R.id;
+import com.onclick.safetravels.R.layout;
 import com.onclick.threads.CrimeListTask;
 
 public class FragmentMode extends Fragment implements OnClickListener {
@@ -19,7 +23,7 @@ public class FragmentMode extends Fragment implements OnClickListener {
 	Context context;
 	Button btnDrive, btnSpot, btnTrend;
 	
-	ChicagoCrimeDataSource chicDS;
+	//ChicagoCrimeDataSource chicDS;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -51,11 +55,18 @@ public class FragmentMode extends Fragment implements OnClickListener {
 		switch (v.getId()) {
 		
 			case R.id.buttondrive:
-					Log.i("SAFETRAVELS","Button Drive tapped");
-					getBeatCrime(v);
+					//Log.i("SAFETRAVELS","Button Drive tapped");
+					//getBeatCrime(v);
 			break;
 		
 			case R.id.buttonspot:
+				if (context.getApplicationInfo().className != "SpotCheckActivity") {
+					Intent intent = new Intent(context, SpotCheckActivity.class);
+					//intent.putExtra("thetext", et.getText().toString());
+					startActivity(intent);
+				
+				}
+			
 			break;
 			
 			case R.id.buttontrend:

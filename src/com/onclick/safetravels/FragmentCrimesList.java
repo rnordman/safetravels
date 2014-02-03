@@ -19,6 +19,8 @@ import android.widget.ArrayAdapter;
 
 import com.onclick.apicaller.RestAPICaller;
 import com.onclick.chicagodata.model.ChicagoCrime;
+import com.onclick.safetravels.R;
+import com.onclick.safetravels.R.layout;
 import com.onclick.utils.Messages;
 
 

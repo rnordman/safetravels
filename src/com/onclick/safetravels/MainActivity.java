@@ -24,7 +24,7 @@ import com.onclick.utils.CheckNetwork;
 import com.onclick.utils.DialogNoConnection;
 
 
-public class MainActivity extends FragmentActivity implements LocationListener {
+public class MainActivity extends AFragmentActivity implements LocationListener {
 
 	private LocationManager mLocationManager;
 	public Location mCurrentLocation;
@@ -164,6 +164,8 @@ protected void onStop() {
 // START INFLATING VIEWS
 
 public void fragmentInflater() {
+	
+	super.fragmentInflater();
 	
 	boolean xactcomplete;
 	

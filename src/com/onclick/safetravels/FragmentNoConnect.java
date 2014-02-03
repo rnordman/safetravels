@@ -1,5 +1,8 @@
 package com.onclick.safetravels;
 
+import com.onclick.safetravels.R;
+import com.onclick.safetravels.R.string;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;

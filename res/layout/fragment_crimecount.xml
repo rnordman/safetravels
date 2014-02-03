@@ -5,7 +5,7 @@
 
     <TextView
         android:id="@+id/textViewCrimeCount"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textViewCrimeCount"
         android:layout_below="@+id/textViewCrimeCount"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:text="Previous Latitude: " />
 
     <TextView
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txtPrevLong"
         android:layout_below="@+id/txtPrevLong"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="10dp"
         android:text="Current Lat: " />
 
     <TextView
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txtCurrentBearing"
         android:layout_below="@+id/txtCurrentBearing"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="10dp"
         android:text="Ahead Lat: " />
 
     <TextView
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txtDistanceAhead"
         android:layout_below="@+id/txtDistanceAhead"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Crime Ahead: " />
 

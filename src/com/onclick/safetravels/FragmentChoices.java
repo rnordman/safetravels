@@ -1,5 +1,9 @@
 package com.onclick.safetravels;
 
+import com.onclick.safetravels.R;
+import com.onclick.safetravels.R.id;
+import com.onclick.safetravels.R.layout;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
