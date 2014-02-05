@@ -76,7 +76,7 @@ public class SafeTravelsPreferences {
 	public static final int LASTBEARINGVAL = 0;
 		
 	public static final int LOCATIONDOUBLETOINTMULTIPLIER = 10000;
-	public static final int LOCATIONCHANGETOLERANCEFACTOR = 1;
+	public static final int LOCATIONCHANGETOLERANCEFACTOR = 3;
 	
 	public static final String CRIMECOUNTMESSAGEKEY = "crime_count_message";
 	private static final String CRIMECOUNTMESSAGEVAL = null;

@@ -11,7 +11,11 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="50dp"
-        android:text="@string/txtNoConnectPleaseWait"
+        android:paddingBottom="40dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingTop="40dp"
+        android:text="Safe Here"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -89,7 +93,12 @@
         android:layout_alignLeft="@+id/txtDistanceAhead"
         android:layout_below="@+id/txtDistanceAhead"
         android:layout_marginTop="20dp"
+        android:paddingBottom="40dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingTop="40dp"
+        android:text="Safe Ahead"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Crime Ahead: " />
+         />
 
 </RelativeLayout>

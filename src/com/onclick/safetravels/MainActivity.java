@@ -11,15 +11,9 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.view.Menu;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.onclick.chicagodata.model.ChicagoCrime;
 import com.onclick.utils.CheckNetwork;
 import com.onclick.utils.DialogNoConnection;
 
@@ -117,7 +111,10 @@ protected void onPause() {
 		super.onPause();
 		
 		unregisterReceiver(receiver);
+		
+			
 		if (this.mLocationManager != null) {
+			this.mLocationManager.removeUpdates(this);
 			this.mLocationManager = null;
 		}
 			
@@ -207,6 +204,11 @@ public void fragmentInflater() {
 public void middleFragmentContentHandler () {
 	
 	// If there is no connection just show message and alert dialog
+	if (this.mCurrentLocation == null) {
+		this.mCurrentLocation = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		
+	}
+	
 	if (!CheckNetwork.sfConnected(this)) {
 				
 		this.fragmentMiddle.changeNoConnectText();

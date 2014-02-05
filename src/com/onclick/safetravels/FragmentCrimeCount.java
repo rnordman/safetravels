@@ -209,7 +209,7 @@ public class FragmentCrimeCount extends Fragment {
 			TextView tvCrimeCount = (TextView) lView.findViewById(R.id.textViewCrimeCount);
 			TextView tvAheadCount = (TextView) lView.findViewById(R.id.txtCrimeAhead);
 			
-			tvCrimeCount.setText((resultList.get(0).toString()+refreshInd));
+			/*tvCrimeCount.setText((resultList.get(0).toString()+refreshInd));
 			
 			if (Integer.parseInt(resultList.get(0)) < 12000) {
 				tvCrimeCount.setTextColor(getResources().getColor(R.color.green));
@@ -217,9 +217,21 @@ public class FragmentCrimeCount extends Fragment {
 				tvCrimeCount.setTextColor(getResources().getColor(R.color.yellow));
 			} else  {
 				tvCrimeCount.setTextColor(getResources().getColor(R.color.red));
-			}
+			}*/
 			
-			tvAheadCount.setText(resultList.get(1).toString());
+			if (Integer.parseInt(resultList.get(0)) < 12000) {
+				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.green));
+				tvCrimeCount.setText("SAFE");
+			} else if (Integer.parseInt(resultList.get(0)) >= 12000 && Integer.parseInt(resultList.get(0)) < 24000) {
+				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.yellow));
+				tvCrimeCount.setText("CAUTION");
+			} else  {
+				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.red));
+				tvCrimeCount.setText("DANGER");
+			}	
+				
+			
+		/*tvAheadCount.setText(resultList.get(1).toString());
 			
 			if (Integer.parseInt(resultList.get(1)) < 12000) {
 				tvAheadCount.setTextColor(getResources().getColor(R.color.green));
@@ -227,12 +239,34 @@ public class FragmentCrimeCount extends Fragment {
 				tvAheadCount.setTextColor(getResources().getColor(R.color.yellow));
 			} else  {
 				tvAheadCount.setTextColor(getResources().getColor(R.color.red));
+			}*/
+			
+			if (Integer.parseInt(resultList.get(1)) < 12000) {
+				tvAheadCount.setBackgroundColor(getResources().getColor(R.color.green));
+				tvAheadCount.setText("SAFE " + resultList.get(1).toString());
+				
+				ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 85);
+				toneG.startTone(ToneGenerator.TONE_CDMA_NETWORK_BUSY,599);
+				
+			} else if (Integer.parseInt(resultList.get(1)) >= 12000 && Integer.parseInt(resultList.get(1)) < 24000) {
+				tvAheadCount.setBackgroundColor(getResources().getColor(R.color.yellow));
+				tvAheadCount.setText("CAUTION " + resultList.get(1).toString());
+				
+				ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 95);
+				toneG.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT);
+				
+			} else  {
+				tvAheadCount.setBackgroundColor(getResources().getColor(R.color.red));
+				tvAheadCount.setText("DANGER " + resultList.get(1).toString());
+				
+				ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+				toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD); 
 			}
 			
 			SafeTravelsPreferences.putCrimeCountMessage(tContext, tvCrimeCount.getText().toString());
 			
-			ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 200);
-			toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 2000); 
+			
+			
 			
 			return;
 

@@ -13,6 +13,7 @@ import com.onclick.apicaller.RestAPICaller;
 import com.onclick.utils.Messages;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.AsyncTask;
@@ -21,14 +22,16 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
  * @author Ronald T
  *
  */
-public class FragmentSpotCheck extends Fragment {
+public class FragmentSpotCheck extends Fragment implements OnClickListener {
 
 	/**
 	 * 
@@ -47,6 +50,8 @@ public class FragmentSpotCheck extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		
+		
 	}
 
 	@Override
@@ -55,11 +60,12 @@ public class FragmentSpotCheck extends Fragment {
 
 		tContext = inflater.getContext();
 
-
 		View v = inflater.inflate(R.layout.fragment_spotcheck, container, false);
 
 		lView = v;
-	
+		
+		Button btnSpotCheckAddress = (Button) lView.findViewById(R.id.btnSpotCheckAddress);
+		btnSpotCheckAddress.setOnClickListener(this);
 		
 		
 		return v;
@@ -163,16 +169,21 @@ public class FragmentSpotCheck extends Fragment {
 
 			
 			TextView tvCrimeCount = (TextView) lView.findViewById(R.id.textViewCrimeCount);
+			TextView tvLat = (TextView) lView.findViewById(R.id.txtSpotCurrentLat);
+			TextView tvLong = (TextView) lView.findViewById(R.id.txtSpotCurrentLong);
+			
+			tvLat.setText(String.valueOf(LastLocationCounted.lastLatitude));
+			tvLong.setText(String.valueOf(LastLocationCounted.lastLongitude));
 			
 			
 			if (Integer.parseInt(resultList.get(0)) < 12000) {
-				tvCrimeCount.setTextColor(getResources().getColor(R.color.green));
+				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.green));
 				tvCrimeCount.setText("SAFE");
 			} else if (Integer.parseInt(resultList.get(0)) >= 12000 && Integer.parseInt(resultList.get(0)) < 24000) {
-				tvCrimeCount.setTextColor(getResources().getColor(R.color.yellow));
+				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.yellow));
 				tvCrimeCount.setText("CAUTION");
 			} else  {
-				tvCrimeCount.setTextColor(getResources().getColor(R.color.red));
+				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.red));
 				tvCrimeCount.setText("DANGER");
 			}
 						
@@ -182,6 +193,23 @@ public class FragmentSpotCheck extends Fragment {
 		}
 
 	}
+	/* (non-Javadoc)
+	 * @see android.view.View.OnClickListener#onClick(android.view.View)
+	 */
+	@Override
+	public void onClick(View v) {
+		
+		switch (v.getId()) {
+		
+		case R.id.btnSpotCheckAddress:
+			
+			
+					
+		break;
+		
+		}
+	}
 	
+	 
 
 }

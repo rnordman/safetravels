@@ -35,7 +35,6 @@
         android:layout_marginLeft="1dp"
         android:layout_toRightOf="@+id/buttonspot"
         android:text="@string/btntrend"
-        android:textStyle="bold"
         android:typeface="sans" />
 
 </RelativeLayout>

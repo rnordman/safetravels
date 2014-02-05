@@ -82,11 +82,11 @@ public class RestAPICaller {
 		lLong = LastLocationCounted.lastLongitude;
 		
 		// Hard code gps coordinates of center of Chicago
-		//dLat = (double)(lLat + 920) / 10000;
-		//dLong = (double)(lLong + 4236) / 10000;
+		dLat = (double)(lLat + 920) / 10000;
+		dLong = (double)(lLong + 4236) / 10000;
 		
-		dLat = (double)lLat / 10000;
-		dLong = (double)lLong / 10000;
+		//dLat = (double)lLat / 10000;
+		//dLong = (double)lLong / 10000;
 		
 		StringBuilder sbAPI = new StringBuilder();
 		sbAPI.append("http://data.cityofchicago.org/resource/ijzp-q8t2.json?$select=count%28id%29&$where=");
