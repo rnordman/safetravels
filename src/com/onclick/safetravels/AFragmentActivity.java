@@ -1,14 +1,9 @@
 package com.onclick.safetravels;
 
-import com.onclick.safetravels.R;
-import com.onclick.safetravels.R.id;
-
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.view.Menu;
 
 public abstract class AFragmentActivity extends FragmentActivity {
 

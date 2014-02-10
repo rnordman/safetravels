@@ -1,14 +1,9 @@
 package com.onclick.safetravels;
 
-import com.onclick.safetravels.R;
-import com.onclick.safetravels.R.id;
-import com.onclick.safetravels.R.layout;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
