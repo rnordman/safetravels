@@ -135,6 +135,7 @@ public class SettingsActivity extends Activity implements OnClickListener  {
 	
 	private void onSoundSwitchClick() {
 	    // Is Sound check box checked?
+		
 	    boolean on = useSound.isChecked();
 	    
 	    if (on) {
