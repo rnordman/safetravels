@@ -12,11 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.onclick.apicaller.RestAPICaller;
-import com.onclick.chicagodata.db.ChicagoCrimeDataSource;
-import com.onclick.safetravels.R;
-import com.onclick.safetravels.R.id;
-import com.onclick.safetravels.R.layout;
-import com.onclick.threads.CrimeListTask;
 
 public class FragmentMode extends Fragment implements OnClickListener {
 

@@ -198,6 +198,8 @@ public class FragmentCrimeCount extends Fragment {
 
 			Log.i("ASYNC HERE", "Here we are");
 			Messages.LongToast(tContext, "Made it to FragmentCrimeList");
+			
+			boolean soundOnOff = Messages.IsSoundOn(tContext);
 
 			if (refreshInd.equals("")) {
 				refreshInd = "";
@@ -245,22 +247,28 @@ public class FragmentCrimeCount extends Fragment {
 				tvAheadCount.setBackgroundColor(getResources().getColor(R.color.green));
 				tvAheadCount.setText("SAFE " + resultList.get(1).toString());
 				
-				ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 85);
-				toneG.startTone(ToneGenerator.TONE_CDMA_NETWORK_BUSY,599);
+				if (soundOnOff) {
+					ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 85);
+					toneG.startTone(ToneGenerator.TONE_CDMA_NETWORK_BUSY,599);
+				}
 				
 			} else if (Integer.parseInt(resultList.get(1)) >= 12000 && Integer.parseInt(resultList.get(1)) < 24000) {
 				tvAheadCount.setBackgroundColor(getResources().getColor(R.color.yellow));
 				tvAheadCount.setText("CAUTION " + resultList.get(1).toString());
 				
-				ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 95);
-				toneG.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT);
+				if (soundOnOff) {
+					ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 95);
+					toneG.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT);
+				}
 				
 			} else  {
 				tvAheadCount.setBackgroundColor(getResources().getColor(R.color.red));
 				tvAheadCount.setText("DANGER " + resultList.get(1).toString());
 				
-				ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
-				toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD); 
+				if (soundOnOff) {
+					ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+					toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD); 
+				}
 			}
 			
 			SafeTravelsPreferences.putCrimeCountMessage(tContext, tvCrimeCount.getText().toString());

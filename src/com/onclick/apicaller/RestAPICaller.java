@@ -43,11 +43,11 @@ public class RestAPICaller {
 									
 		aheadCoordinates = LastLocationCounted.getLocationAheadCoordinates(lContext);
 		
-		//dLat = (double)(aheadCoordinates[0] + .0920);
-		//dLong = (double)(aheadCoordinates[1] + .4236);
+		dLat = (double)(aheadCoordinates[0] + .0920);
+		dLong = (double)(aheadCoordinates[1] + .4236);
 		
-		dLat = (double)aheadCoordinates[0];
-		dLong = (double)aheadCoordinates[1];
+		//dLat = (double)aheadCoordinates[0];
+		//dLong = (double)aheadCoordinates[1];
 		
 		StringBuilder sbAPI = new StringBuilder();
 		sbAPI.append("http://data.cityofchicago.org/resource/ijzp-q8t2.json?$select=count%28id%29&$where=");

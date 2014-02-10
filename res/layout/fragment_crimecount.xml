@@ -9,13 +9,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="15dp"
         android:paddingBottom="40dp"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
         android:paddingTop="40dp"
-        android:text="Safe Here"
+        android:text="@string/lblCrimeHere"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_alignLeft="@+id/textViewCrimeCount"
         android:layout_below="@+id/textViewCrimeCount"
         android:layout_marginTop="10dp"
-        android:text="Previous Latitude: " />
+        android:text="@string/lblPrevLat" />
 
     <TextView
         android:id="@+id/txtPrevLong"
@@ -33,9 +33,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txtPrevLat"
         android:layout_below="@+id/txtPrevLat"
-        android:text="Previous Longitude: " />
+        android:text="@string/lblPrevLong" />
 
-    
     <TextView
         android:id="@+id/txtCurrentLat"
         android:layout_width="wrap_content"
@@ -43,7 +42,7 @@
         android:layout_alignLeft="@+id/txtPrevLong"
         android:layout_below="@+id/txtPrevLong"
         android:layout_marginTop="10dp"
-        android:text="Current Lat: " />
+        android:text="@string/lblCurrLat" />
 
     <TextView
         android:id="@+id/txtCurrentLong"
@@ -51,24 +50,24 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txtCurrentLat"
         android:layout_below="@+id/txtCurrentLat"
-        android:text="Current Long: " />
+        android:text="@string/lblCurrLong" />
     
      <TextView
-        android:id="@+id/txtCurrentBearing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtCurrentLong"
-        android:layout_below="@+id/txtCurrentLong"
-        android:text="Current Bearing: " />
+         android:id="@+id/txtCurrentBearing"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/txtCurrentLong"
+         android:layout_below="@+id/txtCurrentLong"
+         android:text="@string/lblCurrBearing" />
      
       <TextView
-        android:id="@+id/txtAheadLat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtCurrentBearing"
-        android:layout_below="@+id/txtCurrentBearing"
-        android:layout_marginTop="10dp"
-        android:text="Ahead Lat: " />
+          android:id="@+id/txtAheadLat"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/txtCurrentBearing"
+          android:layout_below="@+id/txtCurrentBearing"
+          android:layout_marginTop="10dp"
+          android:text="@string/lblAheadLat" />
 
     <TextView
         android:id="@+id/txtAheadLong"
@@ -76,29 +75,28 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txtAheadLat"
         android:layout_below="@+id/txtAheadLat"
-        android:text="Ahead Long: " />
+        android:text="@string/lblAheadLong" />
     
      <TextView
-        android:id="@+id/txtDistanceAhead"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtAheadLong"
-        android:layout_below="@+id/txtAheadLong"
-        android:text="Distance Ahead: " />
+         android:id="@+id/txtDistanceAhead"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/txtAheadLong"
+         android:layout_below="@+id/txtAheadLong"
+         android:text="@string/lblDistanceAhead" />
      
       <TextView
-        android:id="@+id/txtCrimeAhead"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtDistanceAhead"
-        android:layout_below="@+id/txtDistanceAhead"
-        android:layout_marginTop="20dp"
-        android:paddingBottom="40dp"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:paddingTop="40dp"
-        android:text="Safe Ahead"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-         />
+          android:id="@+id/txtCrimeAhead"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/txtDistanceAhead"
+          android:layout_below="@+id/txtDistanceAhead"
+          android:layout_marginTop="20dp"
+          android:paddingBottom="40dp"
+          android:paddingLeft="50dp"
+          android:paddingRight="50dp"
+          android:paddingTop="40dp"
+          android:text="@string/lblCrimeAhead"
+          android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

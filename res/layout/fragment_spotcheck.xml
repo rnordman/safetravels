@@ -4,12 +4,12 @@
     android:layout_height="match_parent" >
 
      <TextView
-        android:id="@+id/txtSpotCheckIntro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="5dp"
-        android:text="Enter address to check:" />
+         android:id="@+id/txtSpotCheckIntro"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="5dp"
+         android:layout_marginTop="15dp"
+         android:text="@string/lblEnterAddress" />
      
     <EditText
         android:id="@+id/editTextAddress"
@@ -27,19 +27,19 @@
         android:id="@+id/txtSpotCheckMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_alignLeft="@+id/editTextAddress"
         android:layout_below="@+id/editTextAddress"
-        android:text="Crime Count Here: " />
+        android:layout_marginTop="10dp"
+        android:text="@string/lblCrimeCountHere" />
     
       <TextView
-        android:id="@+id/txtSpotCurrentLat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textViewCrimeCount"
-        android:layout_below="@+id/textViewCrimeCount"
-        android:layout_marginTop="10dp"
-        android:text="Current Lat: " />
+          android:id="@+id/txtSpotCurrentLat"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/textViewCrimeCount"
+          android:layout_below="@+id/textViewCrimeCount"
+          android:layout_marginTop="10dp"
+          android:text="@string/lblCurrLat" />
 
     <TextView
         android:id="@+id/txtSpotCurrentLong"
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txtSpotCurrentLat"
         android:layout_below="@+id/txtSpotCurrentLat"
-        android:text="Current Long: " />
+        android:text="@string/lblCurrLong" />
 
     <TextView
         android:id="@+id/textViewCrimeCount"
@@ -60,7 +60,7 @@
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
         android:paddingTop="40dp"
-        android:text="Safe"
+        android:text="@string/lblBlank"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/white" />
 
@@ -72,6 +72,6 @@
         android:layout_above="@+id/txtSpotCheckMessage"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/editTextAddress"
-        android:text="Check" />
+        android:text="@string/lblCheck" />
 
 </RelativeLayout>

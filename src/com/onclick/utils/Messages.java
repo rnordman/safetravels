@@ -1,6 +1,9 @@
 package com.onclick.utils;
 
+import com.onclick.safetravels.SafeTravelsPreferences;
+
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.widget.Toast;
 
 public class Messages {
@@ -20,6 +23,15 @@ public class Messages {
 		Toast toast = Toast.makeText(tContext, tToast, duration);
 		
 		toast.show();
+	}
+	
+	public static boolean IsSoundOn( Context context) {
+		
+		SharedPreferences SPsettings = context.getSharedPreferences(SafeTravelsPreferences.APIFILE, 0);
+		
+		boolean soundOnOff = SPsettings.getBoolean(SafeTravelsPreferences.SOUNDSWITCHKEY, SafeTravelsPreferences.SOUNDSWITCHVAL);
+		
+		return soundOnOff;
 	}
 	
 }

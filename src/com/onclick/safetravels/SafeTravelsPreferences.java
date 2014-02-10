@@ -81,6 +81,10 @@ public class SafeTravelsPreferences {
 	public static final String CRIMECOUNTMESSAGEKEY = "crime_count_message";
 	private static final String CRIMECOUNTMESSAGEVAL = null;
 	
+	public static final String SOUNDSWITCHKEY = "sound_switch";
+	public static final Boolean SOUNDSWITCHVAL = true;
+	
+	
 
 	public SafeTravelsPreferences() {
 	}

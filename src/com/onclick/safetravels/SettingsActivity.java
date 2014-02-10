@@ -8,14 +8,20 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Checkable;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
+import android.widget.ToggleButton;
 
 public class SettingsActivity extends Activity implements OnClickListener  {
 	
 	RadioGroup rg; 
 	RadioButton rb100, rb3,	rb400, rb800, rb1600; 
-
+	CheckBox useSound;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,6 +56,11 @@ public class SettingsActivity extends Activity implements OnClickListener  {
 		else if (refInterval.equals(SafeTravelsPreferences.REFRESHINTERVAL1600METERS)) {
 			rb1600.setChecked(true);
 				}
+		
+		useSound =  (CheckBox) findViewById(R.id.chkSoundOnOff);
+		boolean soundOnOff = SPsettings.getBoolean(SafeTravelsPreferences.SOUNDSWITCHKEY, SafeTravelsPreferences.SOUNDSWITCHVAL);
+		useSound.setChecked(soundOnOff);
+		useSound.setOnClickListener(this);
 		
 		Button btnSave = (Button) findViewById(R.id.buttonSave);
 		btnSave.setOnClickListener(this);
@@ -111,10 +122,44 @@ public class SettingsActivity extends Activity implements OnClickListener  {
 			
 			settingsEditor.commit();
 			
+			this.onSoundSwitchClick();
+				
+				
 			Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
 			startActivity(intent);
 		}
 		
+		
+		
+	}
+	
+	private void onSoundSwitchClick() {
+	    // Is the toggle on?
+	    boolean on = useSound.isChecked();
+	    
+	    if (on) {
+	       
+	    	SharedPreferences SPsettings = this.getSharedPreferences(SafeTravelsPreferences.APIFILE, 0);
+			
+			SharedPreferences.Editor settingsEditor = SPsettings.edit();
+			
+			settingsEditor.putBoolean(SafeTravelsPreferences.SOUNDSWITCHKEY, true);
+			
+			settingsEditor.commit();
+						
+	    	
+	    } else {
+	    	
+	    	SharedPreferences SPsettings = this.getSharedPreferences(SafeTravelsPreferences.APIFILE, 0);
+			
+			SharedPreferences.Editor settingsEditor = SPsettings.edit();
+			
+			settingsEditor.putBoolean(SafeTravelsPreferences.SOUNDSWITCHKEY, false);
+			
+			settingsEditor.commit();
+	    }
+	    
+	    
 	}
 
 	

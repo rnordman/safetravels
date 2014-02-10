@@ -41,5 +41,20 @@
     <string name="txtNoConnectPleaseWait">Getting count please wait ...</string>
     <string name="title_activity_spot_check">SpotCheckActivity</string>
     <string name="title_activity_afragment">AFragmentActivity</string>
+    <string name="lblCrimeHere">Crime Here</string>
+    <string name="lblPrevLat">"Previous Latitude: "</string>
+    <string name="lblPrevLong">"Previous Longitude: "</string>
+    <string name="lblCurrLat">"Current Lat: "</string>
+    <string name="lblCurrLong">"Current Long: "</string>
+    <string name="lblCurrBearing">"Current Bearing: "</string>
+    <string name="lblAheadLat">"Ahead Lat: "</string>
+    <string name="lblAheadLong">"Ahead Long: "</string>
+    <string name="lblDistanceAhead">"Distance Ahead: "</string>
+    <string name="lblCrimeAhead">Crime Ahead</string>
+    <string name="lblEnterAddress">Enter address to check:</string>
+    <string name="lblCheck">Check</string>
+    <string name="lblCrimeCountHere">"Crime Count Here: "</string>
+    <string name="lblBlank"></string>
+    <string name="lblSound">Sound</string>
 
 </resources>
