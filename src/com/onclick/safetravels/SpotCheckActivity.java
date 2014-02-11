@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.onclick.utils.CheckNetwork;
 import com.onclick.utils.DialogNoConnection;
+import com.onclick.utils.Messages;
 
 /**
  * @author Ronald T
@@ -102,11 +103,12 @@ public class SpotCheckActivity extends AFragmentActivity  {
 						
 		} else {
 			
+				if (this.mCurrentLocation == null) {
+					this.mCurrentLocation= mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+				}
 				LastLocationCounted.setNewLocation(this, this.mCurrentLocation);
 				this.fragmentMiddle.prepareCrimeQuery();
-			
-			
-			
+					
 			
 		}
 		
@@ -114,7 +116,6 @@ public class SpotCheckActivity extends AFragmentActivity  {
 	}  // End of middle fragment content handler
 
 	
-
 	
 
 }

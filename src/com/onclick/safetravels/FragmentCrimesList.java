@@ -55,17 +55,9 @@ public void prepareCrimeQuery() {
 		//String beatCount;
 		String chicagoAPI = null;
 			
-		//EditText beat = (EditText) findViewById(R.id.editText1);
-		//beatCount = beat.getText().toString();
-						
-		//SharedPreferences beatno = getSharedPreferences("API_settings", 0);
-		//SharedPreferences.Editor settingsEditor = beatno.edit();
-		
-		//settingsEditor.putString("beat_no", beatCount);
-		//settingsEditor.commit();
 			
 		RestAPICaller chicagoJson = new RestAPICaller();
-		chicagoAPI = chicagoJson.buildAPIQuery();
+		chicagoAPI = chicagoJson.buildCrimeListAPIQuery();
 		
 		startFetch(chicagoAPI);
 							

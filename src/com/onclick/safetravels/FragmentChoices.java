@@ -23,12 +23,18 @@ public class FragmentChoices extends Fragment implements OnClickListener{
 		Context fContext = this.getActivity().getBaseContext();
 		switch (v.getId()) {
 		case R.id.buttonsettings:
+			
 			Intent intent = new Intent(fContext, SettingsActivity.class);
 			//intent.putExtra("thetext", et.getText().toString());
 			startActivity(intent);	
+			
 			break;
 			
 		case R.id.buttonfilters:
+			
+			Intent intentChicago = new Intent(fContext, ChicagoActivity.class);
+			//intent.putExtra("thetext", et.getText().toString());
+			startActivity(intentChicago);
 			
 			break;
 			

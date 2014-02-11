@@ -2,6 +2,10 @@
 <resources>
 
     <string name="app_name">Safe Travels</string>
+    <string name="activity_name_drive_mode">Safe Travels - Drive Mode</string>
+    <string name="activity_name_settings">Safe Travels - Settings</string>
+    <string name="activity_name_spot_check">Safe Travels - Spot Check</string>
+    <string name="activity_name_chicago_gps">Sets Coordinates to Center of Chicago</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="beatnumber">"Enter a Beat Number: "</string>
@@ -41,7 +45,7 @@
     <string name="txtNoConnectPleaseWait">Getting count please wait ...</string>
     <string name="title_activity_spot_check">SpotCheckActivity</string>
     <string name="title_activity_afragment">AFragmentActivity</string>
-    <string name="lblCrimeHere">Crime Here</string>
+    <string name="lblCrimeHere">Here</string>
     <string name="lblPrevLat">"Previous Latitude: "</string>
     <string name="lblPrevLong">"Previous Longitude: "</string>
     <string name="lblCurrLat">"Current Lat: "</string>
@@ -50,11 +54,19 @@
     <string name="lblAheadLat">"Ahead Lat: "</string>
     <string name="lblAheadLong">"Ahead Long: "</string>
     <string name="lblDistanceAhead">"Distance Ahead: "</string>
-    <string name="lblCrimeAhead">Crime Ahead</string>
+    <string name="lblCrimeAhead">waiting for direction ....</string>
     <string name="lblEnterAddress">Enter address to check:</string>
     <string name="lblCheck">Check</string>
-    <string name="lblCrimeCountHere">"Crime Count Here: "</string>
+    <string name="lblCrimeCountHere">"Tap to View Details"</string>
     <string name="lblBlank"></string>
     <string name="lblSound">Sound</string>
+    <string name="lblSafeHere">SAFE HERE</string>
+    <string name="lblCautionHere">CAUTION HERE</string>
+    <string name="lblDangerHere">DANGER HERE</string>
+    <string name="lblSafeAhead">SAFE AHEAD</string>
+    <string name="lblCautionAhead">CAUTION AHEAD</string>
+    <string name="lblDangerAhead">DANGER AHEAD</string>
+    <string name="lblChicagoGPS">ChicagoGPS</string>
+    
 
 </resources>

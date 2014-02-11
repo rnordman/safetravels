@@ -67,6 +67,8 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 		Button btnSpotCheckAddress = (Button) lView.findViewById(R.id.btnSpotCheckAddress);
 		btnSpotCheckAddress.setOnClickListener(this);
 		
+		TextView tvCrimeHere = (TextView) lView.findViewById(R.id.textViewCrimeCount);
+		tvCrimeHere.setOnClickListener(this);
 		
 		return v;
 	}
@@ -164,8 +166,8 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 
 			super.onPostExecute(resultList);
 
-			Log.i("ASYNC HERE", "Here we are");
-			Messages.LongToast(tContext, "Made it to Fragment SPOTCHECK");
+			//Log.i("ASYNC HERE", "Here we are");
+			//Messages.LongToast(tContext, "Made it to Fragment SPOTCHECK");
 
 			
 			TextView tvCrimeCount = (TextView) lView.findViewById(R.id.textViewCrimeCount);
@@ -175,16 +177,20 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 			tvLat.setText(String.valueOf(LastLocationCounted.lastLatitude));
 			tvLong.setText(String.valueOf(LastLocationCounted.lastLongitude));
 			
-			
-			if (Integer.parseInt(resultList.get(0)) < 12000) {
+			tvCrimeCount.setTextColor(getResources().getColor(R.color.white));
+			if (Integer.parseInt(resultList.get(0)) < SafeTravelsPreferences.SAFETHRESHOLD) {
 				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.green));
-				tvCrimeCount.setText("SAFE");
-			} else if (Integer.parseInt(resultList.get(0)) >= 12000 && Integer.parseInt(resultList.get(0)) < 24000) {
+				tvCrimeCount.setText(getResources().getString(R.string.lblSafeHere));
+			} else if (Integer.parseInt(resultList.get(0)) >= SafeTravelsPreferences.SAFETHRESHOLD && Integer.parseInt(resultList.get(0)) < SafeTravelsPreferences.CAUTIONTHRESHOLD) {
+				
+				tvCrimeCount.setTextColor(getResources().getColor(R.color.black));
 				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.yellow));
-				tvCrimeCount.setText("CAUTION");
+				tvCrimeCount.setText(getResources().getString(R.string.lblCautionHere));
+				
 			} else  {
+				
 				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.red));
-				tvCrimeCount.setText("DANGER");
+				tvCrimeCount.setText(getResources().getString(R.string.lblDangerHere));
 			}
 						
 			
@@ -207,9 +213,19 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 					
 		break;
 		
+		case R.id.textViewCrimeCount:
+			this.onClickViewCrimeDetail();
+		
 		}
 	}
 	
-	 
+	/**
+	 * 
+	 */
+	private void onClickViewCrimeDetail() {
+		// TODO Auto-generated method stub
+		Messages.LongToast(tContext, "Here in Crime Detail");
+	}
+
 
 }

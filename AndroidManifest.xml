@@ -15,20 +15,19 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application android:allowBackup="true"
-        android:theme="@android:style/Theme.Holo.NoActionBar" >
+        android:theme="@android:style/Theme.Holo" 
 
-        <!--
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        -->
+        
+        android:icon="@drawable/sf_mdpi"
+        android:label="@string/app_name">
+        
 
         <activity
-            android:name="com.onclick.safetravels.MainActivity"      >
+            android:name="com.onclick.safetravels.MainActivity"  
+            android:label="@string/activity_name_drive_mode" >   
             
             <!--  android:theme="@android:style/Theme.NoTitleBar" > -->
-            
-
-            <!-- android:label="@string/app_name" > -->
+                      
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,9 +36,13 @@
         </activity>
         <activity
             android:name="com.onclick.safetravels.SettingsActivity"
-            android:label="@string/title_activity_settings" >
+            android:label="@string/activity_name_settings" >
         </activity>
-        <activity android:name="com.onclick.safetravels.SpotCheckActivity" >
+        <activity android:name="com.onclick.safetravels.SpotCheckActivity"
+             android:label="@string/activity_name_spot_check" >
+        </activity>
+         <activity android:name="com.onclick.safetravels.ChicagoActivity"
+             android:label="@string/activity_name_chicago_gps" >
         </activity>
         <activity
             android:name="com.onclick.safetravels.AFragmentActivity"

@@ -6,21 +6,34 @@
 
     <Button
         android:id="@+id/buttonsettings"
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+         android:paddingLeft="30dp"
+        android:paddingRight="30dp"
         android:text="@string/btnsettings" />
 
     <Button
         android:id="@+id/buttonfilters"
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btnfilters"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="@string/lblChicagoGPS"
         android:layout_toRightOf="@+id/buttonsettings" />
 
     <Button
         android:id="@+id/buttonbackground"
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:text="@string/btnbackground"
         android:layout_toRightOf="@+id/buttonfilters" />
 

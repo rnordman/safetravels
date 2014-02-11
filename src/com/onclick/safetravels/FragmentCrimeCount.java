@@ -36,7 +36,7 @@ public class FragmentCrimeCount extends Fragment {
 	 */
 	Context tContext;
 	View lView;
-	String refreshInd = "";
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -47,11 +47,18 @@ public class FragmentCrimeCount extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		
+		View v = null;
 
 		tContext = inflater.getContext();
 
-
-		View v = inflater.inflate(R.layout.fragment_crimecount, container, false);
+		if (SafeTravelsPreferences.DEBUGMODE) {
+			v = inflater.inflate(R.layout.fragment_crimecount_test, container, false);
+		}
+		else
+		{
+			v = inflater.inflate(R.layout.fragment_crimecount, container, false);
+		}
 
 		lView = v;
 
@@ -86,8 +93,21 @@ public class FragmentCrimeCount extends Fragment {
 		if (sLastCrimeCount != null) {
 
 			TextView tvCrimeCount = (TextView) lView.findViewById(R.id.textViewCrimeCount);
-
+			
+			tvCrimeCount.setTextColor(getResources().getColor(R.color.white));
 			tvCrimeCount.setText(sLastCrimeCount);
+			if (sLastCrimeCount.equals(getResources().getString(R.string.lblSafeHere))) {
+				
+				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.green));
+				
+			} else if (sLastCrimeCount.equals(getResources().getString(R.string.lblCautionHere))) {
+				tvCrimeCount.setTextColor(getResources().getColor(R.color.black));
+				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.yellow));
+				
+			} else {
+				
+				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.red));
+			}
 		}
 
 	}
@@ -101,6 +121,26 @@ public class FragmentCrimeCount extends Fragment {
 		RestAPICaller chicagoJson = new RestAPICaller(tContext);
 		chicagoAPI = chicagoJson.buildAPIQuery();
 		aheadAPI = chicagoJson.buildAheadQuery();
+		
+		
+		List<String> queryList = new ArrayList<String>();
+		
+		queryList.add(chicagoAPI);
+		queryList.add(aheadAPI);
+		
+		startFetch(queryList);
+
+	}
+	
+	// This will make call to Chicago Crime database API 
+	public void prepareCrimeQueryChicago() {
+
+		String chicagoAPI = null;
+		String aheadAPI = null;
+
+		RestAPICaller chicagoJson = new RestAPICaller(tContext);
+		chicagoAPI = chicagoJson.buildAPIQueryChicago();
+		aheadAPI = chicagoJson.buildAheadQueryChicago();
 		
 		
 		List<String> queryList = new ArrayList<String>();
@@ -196,18 +236,11 @@ public class FragmentCrimeCount extends Fragment {
 
 			super.onPostExecute(resultList);
 
-			Log.i("ASYNC HERE", "Here we are");
-			Messages.LongToast(tContext, "Made it to FragmentCrimeList");
+			//Log.i("ASYNC HERE", "Here we are");
+			//Messages.LongToast(tContext, "Made it to FragmentCrimeList");
 			
 			boolean soundOnOff = Messages.IsSoundOn(tContext);
-
-			if (refreshInd.equals("")) {
-				refreshInd = "";
-			} else
-			{
-				refreshInd = "";
-			}
-
+			
 			TextView tvCrimeCount = (TextView) lView.findViewById(R.id.textViewCrimeCount);
 			TextView tvAheadCount = (TextView) lView.findViewById(R.id.txtCrimeAhead);
 			
@@ -220,16 +253,22 @@ public class FragmentCrimeCount extends Fragment {
 			} else  {
 				tvCrimeCount.setTextColor(getResources().getColor(R.color.red));
 			}*/
-			
-			if (Integer.parseInt(resultList.get(0)) < 12000) {
+			tvCrimeCount.setTextColor(getResources().getColor(R.color.white));
+			if (Integer.parseInt(resultList.get(0)) < SafeTravelsPreferences.SAFETHRESHOLD) {
+				
 				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.green));
-				tvCrimeCount.setText("SAFE");
-			} else if (Integer.parseInt(resultList.get(0)) >= 12000 && Integer.parseInt(resultList.get(0)) < 24000) {
+				tvCrimeCount.setText(getResources().getString(R.string.lblSafeHere));
+				
+			} else if (Integer.parseInt(resultList.get(0)) >= SafeTravelsPreferences.SAFETHRESHOLD && Integer.parseInt(resultList.get(0)) < SafeTravelsPreferences.CAUTIONTHRESHOLD) {
+				
 				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.yellow));
-				tvCrimeCount.setText("CAUTION");
+				tvCrimeCount.setTextColor(getResources().getColor(R.color.black));
+				tvCrimeCount.setText(getResources().getString(R.string.lblCautionHere));
+				
 			} else  {
+				
 				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.red));
-				tvCrimeCount.setText("DANGER");
+				tvCrimeCount.setText(getResources().getString(R.string.lblDangerHere));
 			}	
 				
 			
@@ -242,19 +281,20 @@ public class FragmentCrimeCount extends Fragment {
 			} else  {
 				tvAheadCount.setTextColor(getResources().getColor(R.color.red));
 			}*/
-			
-			if (Integer.parseInt(resultList.get(1)) < 12000) {
+			tvAheadCount.setTextColor(getResources().getColor(R.color.white));
+			if (Integer.parseInt(resultList.get(1)) < SafeTravelsPreferences.SAFETHRESHOLD) {
 				tvAheadCount.setBackgroundColor(getResources().getColor(R.color.green));
-				tvAheadCount.setText("SAFE " + resultList.get(1).toString());
+				tvAheadCount.setText(getResources().getString(R.string.lblSafeAhead));
 				
 				if (soundOnOff) {
 					ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 85);
 					toneG.startTone(ToneGenerator.TONE_CDMA_NETWORK_BUSY,599);
 				}
 				
-			} else if (Integer.parseInt(resultList.get(1)) >= 12000 && Integer.parseInt(resultList.get(1)) < 24000) {
+			} else if (Integer.parseInt(resultList.get(1)) >= SafeTravelsPreferences.SAFETHRESHOLD && Integer.parseInt(resultList.get(1)) < SafeTravelsPreferences.CAUTIONTHRESHOLD) {
 				tvAheadCount.setBackgroundColor(getResources().getColor(R.color.yellow));
-				tvAheadCount.setText("CAUTION " + resultList.get(1).toString());
+				tvAheadCount.setTextColor(getResources().getColor(R.color.black));
+				tvAheadCount.setText(getResources().getString(R.string.lblCautionAhead));
 				
 				if (soundOnOff) {
 					ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 95);
@@ -263,7 +303,7 @@ public class FragmentCrimeCount extends Fragment {
 				
 			} else  {
 				tvAheadCount.setBackgroundColor(getResources().getColor(R.color.red));
-				tvAheadCount.setText("DANGER " + resultList.get(1).toString());
+				tvAheadCount.setText(getResources().getString(R.string.lblDangerAhead));
 				
 				if (soundOnOff) {
 					ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
@@ -272,9 +312,6 @@ public class FragmentCrimeCount extends Fragment {
 			}
 			
 			SafeTravelsPreferences.putCrimeCountMessage(tContext, tvCrimeCount.getText().toString());
-			
-			
-			
 			
 			return;
 

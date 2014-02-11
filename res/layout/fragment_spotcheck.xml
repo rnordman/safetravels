@@ -55,23 +55,31 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@color/yellow"
-        android:paddingBottom="40dp"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:paddingTop="40dp"
+        android:background="@color/black"
+        android:gravity="center"
+        android:paddingBottom="60dp"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        android:paddingTop="60dp"
         android:text="@string/lblBlank"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:clickable="true"  />
 
     <Button
         android:id="@+id/btnSpotCheckAddress"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/txtSpotCheckMessage"
+        android:layout_toRightOf="@+id/editTextAddress"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/editTextAddress"
+         android:paddingBottom="25dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="25dp"
+        android:layout_alignBottom="@+id/editTextAddress"
         android:text="@string/lblCheck" />
 
 </RelativeLayout>

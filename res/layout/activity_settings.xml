@@ -30,12 +30,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/radSet3MetersTest" />
-
+        
         <RadioButton
-            android:id="@+id/RadioButton8Blocks"
+            android:id="@+id/RadioButton100Meters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/radSet8Blocks" />
+            android:text="@string/radSet100Meters" />
+  
 
         <RadioButton
             android:id="@+id/RadioButton2Blocks"
@@ -50,11 +51,12 @@
             android:layout_height="wrap_content"
             android:text="@string/radSet4Blocks" />
 
-        <RadioButton
-            android:id="@+id/RadioButton100Meters"
+          <RadioButton
+            android:id="@+id/RadioButton8Blocks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/radSet100Meters" />
+            android:text="@string/radSet8Blocks" />
+        
     </RadioGroup>
 
        <Button

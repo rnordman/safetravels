@@ -251,18 +251,17 @@ public void middleFragmentContentHandler () {
 @Override
 public void onLocationChanged(Location location) {
 		
-	int pLat = 0, pLong = 0;
+	// Mostly used for debugging	
+	/*	int pLat = 0, pLong = 0;
 	int lLat, lLong;
 	
 	float fBearing = 0.0f;
-	
-	Location tLocation = location;
-	
+			
 	double aheadCoordinates[] = {0.0d,0.0d};
 	
 	aheadCoordinates = LastLocationCounted.getLocationAheadCoordinates(this);
 	
-	// Mostly used for debugging	
+	
 	lLat = (int) (location.getLatitude() * 10000);
 	lLong = (int) (location.getLongitude() * 10000);
 	
@@ -280,7 +279,7 @@ public void onLocationChanged(Location location) {
 				
 	}
 		
-	String sBearing = String.valueOf(fBearing);
+	 String sBearing = String.valueOf(fBearing);
 	
 	TextView prevLat = (TextView) this.fragmentMiddle.lView.findViewById(R.id.txtPrevLat);
 	TextView prevLong = (TextView) this.fragmentMiddle.lView.findViewById(R.id.txtPrevLong);
@@ -305,8 +304,10 @@ public void onLocationChanged(Location location) {
 	aheadLong.setText("Ahead Long: " + String.valueOf(aheadCoordinates[1]));
 	distanceAhead.setText("Distance Ahead: "+ String.valueOf(distanceAheadF[0]));
 	
+	*/
+	
 	// Set new location and call ContentHandler
-	this.mCurrentLocation = tLocation;	
+	this.mCurrentLocation = location;	
 	this.middleFragmentContentHandler();
 	
 		
@@ -316,7 +317,7 @@ public void onLocationChanged(Location location) {
 @Override
 public void onProviderDisabled(String provider) {
 	
-	TextView prevLat = (TextView) this.fragmentMiddle.lView.findViewById(R.id.txtPrevLat);	
+	//TextView prevLat = (TextView) this.fragmentMiddle.lView.findViewById(R.id.txtPrevLat);	
 	this.middleFragmentContentHandler();
 		
 }

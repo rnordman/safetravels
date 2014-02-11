@@ -84,6 +84,10 @@ public class SafeTravelsPreferences {
 	public static final String SOUNDSWITCHKEY = "sound_switch";
 	public static final Boolean SOUNDSWITCHVAL = true;
 	
+	public static final Boolean DEBUGMODE = false;
+	
+	public static final int SAFETHRESHOLD = 12000;
+	public static final int CAUTIONTHRESHOLD = 24000;
 	
 
 	public SafeTravelsPreferences() {
