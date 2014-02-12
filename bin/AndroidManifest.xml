@@ -24,7 +24,8 @@
 
         <activity
             android:name="com.onclick.safetravels.MainActivity"  
-            android:label="@string/activity_name_drive_mode" >   
+            android:label="@string/activity_name_drive_mode"
+            android:screenOrientation="portrait" >   
             
             <!--  android:theme="@android:style/Theme.NoTitleBar" > -->
                       
@@ -36,12 +37,19 @@
         </activity>
         <activity
             android:name="com.onclick.safetravels.SettingsActivity"
+            android:screenOrientation="portrait" 
             android:label="@string/activity_name_settings" >
         </activity>
         <activity android:name="com.onclick.safetravels.SpotCheckActivity"
+            android:screenOrientation="portrait" 
              android:label="@string/activity_name_spot_check" >
         </activity>
          <activity android:name="com.onclick.safetravels.ChicagoActivity"
+             android:screenOrientation="portrait" 
+             android:label="@string/activity_name_chicago_gps" >
+        </activity>
+         <activity android:name="com.onclick.safetravels.CrimeListActivity"
+             android:screenOrientation="portrait" 
              android:label="@string/activity_name_chicago_gps" >
         </activity>
         <activity

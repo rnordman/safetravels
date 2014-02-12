@@ -225,6 +225,9 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 	private void onClickViewCrimeDetail() {
 		// TODO Auto-generated method stub
 		Messages.LongToast(tContext, "Here in Crime Detail");
+		Intent intentCrimeList = new Intent(tContext, CrimeListActivity.class);
+		//intent.putExtra("thetext", et.getText().toString());
+		startActivity(intentCrimeList);
 	}
 
 

@@ -176,9 +176,43 @@ public class RestAPICaller {
 			sbAPI.append("800)");
 			
 			queryAPI = sbAPI.toString();
-						
+														
+			return queryAPI;
+		}
+		
+		// Build the Query to Send to API
+		public String buildCrimeListAPIQuery() {
+
+			String queryAPI = null;
+
+			int lLat = 0;
+			int lLong = 0;
+
+			double dLat = 0.0;
+			double dLong = 0.0;
+		
+
+			lLat = LastLocationCounted.lastLatitude;
+			lLong = LastLocationCounted.lastLongitude;
+
+			// Hard code gps coordinates of center of Chicago
+			dLat = (double)(lLat) / 10000;
+			dLong = (double)(lLong) / 10000;
+
+
+			StringBuilder sbAPI = new StringBuilder();
+			sbAPI.append("http://data.cityofchicago.org/resource/ijzp-q8t2.json?$select=primary_type,count%28id%29&$where=date%3E%272013-10-06T00:00:00%27 AND ");
+			sbAPI.append("within_circle(location,");
+			sbAPI.append(dLat);
+			sbAPI.append(",");
+			sbAPI.append(dLong);
+			sbAPI.append(",");
+			sbAPI.append("800%29%20group%20by%20primary_type%20order%20by%20count_id%20desc");
+			//http://data.cityofchicago.org/resource/ijzp-q8t2.json?$select=primary_type,count%28id%29&$where=date%3E%272013-10-06T00:00:00%27%20AND%20within_circle%28location,41.860942,%20-87.713114,800%29%20group%20by%20primary_type%20order%20by%20count_id%20desc
+			queryAPI = sbAPI.toString();
+
 			/*SharedPreferences APISettings = lContext.getSharedPreferences(SafeTravelsPreferences.APIFILE, 0);
-			
+
 			/sbAPI.append(APISettings.getString(SafeTravelsPreferences.SERVERNAMEKEY, SafeTravelsPreferences.SERVERNAMEVAL));
 			sbAPI.append(APISettings.getString(SafeTravelsPreferences.RESOURCENAMEKEY, SafeTravelsPreferences.RESOURCENAMEVAL));
 			sbAPI.append(APISettings.getString(SafeTravelsPreferences.ENDPOINTKEY, SafeTravelsPreferences.ENDPOINTVAL));
@@ -186,7 +220,7 @@ public class RestAPICaller {
 			sbAPI.append("$select=beat,count(id)&$where=beat=%27");
 			sbAPI.append(APISettings.getString("beat_no",""));		
 			sbAPI.append("%27&$group=beat");*/
-			
+
 			//queryAPI = "http://data.cityofchicago.org/resource/ijzp-q8t2.json?$select=beat,count%28id%29&$group=beat&$order=beat%20desc";
 			//queryAPI = "http://data.cityofchicago.org/resource/ijzp-q8t2.json?$select=ward,count%28id%29&$where=ward%20IS%20NOT%20NULL&$group=ward&$order=ward%20desc";
 			//queryAPI = "http://data.cityofchicago.org/resource/ijzp-q8t2.json?$select=id,block,primary_type,longitude,latitude,date&$where=date%3E%272013-10-06T00:00:00%27&$order=longitude";
@@ -194,7 +228,7 @@ public class RestAPICaller {
 			//queryAPI = "http://data.cityofchicago.org/resource/ijzp-q8t2.json?$select=count%28id%29&$where=latitiude%3E%2741.6765adate%3E%272013-10-06T00:00:00%27";
 			//http://data.cityofchicago.org/resource/ijzp-q8t2.json?$select=count%28id%29&$where=primary_type='NARCOTICS' AND date%3E%272013-10-06T00:00:00%27 AND location.latitude<41.8596 AND location.latitude>41.8451 AND location.longitude <-87.6822 AND location.longitude>-87.6972
 			//queryAPI = sbAPI.toString();
-					
+
 			return queryAPI;
 		}
 		

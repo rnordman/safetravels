@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.onclick.apicaller.RestAPICaller;
 import com.onclick.chicagodata.model.ChicagoCrime;
@@ -28,6 +29,7 @@ public class FragmentCrimesList extends ListFragment {
 			
 	List<String> crimes = new ArrayList<String>();
 	Context tContext;
+	View lView;
 		
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class FragmentCrimesList extends ListFragment {
 		prepareCrimeQuery();
 							   
 		View v = inflater.inflate(R.layout.fragment_crimelist, container, false);
-					   
+		lView = v;			   
 		return v;
 	}
 	
@@ -63,6 +65,13 @@ public void prepareCrimeQuery() {
 							
 	}
 	
+public void changeNoConnectText() {
+
+	TextView tvCrimeCount = (TextView) lView.findViewById(R.id.textViewCrimeCount);
+
+	tvCrimeCount.setText("No Connection Please try later");
+
+}
 private void startFetch(String urlAPI) {
 					
 		new FetchItemsTask().execute(urlAPI);
