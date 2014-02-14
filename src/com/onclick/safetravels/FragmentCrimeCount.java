@@ -192,7 +192,7 @@ public class FragmentCrimeCount extends Fragment {
 
 				result1 = RestAPICaller.getUrl(firstQueryString);
 				try {
-					resultString1 = jCrimeQuery.serializeJsonDataListString(result1);
+					resultString1 = jCrimeQuery.serializeJsonDataCountString(result1);
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -208,7 +208,7 @@ public class FragmentCrimeCount extends Fragment {
 
 				result2 = RestAPICaller.getUrl(secondQueryString);
 				try {
-					resultString2 = jCrimeQuery.serializeJsonDataListString(result2);
+					resultString2 = jCrimeQuery.serializeJsonDataCountString(result2);
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

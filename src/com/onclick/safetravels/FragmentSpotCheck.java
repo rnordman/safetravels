@@ -137,7 +137,7 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 
 				result1 = RestAPICaller.getUrl(firstQueryString);
 				try {
-					resultString1 = jCrimeQuery.serializeJsonDataListString(result1);
+					resultString1 = jCrimeQuery.serializeJsonDataCountString(result1);
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

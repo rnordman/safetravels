@@ -79,7 +79,7 @@ private void startFetch(String urlAPI) {
 		Log.i("tTint Returned", "tTint Return");
 }
 
-private class FetchItemsTask extends AsyncTask<String,Void,List<ChicagoCrime>> {
+private class FetchItemsTask extends AsyncTask<String,Void,List<String>> {
 	
 	  
 	@Override
@@ -87,19 +87,19 @@ private class FetchItemsTask extends AsyncTask<String,Void,List<ChicagoCrime>> {
                   
       }
 	 @Override
-	 protected List<ChicagoCrime> doInBackground(String... params) {
+	 protected List<String> doInBackground(String... params) {
 
 		 RestAPICaller jCrimeQuery = new RestAPICaller();
 		 
 		 String result = null;
 		 
-		 List<ChicagoCrime> resultArrayObject = new ArrayList<ChicagoCrime>();
+		 List<String> resultStringList = new ArrayList<String>();
 		 
 		 try {
 
 			result = RestAPICaller.getUrl(params[0]);
 			try {
-				resultArrayObject = jCrimeQuery.serializeJsonDataObjectArray(result);
+				resultStringList = jCrimeQuery.serializeJsonDataListString(result);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -114,18 +114,18 @@ private class FetchItemsTask extends AsyncTask<String,Void,List<ChicagoCrime>> {
 		//chicDS.insertObjectArray(resultArrayObject);
 		 
 		 //Log.i("CRIMEDATA", "Failed");
-		 return resultArrayObject;
+		 return resultStringList;
 	 }
 	
 
-	 protected void onPostExecute(List<ChicagoCrime> result) {
+	 protected void onPostExecute(List<String> result) {
 
 		super.onPostExecute(result);
 				
 		Log.i("ASYNC HERE", "Here we are");
 		Messages.LongToast(tContext, "Made it to FragmentCrimeList");
 		
-		ArrayAdapter<ChicagoCrime> adapter = new ArrayAdapter<ChicagoCrime>(  
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(  
 			     tContext, R.layout.simpletextview, result);
 		
 		adapter.notifyDataSetChanged();
