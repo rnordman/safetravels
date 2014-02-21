@@ -100,10 +100,10 @@ public class CrimeListActivity extends AFragmentActivity  {
 						
 		} else {
 			
-				if (this.mCurrentLocation == null) {
-					this.mCurrentLocation= mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-				}
-				LastLocationCounted.setNewLocation(this, this.mCurrentLocation);
+				//if (this.mCurrentLocation == null) {
+				//	this.mCurrentLocation= mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+				//}
+				//LastLocationCounted.setNewLocation(this, this.mCurrentLocation);
 				this.fragmentMiddle.prepareCrimeQuery();
 					
 			

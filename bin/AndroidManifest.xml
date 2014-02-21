@@ -6,29 +6,36 @@
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="18" />
+        android:targetSdkVersion="19" />
 
+    <permission
+        android:name="com.onclick.safetravels.gmapapp.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.onclick.safetravels.gmappapp.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
-    <application android:allowBackup="true"
-        android:theme="@android:style/Theme.Holo" 
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
-        
+    <application
+        android:allowBackup="true"
         android:icon="@drawable/sf_mdpi"
-        android:label="@string/app_name">
-        
-
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Holo" >
         <activity
-            android:name="com.onclick.safetravels.MainActivity"  
+            android:name="com.onclick.safetravels.MainActivity"
             android:label="@string/activity_name_drive_mode"
-            android:screenOrientation="portrait" >   
-            
-            <!--  android:theme="@android:style/Theme.NoTitleBar" > -->
-                      
+            android:screenOrientation="portrait" >
+
+            <!-- android:theme="@android:style/Theme.NoTitleBar" > -->
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,25 +44,39 @@
         </activity>
         <activity
             android:name="com.onclick.safetravels.SettingsActivity"
-            android:screenOrientation="portrait" 
-            android:label="@string/activity_name_settings" >
+            android:label="@string/activity_name_settings"
+            android:screenOrientation="portrait" >
         </activity>
-        <activity android:name="com.onclick.safetravels.SpotCheckActivity"
-            android:screenOrientation="portrait" 
-             android:label="@string/activity_name_spot_check" >
+        <activity
+            android:name="com.onclick.safetravels.SpotCheckActivity"
+            android:label="@string/activity_name_spot_check"
+            android:screenOrientation="portrait" >
         </activity>
-         <activity android:name="com.onclick.safetravels.ChicagoActivity"
-             android:screenOrientation="portrait" 
-             android:label="@string/activity_name_chicago_gps" >
+        <activity
+            android:name="com.onclick.safetravels.ChicagoActivity"
+            android:label="@string/activity_name_chicago_gps"
+            android:screenOrientation="portrait" >
         </activity>
-         <activity android:name="com.onclick.safetravels.CrimeListActivity"
-             android:screenOrientation="portrait" 
-             android:label="@string/activity_name_chicago_gps" >
+        <activity
+            android:name="com.onclick.safetravels.CrimeListActivity"
+            android:label="@string/activity_name_chicago_gps"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.onclick.safetravels.AFragmentActivity"
             android:label="@string/title_activity_afragment" >
         </activity>
+        <activity
+            android:name="com.onclick.safetravels.MapActivity"
+            android:label="@string/title_activity_map" >
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyAJfwLjXpNPDC1Vq97j8VwRlGH0yu8Qu3A" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@+integer/google_play_services_version" />
     </application>
 
 </manifest>

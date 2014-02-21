@@ -68,6 +68,12 @@ public class FragmentMode extends Fragment implements OnClickListener {
 			break;
 			
 			case R.id.buttontrend:
+				Intent intentMap = new Intent(context, MapActivity.class);
+				//intent.putExtra("thetext", et.getText().toString());
+				startActivity(intentMap);
+			
+			
+				
 			break;
 			
 		}

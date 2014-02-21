@@ -12,8 +12,8 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
-import android.widget.TextView;
 
+import com.google.android.gms.maps.GoogleMap;
 import com.onclick.utils.CheckNetwork;
 import com.onclick.utils.DialogNoConnection;
 
@@ -25,6 +25,7 @@ public class MainActivity extends AFragmentActivity implements LocationListener 
 
 	FragmentCrimeCount fragmentMiddle;
 	
+	GoogleMap mMap;
 		
 		
 	@Override

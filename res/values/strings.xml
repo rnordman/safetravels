@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
 
     <string name="app_name">Safe Travels</string>
@@ -68,6 +68,6 @@
     <string name="lblCautionAhead">CAUTION AHEAD</string>
     <string name="lblDangerAhead">DANGER AHEAD</string>
     <string name="lblChicagoGPS">ChicagoGPS</string>
-    
+    <string name="title_activity_map">MapActivity</string>
 
 </resources>

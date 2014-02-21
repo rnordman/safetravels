@@ -6,6 +6,7 @@ package com.onclick.safetravels;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.json.JSONException;
 
@@ -14,17 +15,22 @@ import com.onclick.utils.Messages;
 
 import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.method.HideReturnsTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 /**
@@ -208,7 +214,12 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 		switch (v.getId()) {
 		
 		case R.id.btnSpotCheckAddress:
-			
+			try {
+				this.onClickAddressCrimeCount();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 					
 		break;
@@ -223,11 +234,37 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 	 * 
 	 */
 	private void onClickViewCrimeDetail() {
-		// TODO Auto-generated method stub
+		
 		Messages.LongToast(tContext, "Here in Crime Detail");
 		Intent intentCrimeList = new Intent(tContext, CrimeListActivity.class);
 		//intent.putExtra("thetext", et.getText().toString());
 		startActivity(intentCrimeList);
+	}
+	
+	private void onClickAddressCrimeCount() throws IOException {
+		
+			
+		Double addLat = 0.0d;
+		Double addLong = 0.0d;
+		
+		EditText tvAddress = (EditText) lView.findViewById(R.id.editTextAddress);
+		String checkAddress = tvAddress.getText().toString();
+		
+		Geocoder geoAddress = 	new Geocoder(tContext,Locale.getDefault());
+		
+		List<Address> listAddress = geoAddress.getFromLocationName(checkAddress+ " chicago il", 1);
+		
+		Address cAddress = listAddress.get(0);
+	
+		addLat = cAddress.getLatitude();
+		addLong = cAddress.getLongitude();
+		
+		LastLocationCounted.setLastLatitude(addLat);
+		LastLocationCounted.setLastLongitude(addLong);
+		
+		this.prepareCrimeQuery();
+		
+		
 	}
 
 
