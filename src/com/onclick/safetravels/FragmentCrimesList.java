@@ -22,7 +22,7 @@ import com.onclick.apicaller.RestAPICaller;
 import com.onclick.chicagodata.model.ChicagoCrime;
 import com.onclick.safetravels.R;
 import com.onclick.safetravels.R.layout;
-import com.onclick.utils.Messages;
+import com.onclick.utils.Utils;
 
 
 public class FragmentCrimesList extends ListFragment {
@@ -123,7 +123,7 @@ private class FetchItemsTask extends AsyncTask<String,Void,List<String>> {
 		super.onPostExecute(result);
 				
 		Log.i("ASYNC HERE", "Here we are");
-		Messages.LongToast(tContext, "Made it to FragmentCrimeList");
+		Utils.LongToast(tContext, "Made it to FragmentCrimeList");
 		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(  
 			     tContext, R.layout.simpletextview, result);

@@ -7,6 +7,7 @@
     <string name="activity_name_spot_check">Safe Travels - Spot Check</string>
     <string name="activity_name_chicago_gps">Set Coordinates to Center of Chicago</string>
     <string name="activity_name_crime_list">Safe Travels - Crime List of Here</string>
+    <string name="activity_name_crime_map">Crime Map</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="beatnumber">"Enter a Beat Number: "</string>
@@ -69,5 +70,6 @@
     <string name="lblDangerAhead">DANGER AHEAD</string>
     <string name="lblChicagoGPS">ChicagoGPS</string>
     <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_map_view">MapViewActivity</string>
 
 </resources>

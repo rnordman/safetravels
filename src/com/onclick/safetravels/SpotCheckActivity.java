@@ -7,7 +7,6 @@ package com.onclick.safetravels;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -17,7 +16,6 @@ import android.support.v4.app.FragmentManager;
 
 import com.onclick.utils.CheckNetwork;
 import com.onclick.utils.DialogNoConnection;
-import com.onclick.utils.Messages;
 
 /**
  * @author Ronald T

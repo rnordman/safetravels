@@ -10,19 +10,13 @@ import java.util.Locale;
 
 import org.json.JSONException;
 
-import com.onclick.apicaller.RestAPICaller;
-import com.onclick.utils.Messages;
-
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
-import android.media.AudioManager;
-import android.media.ToneGenerator;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.method.HideReturnsTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +26,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.onclick.apicaller.RestAPICaller;
+import com.onclick.utils.Utils;
 
 /**
  * @author Ronald T
@@ -215,6 +212,7 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 		
 		case R.id.btnSpotCheckAddress:
 			try {
+				
 				this.onClickAddressCrimeCount();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -235,7 +233,7 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 	 */
 	private void onClickViewCrimeDetail() {
 		
-		Messages.LongToast(tContext, "Here in Crime Detail");
+		Utils.LongToast(tContext, "Here in Crime Detail");
 		Intent intentCrimeList = new Intent(tContext, CrimeListActivity.class);
 		//intent.putExtra("thetext", et.getText().toString());
 		startActivity(intentCrimeList);
@@ -243,7 +241,7 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 	
 	private void onClickAddressCrimeCount() throws IOException {
 		
-			
+		Utils.hideSoftKeyboard(lView, tContext);	
 		Double addLat = 0.0d;
 		Double addLong = 0.0d;
 		
@@ -267,5 +265,6 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 		
 	}
 
+	
 
 }

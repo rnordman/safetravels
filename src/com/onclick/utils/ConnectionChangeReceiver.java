@@ -45,7 +45,7 @@ public class ConnectionChangeReceiver extends BroadcastReceiver {
 			String wString = wContext.getResources().getString(R.string.msgNoConnection);
 			
 			
-			Messages.LongToast(wContext, wString);
+			Utils.LongToast(wContext, wString);
 		}
 				
 		Log.i(SafeTravelsPreferences.SAFETRAVELSLOGVAL, wAction);

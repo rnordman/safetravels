@@ -11,7 +11,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.onclick.utils.CheckNetwork;
 import com.onclick.utils.DialogNoConnection;
-import com.onclick.utils.Messages;
+import com.onclick.utils.Utils;
 
 /**
  * @author Ronald T

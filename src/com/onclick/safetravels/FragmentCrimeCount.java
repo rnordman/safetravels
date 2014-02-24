@@ -22,7 +22,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.onclick.apicaller.RestAPICaller;
-import com.onclick.utils.Messages;
+import com.onclick.utils.Utils;
 
 /**
  * @author Ronald T
@@ -239,7 +239,7 @@ public class FragmentCrimeCount extends Fragment {
 			//Log.i("ASYNC HERE", "Here we are");
 			//Messages.LongToast(tContext, "Made it to FragmentCrimeList");
 			
-			boolean soundOnOff = Messages.IsSoundOn(tContext);
+			boolean soundOnOff = Utils.IsSoundOn(tContext);
 			
 			TextView tvCrimeCount = (TextView) lView.findViewById(R.id.textViewCrimeCount);
 			TextView tvAheadCount = (TextView) lView.findViewById(R.id.txtCrimeAhead);

@@ -1,9 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:id="@+id/mapCurrentLocation"
+        android:title="Current Location"
+        android:showAsAction="always"/>
+     <item
+        android:id="@+id/mapTypeNormal"
+        android:title="Normal"
+        android:showAsAction="never"/>
+    <item
+        android:id="@+id/mapTypeSatellite"
+        android:title="Satellite"
+        android:showAsAction="never"/>
+    <item
+        android:id="@+id/mapTypeTerrain"
+        android:title="Terrain"
+        android:showAsAction="never"/>
+    <item
+        android:id="@+id/mapTypeHybrid"
+        android:title="Hybrid"
+        android:showAsAction="never"/>
+    <item
+        android:id="@+id/mapTypeNone"
+        android:title="None"
+        android:showAsAction="never"/>
 
 </menu>

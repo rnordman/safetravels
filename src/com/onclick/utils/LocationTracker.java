@@ -55,7 +55,7 @@ public class LocationTracker {
 		String provider = LocationManager.GPS_PROVIDER;
 		
 		mLocationManager.requestLocationUpdates(provider, 0,400,locListener);
-		Messages.ShortToast(mAppContext, "LocationUpdateRequested");
+		Utils.ShortToast(mAppContext, "LocationUpdateRequested");
 	}
 	
 	/*public void stopLocationUpdates() {
@@ -76,7 +76,7 @@ public class LocationTracker {
 		
 		@Override
 		public void onLocationChanged(Location location) {
-			Messages.LongToast(mAppContext,"Location has been Changed");
+			Utils.LongToast(mAppContext,"Location has been Changed");
 			
 			location.getAccuracy();
 			location.getAltitude();

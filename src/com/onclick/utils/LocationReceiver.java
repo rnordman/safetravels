@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
 import android.util.Log;
-import com.onclick.utils.Messages;
+import com.onclick.utils.Utils;
 
 public class LocationReceiver extends BroadcastReceiver {
 
@@ -30,7 +30,7 @@ public class LocationReceiver extends BroadcastReceiver {
 	
 	protected void onLocationReceived(Context context, Location loc) {
 		
-		Messages.LongToast(context," Got location from " + loc.getProvider() + ": " + loc.getLatitude() + ", " + loc.getLongitude());
+		Utils.LongToast(context," Got location from " + loc.getProvider() + ": " + loc.getLatitude() + ", " + loc.getLongitude());
 		Log.d("SAFETRAVELS", this + " Got location from " + loc.getProvider() + ": " + loc.getLatitude() + ", " + loc.getLongitude());
 		
 	}
