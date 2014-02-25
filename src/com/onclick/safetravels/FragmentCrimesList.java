@@ -11,7 +11,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.onclick.apicaller.RestAPICaller;
-import com.onclick.chicagodata.model.ChicagoCrime;
-import com.onclick.safetravels.R;
-import com.onclick.safetravels.R.layout;
-import com.onclick.utils.Utils;
 
 
 public class FragmentCrimesList extends ListFragment {
@@ -54,10 +49,9 @@ public class FragmentCrimesList extends ListFragment {
 	
 public void prepareCrimeQuery() {
 		
-		//String beatCount;
+		
 		String chicagoAPI = null;
-			
-			
+					
 		RestAPICaller chicagoJson = new RestAPICaller();
 		chicagoAPI = chicagoJson.buildCrimeListAPIQuery();
 		
@@ -76,7 +70,7 @@ private void startFetch(String urlAPI) {
 					
 		new FetchItemsTask().execute(urlAPI);
 		
-		Log.i("tTint Returned", "tTint Return");
+		//Log.i("tTint Returned", "tTint Return");
 }
 
 private class FetchItemsTask extends AsyncTask<String,Void,List<String>> {
@@ -111,8 +105,7 @@ private class FetchItemsTask extends AsyncTask<String,Void,List<String>> {
 			 e.printStackTrace();
 		 }
 
-		//chicDS.insertObjectArray(resultArrayObject);
-		 
+			 
 		 //Log.i("CRIMEDATA", "Failed");
 		 return resultStringList;
 	 }
@@ -122,48 +115,15 @@ private class FetchItemsTask extends AsyncTask<String,Void,List<String>> {
 
 		super.onPostExecute(result);
 				
-		Log.i("ASYNC HERE", "Here we are");
-		Utils.LongToast(tContext, "Made it to FragmentCrimeList");
+		//Log.i("ASYNC HERE", "Here we are");
+		//Utils.LongToast(tContext, "Made it to FragmentCrimeList");
 		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(  
-			     tContext, R.layout.simpletextview, result);
+			     tContext, R.layout.crimelist_layout, result);
 		
 		adapter.notifyDataSetChanged();
 		setListAdapter(adapter); 
-			
-		
-		//String sRows = null;
-		
-		//long tRows = chicDS.getRowCount("crimes");
-		
-		//chicDS.deleteAllfrom("crimes");
-		//tRows = chicDS.getRowCount("crimes");
-		
-		//tContext.getResources().getLayout(R.id.listView1);
-		
-		//Context context = getActivity().getApplicationContext();
-		
-		//ListView et = (ListView) findViewById(R.id.listView1);
-		
-		//sRows = Long.toString(tRows);
-				
-		//CharSequence text = "Added " + sRows + " to the crimes table";
-					
-		
-		//int duration = Toast.LENGTH_LONG;
-		//Toast toast = Toast.makeText(context, text, duration);
-		//toast.show();
-		
-			
-		//TextView tv = (TextView) findViewById(R.id.textView2);
-		//tv.setText(sRows);
-		
-		//FragmentManager fm = this.getSupportFragmentManager();
-		//ListView lv = fm.findFragmentById(arg0)
-		
-		//ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this,R.layout.simpletextview,result);
-		//et.setAdapter(adapter);*/
-		 
+			 
 		return;
 				 
 	 }

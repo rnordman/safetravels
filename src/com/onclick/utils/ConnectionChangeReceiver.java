@@ -19,7 +19,7 @@ public class ConnectionChangeReceiver extends BroadcastReceiver {
 		//Context context = getApplicationContext();
 		
 		String wAction = wIntent.getAction();
-		String wConnectionChange = ConnectivityManager.CONNECTIVITY_ACTION;
+	//	String wConnectionChange = ConnectivityManager.CONNECTIVITY_ACTION;
 		
 		
 		// Only true when action is Network Connectivity Changed action

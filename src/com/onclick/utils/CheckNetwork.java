@@ -3,10 +3,8 @@ package com.onclick.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.location.GpsStatus;
-import android.location.Location;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 
 public class CheckNetwork {
 
@@ -57,7 +55,7 @@ public class CheckNetwork {
 	public void WifiNetworkInfo(Intent wIntent, Context wContext) {
 				
 				
-		boolean noConnection = wIntent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
+		//boolean noConnection = wIntent.getBooleanExtra(ConnectivityManager.EXTRA_NO_CONNECTIVITY, false);
 		
 		/*boolean nFailover = wIntent.getBooleanExtra(ConnectivityManager.EXTRA_IS_FAILOVER, false);
 		

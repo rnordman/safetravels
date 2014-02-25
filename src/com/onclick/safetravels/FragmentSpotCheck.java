@@ -17,12 +17,10 @@ import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -42,19 +40,15 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 	
 	Context tContext;
 	View lView;
-	String refreshInd = "";
-	
-	
+		
 	public FragmentSpotCheck() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		
-		
+			
 	}
 
 	@Override
@@ -87,8 +81,7 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 	public void prepareCrimeQuery() {
 
 		String chicagoAPI = null;
-		
-
+	
 		RestAPICaller chicagoJson = new RestAPICaller(tContext);
 		chicagoAPI = chicagoJson.buildAPIQuery();
 				
@@ -102,22 +95,22 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	private void startFetch(List<String> urlAPI) {
 
 		new FetchItemsTask().execute(urlAPI);
 
-		Log.i("tTint Returned", "tTint Return");
+		//Log.i("tTint Returned", "tTint Return");
 	}
 
 	public void stopFetch() {
 
 		new FetchItemsTask().cancel(true);
 
-		Log.i("AsyncTask Cancelled","ASC");
+		//Log.i("AsyncTask Cancelled","ASC");
 
 	}
 	private class FetchItemsTask extends AsyncTask<List<String>,Void,List<String>> {
-
 
 		@Override
 		protected void onPreExecute(){
@@ -134,7 +127,6 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 			String resultString1 = null;
 						
 			String firstQueryString = params[0].get(0);
-		
 
 			try {
 
@@ -152,8 +144,7 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 				e.printStackTrace();
 			}
 			
-			
-
+	
 			List<String> resultList = new ArrayList<String>();
 			
 			resultList.add(resultString1);
@@ -244,13 +235,14 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 		Utils.hideSoftKeyboard(lView, tContext);	
 		Double addLat = 0.0d;
 		Double addLong = 0.0d;
+		String chicagoLocality = tContext.getResources().getString(R.string.chicago_locality).toString();
 		
 		EditText tvAddress = (EditText) lView.findViewById(R.id.editTextAddress);
 		String checkAddress = tvAddress.getText().toString();
 		
 		Geocoder geoAddress = 	new Geocoder(tContext,Locale.getDefault());
 		
-		List<Address> listAddress = geoAddress.getFromLocationName(checkAddress+ " chicago il", 1);
+		List<Address> listAddress = geoAddress.getFromLocationName(checkAddress+ " "+ chicagoLocality, 1);
 		
 		Address cAddress = listAddress.get(0);
 	
@@ -265,6 +257,5 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 		
 	}
 
-	
 
 }

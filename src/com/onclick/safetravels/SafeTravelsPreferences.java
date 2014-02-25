@@ -89,6 +89,9 @@ public class SafeTravelsPreferences {
 	public static final int SAFETHRESHOLD = 12000;
 	public static final int CAUTIONTHRESHOLD = 24000;
 	
+	public static final int LONGITUDEFACTOR = 85000;
+	public static final int LATITUDEFACTOR = 111000;
+	
 
 	public SafeTravelsPreferences() {
 	}

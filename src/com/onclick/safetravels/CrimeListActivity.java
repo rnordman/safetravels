@@ -2,7 +2,6 @@ package com.onclick.safetravels;
 
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.support.v4.app.FragmentManager;
 
 import com.onclick.utils.CheckNetwork;
 import com.onclick.utils.DialogNoConnection;
-import com.onclick.utils.Utils;
 
 /**
  * @author Ronald T
@@ -35,7 +33,7 @@ public class CrimeListActivity extends AFragmentActivity  {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_spotcheck);
-				
+		
 		
 		this.mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 				

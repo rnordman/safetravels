@@ -1,15 +1,9 @@
 package com.onclick.safetravels;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 
 public abstract class AFragmentActivity extends FragmentActivity{
 
@@ -44,10 +38,7 @@ public abstract class AFragmentActivity extends FragmentActivity{
 			.commit();
 			
 		}
-		
-
-		// Implement Middle Fragment Code Here
-		
+				
 		
 	}
 		

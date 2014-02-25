@@ -61,17 +61,6 @@ public class FragmentCrimeCount extends Fragment {
 		}
 
 		lView = v;
-
-		/*if (CheckNetwork.sfConnected(tContext)) {
-
-			prepareCrimeQuery();
-
-		} else {
-
-			this.changeNoConnectText();
-		}*/
-
-		
 		
 		return v;
 	}
@@ -152,6 +141,7 @@ public class FragmentCrimeCount extends Fragment {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	private void startFetch(List<String> urlAPI) {
 
 		new FetchItemsTask().execute(urlAPI);
@@ -244,15 +234,6 @@ public class FragmentCrimeCount extends Fragment {
 			TextView tvCrimeCount = (TextView) lView.findViewById(R.id.textViewCrimeCount);
 			TextView tvAheadCount = (TextView) lView.findViewById(R.id.txtCrimeAhead);
 			
-			/*tvCrimeCount.setText((resultList.get(0).toString()+refreshInd));
-			
-			if (Integer.parseInt(resultList.get(0)) < 12000) {
-				tvCrimeCount.setTextColor(getResources().getColor(R.color.green));
-			} else if (Integer.parseInt(resultList.get(0)) >= 12000 && Integer.parseInt(resultList.get(0)) < 24000) {
-				tvCrimeCount.setTextColor(getResources().getColor(R.color.yellow));
-			} else  {
-				tvCrimeCount.setTextColor(getResources().getColor(R.color.red));
-			}*/
 			tvCrimeCount.setTextColor(getResources().getColor(R.color.white));
 			if (Integer.parseInt(resultList.get(0)) < SafeTravelsPreferences.SAFETHRESHOLD) {
 				
@@ -271,16 +252,8 @@ public class FragmentCrimeCount extends Fragment {
 				tvCrimeCount.setText(getResources().getString(R.string.lblDangerHere));
 			}	
 				
-			
-		/*tvAheadCount.setText(resultList.get(1).toString());
-			
-			if (Integer.parseInt(resultList.get(1)) < 12000) {
-				tvAheadCount.setTextColor(getResources().getColor(R.color.green));
-			} else if (Integer.parseInt(resultList.get(1)) >= 12000 && Integer.parseInt(resultList.get(1)) < 24000) {
-				tvAheadCount.setTextColor(getResources().getColor(R.color.yellow));
-			} else  {
-				tvAheadCount.setTextColor(getResources().getColor(R.color.red));
-			}*/
+
+
 			tvAheadCount.setTextColor(getResources().getColor(R.color.white));
 			if (Integer.parseInt(resultList.get(1)) < SafeTravelsPreferences.SAFETHRESHOLD) {
 				tvAheadCount.setBackgroundColor(getResources().getColor(R.color.green));

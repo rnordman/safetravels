@@ -60,7 +60,7 @@
         </activity>
         <activity
             android:name="com.onclick.safetravels.CrimeListActivity"
-            android:label="@string/activity_name_chicago_gps"
+            android:label="@string/activity_name_crime_list"
             android:screenOrientation="portrait" >
         </activity>
         <activity
