@@ -25,6 +25,8 @@
     <string name="msgMobileOn">Data Network is Available!</string>
     <string name="msgNoConnection">No Connection Available - Safe Travels Cannot Run</string>
     <string name="msgNoGPS">No GPS Available - Safe Travels Cannot Run</string>
+    <string name="msgLocationNotAvailable">Current Location is Not Available</string>
+    <string name="msgMapNotAvailable">Map Not Available!</string>
     <string name="dlgConnectionLost">Connection Lost - Try to Restore?</string>
     <string name="startlocatonlistener">Start Location Listener</string>
     <string name="stoplocationlistener">Stop Location Listener</string>
@@ -36,6 +38,7 @@
     <string name="btnsettings">Settings</string>
     <string name="btnfilters">Filters</string>
     <string name="btnbackground">Not In Use</string>
+    <string name="btnLocationMap">Map</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="radSet2Blocks">2 Blocks (approx. 400 meters)</string>
     <string name="radSet4Blocks">4 Blocks (approx. 800 meters)</string>
@@ -44,7 +47,7 @@
     <string name="radSet100Meters">100 Meters</string>
     <string name="txtRefreshInterval">Choose Refresh Interval</string>
     <string name="btnSetSave">Save Settings</string>
-    <string name="txtNoConnectPleaseWait">Getting count please wait ...</string>
+    <string name="txtNoConnectPleaseWait">Getting count please wait</string>
     <string name="title_activity_spot_check">SpotCheckActivity</string>
     <string name="title_activity_afragment">AFragmentActivity</string>
     <string name="lblCrimeHere">Here</string>
@@ -72,5 +75,6 @@
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_map_view">MapViewActivity</string>
     <string name="chicago_locality">Chicago IL</string>
+    <string name="location_hint">enter location</string>
 
 </resources>

@@ -146,14 +146,14 @@ public class FragmentCrimeCount extends Fragment {
 
 		new FetchItemsTask().execute(urlAPI);
 
-		Log.i("tTint Returned", "tTint Return");
+	//	Log.i("tTint Returned", "tTint Return");
 	}
 
 	public void stopFetch() {
 
 		new FetchItemsTask().cancel(true);
 
-		Log.i("AsyncTask Cancelled","ASC");
+	//	Log.i("AsyncTask Cancelled","ASC");
 
 	}
 	private class FetchItemsTask extends AsyncTask<List<String>,Void,List<String>> {
