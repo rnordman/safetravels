@@ -84,7 +84,7 @@ public class CrimeListActivity extends AFragmentActivity  {
 		// If there is no connection just show message and alert dialog
 		if (!CheckNetwork.sfConnected(this)) {
 					
-			this.fragmentMiddle.changeNoConnectText();
+			//this.fragmentMiddle.changeNoConnectText();
 				
 			DialogFragment newFragment = new DialogNoConnection();
 			FragmentManager dfm = getSupportFragmentManager();

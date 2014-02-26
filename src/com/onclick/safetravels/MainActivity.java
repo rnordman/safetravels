@@ -55,11 +55,11 @@ public class MainActivity extends AFragmentActivity implements LocationListener 
 		//  lastLocation.setLastLongitude(this.mPrevLocation.getLongitude());
 
 
-		/*		LastLocationCounted lastLocation = new LastLocationCounted(this);
+			/*	LastLocationCounted lastLocation = new LastLocationCounted(this);
 
 			lastLocation.setLongitude(0);
-			lastLocation.setLatitude(0);
-		 */
+			lastLocation.setLatitude(0); */
+		
 
 		//lastLong = this.lastLocation.getLastLongitude();
 		//lastLat = this.lastLocation.getLastLatitude();

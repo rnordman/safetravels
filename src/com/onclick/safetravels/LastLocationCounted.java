@@ -4,6 +4,8 @@
 package com.onclick.safetravels;
 
 
+import com.google.android.gms.maps.model.LatLng;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Location;
@@ -244,8 +246,7 @@ public class LastLocationCounted {
 		int lastLatitudeLong = (int) (lastLatitudeDouble * SafeTravelsPreferences.LOCATIONDOUBLETOINTMULTIPLIER);	
 
 		SharedPreferences SPsettings = pContext.getSharedPreferences(SafeTravelsPreferences.APIFILE, 0);
-		SPsettings = pContext.getSharedPreferences(SafeTravelsPreferences.APIFILE, 0);
-
+		
 		SharedPreferences.Editor settingsEditor = SPsettings.edit();
 
 		settingsEditor.putInt(SafeTravelsPreferences.LASTLATITUDEKEY, lastLatitudeLong);
@@ -260,8 +261,7 @@ public class LastLocationCounted {
 		int lastLongitudeLong = (int) (lastLongitudeDouble * SafeTravelsPreferences.LOCATIONDOUBLETOINTMULTIPLIER);
 
 		SharedPreferences SPsettings = pContext.getSharedPreferences(SafeTravelsPreferences.APIFILE, 0);
-		SPsettings = pContext.getSharedPreferences(SafeTravelsPreferences.APIFILE, 0);
-
+	
 		SharedPreferences.Editor settingsEditor = SPsettings.edit();
 
 		settingsEditor.putInt(SafeTravelsPreferences.LASTLONGITUDEKEY, lastLongitudeLong);
@@ -269,6 +269,34 @@ public class LastLocationCounted {
 		settingsEditor.commit();
 
 		lastLongitude = lastLongitudeLong;
+	}
+	
+	public static void setCenterofChicagoDiff (double latDiff, double lngDiff) {
+		
+		SharedPreferences SPsettings = pContext.getSharedPreferences(SafeTravelsPreferences.APIFILE, 0);
+	
+		SharedPreferences.Editor settingsEditor = SPsettings.edit();
+
+		settingsEditor.putFloat(SafeTravelsPreferences.CENTEROFCHICAGOLATDIFFKEY, (float) latDiff);
+		settingsEditor.putFloat(SafeTravelsPreferences.CENTEROFCHICAGOLNGDIFFKEY, (float) lngDiff);
+
+		settingsEditor.commit();
+	}
+	
+public static double[] getCenterofChicagoDiff () {
+		
+		double[] latlngDiff = { 0.0d, 0.0d};
+		
+	
+		SharedPreferences SPsettings = pContext.getSharedPreferences(SafeTravelsPreferences.APIFILE, 0);
+		
+		double diffLat = SPsettings.getFloat(SafeTravelsPreferences.CENTEROFCHICAGOLATDIFFKEY, SafeTravelsPreferences.CENTEROFCHICAGOLATDIFFVAL);
+		double diffLng = SPsettings.getFloat(SafeTravelsPreferences.CENTEROFCHICAGOLNGDIFFKEY, SafeTravelsPreferences.CENTEROFCHICAGOLNGDIFFVAL);
+	
+		latlngDiff[0] = diffLat;
+		latlngDiff[1] = diffLng;
+		
+		return latlngDiff;
 	}
 
 }

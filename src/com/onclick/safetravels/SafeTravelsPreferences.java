@@ -51,13 +51,22 @@ public class SafeTravelsPreferences {
 	public static final String REFRESHINTERVALVAL="200";
 	
 	public static final String DRIVEMODERADIUSKEY="drive_mode_radius";
-	public static final String DRIVEMODERADIUSVAL=".25";
+	public static final int DRIVEMODERADIUSVAL=400;
 	
 	public static final String ALERTAHEADDISTANCEKEY="alert_ahead_distance";
 	public static final int ALERTAHEADDISTANCEVAL=1600;
 	
 	public static final String SPOTCHECKRADIUSKEY="spot_check_radius";
-	public static final String SPOTCHECKRADIUSVAL=".125";
+	public static final int SPOTCHECKRADIUSVAL=800;
+	
+	
+	// Constants used to set coordinates to center of Chicago at 19th and Damen - primarily used so app can be tested from any location
+	public static final String CENTEROFCHICAGOLATDIFFKEY = "chicago_lat_diff";
+	public static final String CENTEROFCHICAGOLNGDIFFKEY = "chicago_lng_diff";
+	public static final float CENTEROFCHICAGOLATDIFFVAL = 0.0f;
+	public static final float CENTEROFCHICAGOLNGDIFFVAL = 0.0f;
+	public static final double CENTEROFCHICAGOLAT = 41.855908;
+	public static final double CENTEROFCHICAGOLNG = -87.6729597;
 	
 	
 	public static final String REFRESHINTERVAL3METERS="3";
@@ -92,6 +101,8 @@ public class SafeTravelsPreferences {
 	public static final int LONGITUDEFACTOR = 85000;
 	public static final int LATITUDEFACTOR = 111000;
 	
+	
+	
 
 	public SafeTravelsPreferences() {
 	}
@@ -118,9 +129,9 @@ public class SafeTravelsPreferences {
 		settingsEditor.putString(LOOKBACKDAYSKEY, LOOKBACKDAYSVAL);
 		settingsEditor.putString(TRENDDAYSKEY, TRENDDAYSVAL);
 		settingsEditor.putString(REFRESHINTERVALKEY,REFRESHINTERVALVAL);
-		settingsEditor.putString(DRIVEMODERADIUSKEY,DRIVEMODERADIUSVAL);
+		settingsEditor.putInt(DRIVEMODERADIUSKEY,DRIVEMODERADIUSVAL);
 		settingsEditor.putInt(ALERTAHEADDISTANCEKEY,ALERTAHEADDISTANCEVAL);
-		settingsEditor.putString(SPOTCHECKRADIUSKEY,SPOTCHECKRADIUSVAL);
+		settingsEditor.putInt(SPOTCHECKRADIUSKEY,SPOTCHECKRADIUSVAL);
 
 		settingsEditor.commit();
 

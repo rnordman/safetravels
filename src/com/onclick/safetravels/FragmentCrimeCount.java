@@ -69,8 +69,13 @@ public class FragmentCrimeCount extends Fragment {
 	public void changeNoConnectText() {
 
 		TextView tvCrimeCount = (TextView) lView.findViewById(R.id.textViewCrimeCount);
+		TextView tvAhead = (TextView) lView.findViewById(R.id.txtCrimeAhead);
+		
 
-		tvCrimeCount.setText("No Connection Please try later");
+		tvCrimeCount.setText(tContext.getResources().getString(R.string.msgNoConnection));
+		tvCrimeCount.setBackgroundColor(0);
+		tvAhead.setText(tContext.getResources().getString(R.string.lblBlank));
+		tvAhead.setBackgroundColor(0);
 
 	}
 

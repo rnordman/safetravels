@@ -42,7 +42,15 @@ public class ChicagoActivity extends AFragmentActivity implements LocationListen
 
 		// Current location - if no GPS_Provide available his will be null
 		this.mCurrentLocation = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
+		
+		// set differences in current location and center of chicago
+		if (this.mCurrentLocation != null) {
+			double latDiff = this.mCurrentLocation.getLatitude() - SafeTravelsPreferences.CENTEROFCHICAGOLAT;
+			double lngDiff = this.mCurrentLocation.getLongitude() - SafeTravelsPreferences.CENTEROFCHICAGOLNG;
+			
+			LastLocationCounted.setCenterofChicagoDiff(latDiff, lngDiff);
+		}
+		
 
 		if (savedInstanceState == null) {
 
@@ -194,7 +202,7 @@ public class ChicagoActivity extends AFragmentActivity implements LocationListen
 
 		} else
 
-			// Location did not enough to refresh crime count
+			// Location did not change enough to refresh crime count
 			if (!LastLocationCounted.didLocationChange(this.mCurrentLocation)) {
 
 				this.fragmentMiddle.showLastCrimeCountText();
