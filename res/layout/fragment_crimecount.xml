@@ -21,20 +21,20 @@
           android:textStyle="bold" />
       
        <TextView
-          android:id="@+id/textViewCrimeCount"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:layout_alignParentTop="true"
-          android:gravity="center"
-          android:layout_marginTop="10dp"
-          android:paddingBottom="60dp"
-          android:paddingTop="60dp"
-          android:paddingLeft="20dp"
-          android:paddingRight="20dp"
-          android:text="@string/lblCrimeHere"
-          android:textAppearance="?android:attr/textAppearanceLarge"
-          android:textSize="40sp"
-          android:textStyle="bold" />
-
+           android:id="@+id/textViewCrimeCount"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:layout_alignParentTop="true"
+           android:layout_marginTop="10dp"
+           android:gravity="center"
+           android:minHeight="200dp"
+           android:paddingBottom="60dp"
+           android:paddingLeft="20dp"
+           android:paddingRight="20dp"
+           android:paddingTop="60dp"
+           android:text="@string/lblCrimeHere"
+           android:textAppearance="?android:attr/textAppearanceLarge"
+           android:textSize="40sp"
+           android:textStyle="bold" />
      
 </RelativeLayout>

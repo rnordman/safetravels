@@ -42,7 +42,7 @@ public class SafeTravelsPreferences {
 	
 
 	public static final String LOOKBACKDAYSKEY="look_back_days";
-	public static final String LOOKBACKDAYSVAL="365";
+	public static final int LOOKBACKDAYSVAL=365;
 	
 	public static final String TRENDDAYSKEY="trend_days";
 	public static final String TRENDDAYSVAL="30";
@@ -102,7 +102,6 @@ public class SafeTravelsPreferences {
 	public static final int LATITUDEFACTOR = 111000;
 	
 	
-	
 
 	public SafeTravelsPreferences() {
 	}
@@ -126,7 +125,7 @@ public class SafeTravelsPreferences {
 
 		settingsEditor.putString(APIFILETYPEKEY, APIFILETYPEVAL);
 
-		settingsEditor.putString(LOOKBACKDAYSKEY, LOOKBACKDAYSVAL);
+		settingsEditor.putInt(LOOKBACKDAYSKEY, LOOKBACKDAYSVAL);
 		settingsEditor.putString(TRENDDAYSKEY, TRENDDAYSVAL);
 		settingsEditor.putString(REFRESHINTERVALKEY,REFRESHINTERVALVAL);
 		settingsEditor.putInt(DRIVEMODERADIUSKEY,DRIVEMODERADIUSVAL);

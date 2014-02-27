@@ -1,5 +1,7 @@
 package com.onclick.utils;
 
+import java.util.Calendar;
+
 import com.onclick.safetravels.SafeTravelsPreferences;
 
 import android.content.Context;
@@ -39,6 +41,23 @@ public class Utils {
 	public static void hideSoftKeyboard(View v, Context tContext) {
 		InputMethodManager imm = (InputMethodManager) tContext.getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+	}
+	
+	
+	public static String calculateLookbackDate(int numberDaysLookBack) {
+		Calendar today = Calendar.getInstance();
+		
+		today.add(Calendar.DATE, -numberDaysLookBack);
+		
+		int lookbackMonth = today.MONTH;
+		int lookbackDay = today.DAY_OF_MONTH;
+		int lookbackYear = today.YEAR;
+		
+		String newDate = String.valueOf(lookbackYear)+"-"+String.valueOf(lookbackMonth)+"-"+String.valueOf(lookbackDay);
+		
+		return newDate;
+		
+
 	}
 	
 }

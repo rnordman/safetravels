@@ -40,12 +40,12 @@
     <string name="btnbackground">Not In Use</string>
     <string name="btnLocationMap">Map</string>
     <string name="title_activity_settings">SettingsActivity</string>
-    <string name="radSet2Blocks">2 Blocks (approx. 400 meters)</string>
-    <string name="radSet4Blocks">4 Blocks (approx. 800 meters)</string>
+    <string name="radSet2Blocks">2 Blocks (approx. 1/4 mile or 400 meters)</string>
+    <string name="radSet4Blocks">4 Blocks (approx. 1/2 mile or 800 meters)</string>
     <string name="radSet3MetersTest">3 meters for testing</string>
     <string name="radSet8Blocks">8 Blocks (approx. 1 Mile or 1600 meters)</string>
     <string name="radSet100Meters">100 Meters</string>
-    <string name="txtRefreshInterval">Choose Refresh Interval</string>
+    <string name="txtRefreshInterval">Drive Mode Refresh Interval</string>
     <string name="btnSetSave">Save Settings</string>
     <string name="txtNoConnectPleaseWait">Getting count please wait</string>
     <string name="title_activity_spot_check">SpotCheckActivity</string>

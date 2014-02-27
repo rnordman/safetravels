@@ -17,6 +17,7 @@ import android.util.Log;
 import com.onclick.chicagodata.model.ChicagoCrime;
 import com.onclick.safetravels.LastLocationCounted;
 import com.onclick.safetravels.SafeTravelsPreferences;
+import com.onclick.utils.Utils;
 
 
 public class RestAPICaller {
@@ -42,17 +43,21 @@ public class RestAPICaller {
 		double dLat = 0.0;
 		double dLong = 0.0;
 
+		String queryDate = Utils.calculateLookbackDate(SafeTravelsPreferences.LOOKBACKDAYSVAL);
+		
 		aheadCoordinates = LastLocationCounted.getLocationAheadCoordinates(lContext);
 		
 		dLat = (double)(aheadCoordinates[0]);
 		dLong = (double)(aheadCoordinates[1]);
 
-
 		StringBuilder sbAPI = new StringBuilder();
 		sbAPI.append(SafeTravelsPreferences.SERVERNAMEVAL);
 		sbAPI.append(SafeTravelsPreferences.RESOURCENAMEVAL);
 		sbAPI.append(SafeTravelsPreferences.ENDPOINTVAL);
-		sbAPI.append("?$select=count%28id%29&$where=");
+		sbAPI.append("?$select=count%28id%29&");
+		sbAPI.append("$where=date%3E%27");
+		sbAPI.append(queryDate);
+		sbAPI.append("T00:00:00%27%20AND%20");
 		sbAPI.append("within_circle(location,");
 		sbAPI.append(dLat);
 		sbAPI.append(",");
@@ -80,6 +85,8 @@ public class RestAPICaller {
 		double dLat = 0.0;
 		double dLong = 0.0;
 
+		String queryDate = Utils.calculateLookbackDate(SafeTravelsPreferences.LOOKBACKDAYSVAL);
+		
 		aheadCoordinates = LastLocationCounted.getLocationAheadCoordinates(lContext);
 		diffLocation = LastLocationCounted.getCenterofChicagoDiff();
 
@@ -93,7 +100,10 @@ public class RestAPICaller {
 		sbAPI.append(SafeTravelsPreferences.SERVERNAMEVAL);
 		sbAPI.append(SafeTravelsPreferences.RESOURCENAMEVAL);
 		sbAPI.append(SafeTravelsPreferences.ENDPOINTVAL);
-		sbAPI.append("?$select=count%28id%29&$where=");
+		sbAPI.append("?$select=count%28id%29&");
+		sbAPI.append("$where=date%3E%27");
+		sbAPI.append(queryDate);
+		sbAPI.append("T00:00:00%27%20AND%20");
 		sbAPI.append("within_circle(location,");
 		sbAPI.append(dLat);
 		sbAPI.append(",");
@@ -118,7 +128,8 @@ public class RestAPICaller {
 		double dLat = 0.0;
 		double dLong = 0.0;
 
-
+		String queryDate = Utils.calculateLookbackDate(SafeTravelsPreferences.LOOKBACKDAYSVAL);
+		
 		//lCoordinates = LastLocationCounted.getLocationSearchCoordinates(lContext);
 
 		lLat = LastLocationCounted.lastLatitude;
@@ -133,7 +144,10 @@ public class RestAPICaller {
 		sbAPI.append(SafeTravelsPreferences.SERVERNAMEVAL);
 		sbAPI.append(SafeTravelsPreferences.RESOURCENAMEVAL);
 		sbAPI.append(SafeTravelsPreferences.ENDPOINTVAL);
-		sbAPI.append("?$select=count%28id%29&$where=");
+		sbAPI.append("?$select=count%28id%29&");
+		sbAPI.append("$where=date%3E%27");
+		sbAPI.append(queryDate);
+		sbAPI.append("T00:00:00%27%20AND%20");
 		sbAPI.append("within_circle(location,");
 		sbAPI.append(dLat);
 		sbAPI.append(",");
@@ -186,6 +200,7 @@ public class RestAPICaller {
 		double dLat = 0.0;
 		double dLong = 0.0;
 
+		String queryDate = Utils.calculateLookbackDate(SafeTravelsPreferences.LOOKBACKDAYSVAL);
 		
 		lLat = LastLocationCounted.lastLatitude;
 		lLong = LastLocationCounted.lastLongitude;
@@ -198,7 +213,10 @@ public class RestAPICaller {
 		sbAPI.append(SafeTravelsPreferences.SERVERNAMEVAL);
 		sbAPI.append(SafeTravelsPreferences.RESOURCENAMEVAL);
 		sbAPI.append(SafeTravelsPreferences.ENDPOINTVAL);
-		sbAPI.append("?$select=count%28id%29&$where=");
+		sbAPI.append("?$select=count%28id%29&");
+		sbAPI.append("$where=date%3E%27");
+		sbAPI.append(queryDate);
+		sbAPI.append("T00:00:00%27%20AND%20");
 		sbAPI.append("within_circle(location,");
 		sbAPI.append(dLat);
 		sbAPI.append(",");
@@ -223,7 +241,8 @@ public class RestAPICaller {
 		double dLat = 0.0;
 		double dLong = 0.0;
 
-
+		String queryDate = Utils.calculateLookbackDate(SafeTravelsPreferences.LOOKBACKDAYSVAL);
+		
 		lLat = LastLocationCounted.lastLatitude;
 		lLong = LastLocationCounted.lastLongitude;
 
@@ -237,7 +256,10 @@ public class RestAPICaller {
 		sbAPI.append(SafeTravelsPreferences.SERVERNAMEVAL);
 		sbAPI.append(SafeTravelsPreferences.RESOURCENAMEVAL);
 		sbAPI.append(SafeTravelsPreferences.ENDPOINTVAL);
-		sbAPI.append("?$select=primary_type,count%28id%29&$where=date%3E%272013-10-06T00:00:00%27%20AND%20");
+		sbAPI.append("?$select=primary_type,count%28id%29&");
+		sbAPI.append("$where=date%3E%27");
+		sbAPI.append(queryDate);
+		sbAPI.append("T00:00:00%27%20AND%20");
 		sbAPI.append("within_circle(location,");
 		sbAPI.append(dLat);
 		sbAPI.append(",");
