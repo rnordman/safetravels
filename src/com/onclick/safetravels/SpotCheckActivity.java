@@ -15,7 +15,8 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 
 import com.onclick.utils.CheckNetwork;
-import com.onclick.utils.DialogNoConnection;
+import com.onclick.utils.DialogNoGPSConnection;
+import com.onclick.utils.DialogNoNetworkConnection;
 
 /**
  * @author Ronald T
@@ -88,20 +89,34 @@ public class SpotCheckActivity extends AFragmentActivity implements LocationList
 	public void middleFragmentContentHandler () {
 		
 		// If there is no connection just show message and alert dialog
-		if (!CheckNetwork.sfConnected(this)) {
-					
+		if (!CheckNetwork.GPSOn(this)) {
+
 			//this.fragmentMiddle.changeNoConnectText();
-				
-			DialogFragment newFragment = new DialogNoConnection();
+
+			DialogFragment newFragment = new DialogNoGPSConnection();
 			FragmentManager dfm = getSupportFragmentManager();
+						
+			try {
+				newFragment.show(dfm, "nogps");
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
 			
+		} else if (!CheckNetwork.sfConnected(this)) {
+
+			//this.fragmentMiddle.changeNoConnectText();
+
+			DialogFragment newFragment = new DialogNoNetworkConnection();
+			FragmentManager dfm = getSupportFragmentManager();
+						
 			try {
 				newFragment.show(dfm, "noconnection");
 			} catch (Exception e) {
-				
+
 				e.printStackTrace();
 			}
-						
+							
 		} else {
 			
 				if (this.mCurrentLocation == null) {

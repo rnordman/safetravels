@@ -51,9 +51,7 @@ public class RestAPICaller {
 		dLong = (double)(aheadCoordinates[1]);
 
 		StringBuilder sbAPI = new StringBuilder();
-		sbAPI.append(SafeTravelsPreferences.SERVERNAMEVAL);
-		sbAPI.append(SafeTravelsPreferences.RESOURCENAMEVAL);
-		sbAPI.append(SafeTravelsPreferences.ENDPOINTVAL);
+		buildAPIResourceName(sbAPI);
 		sbAPI.append("?$select=count%28id%29&");
 		sbAPI.append("$where=date%3E%27");
 		sbAPI.append(queryDate);
@@ -97,9 +95,7 @@ public class RestAPICaller {
 		dLong = (double)(aheadCoordinates[1] + lngdiff);
 
 		StringBuilder sbAPI = new StringBuilder();
-		sbAPI.append(SafeTravelsPreferences.SERVERNAMEVAL);
-		sbAPI.append(SafeTravelsPreferences.RESOURCENAMEVAL);
-		sbAPI.append(SafeTravelsPreferences.ENDPOINTVAL);
+		buildAPIResourceName(sbAPI);
 		sbAPI.append("?$select=count%28id%29&");
 		sbAPI.append("$where=date%3E%27");
 		sbAPI.append(queryDate);
@@ -141,9 +137,7 @@ public class RestAPICaller {
 
 
 		StringBuilder sbAPI = new StringBuilder();
-		sbAPI.append(SafeTravelsPreferences.SERVERNAMEVAL);
-		sbAPI.append(SafeTravelsPreferences.RESOURCENAMEVAL);
-		sbAPI.append(SafeTravelsPreferences.ENDPOINTVAL);
+		buildAPIResourceName(sbAPI);
 		sbAPI.append("?$select=count%28id%29&");
 		sbAPI.append("$where=date%3E%27");
 		sbAPI.append(queryDate);
@@ -176,8 +170,12 @@ public class RestAPICaller {
 		//http://data.cityofchicago.org/resource/ijzp-q8t2.json?$select=count%28id%29&$where=primary_type='NARCOTICS' AND date%3E%272013-10-06T00:00:00%27 AND location.latitude<41.8596 AND location.latitude>41.8451 AND location.longitude <-87.6822 AND location.longitude>-87.6972
 		//queryAPI = sbAPI.toString();
 
+		// http://data.cityofchicago.org/resource/ijzp-q8t2.json?$select=count%28id%29&$where=date%3E%272013-02-02T00:00:00%27%20AND%20within_circle(location,41.7676,-88.1058,800)
+		// http://data.cityofchicago.org/resource/ijzp-q8t2.json?$select=primary_type,latitude,longitude,date&$where=date%3E%272013-02-02T00:00:00%27%20AND%20within_circle(location,41.855908,-87.6729597,400) order by primary_type
 		return queryAPI;
 	}
+
+	
 
 	// Used to set coordinates to center of Chicago from current location - Build the Query to Send to API
 	public String buildAPIQueryChicago() {
@@ -210,9 +208,7 @@ public class RestAPICaller {
 		dLong = ((double)(lLong) / 10000) + lngdiff;
 
 		StringBuilder sbAPI = new StringBuilder();
-		sbAPI.append(SafeTravelsPreferences.SERVERNAMEVAL);
-		sbAPI.append(SafeTravelsPreferences.RESOURCENAMEVAL);
-		sbAPI.append(SafeTravelsPreferences.ENDPOINTVAL);
+		buildAPIResourceName(sbAPI);
 		sbAPI.append("?$select=count%28id%29&");
 		sbAPI.append("$where=date%3E%27");
 		sbAPI.append(queryDate);
@@ -253,9 +249,7 @@ public class RestAPICaller {
 		//dLong = (double)(lLong + 4236) / 10000;
 
 		StringBuilder sbAPI = new StringBuilder();
-		sbAPI.append(SafeTravelsPreferences.SERVERNAMEVAL);
-		sbAPI.append(SafeTravelsPreferences.RESOURCENAMEVAL);
-		sbAPI.append(SafeTravelsPreferences.ENDPOINTVAL);
+		buildAPIResourceName(sbAPI);
 		sbAPI.append("?$select=primary_type,count%28id%29&");
 		sbAPI.append("$where=date%3E%27");
 		sbAPI.append(queryDate);
@@ -267,12 +261,65 @@ public class RestAPICaller {
 		sbAPI.append(",");
 		sbAPI.append(String.valueOf(SafeTravelsPreferences.SPOTCHECKRADIUSVAL));
 		sbAPI.append("%29%20group%20by%20primary_type%20order%20by%20count_id%20desc");
+		
+		http://data.cityofchicago.org/resource/ijzp-q8t2.json?$select=primary_type,latitude,longitude,date&$where=date%3E%272013-02-02T00:00:00%27%20AND%20within_circle(location,41.855908,-87.6729597,400) order by primary_type
+
+		queryAPI = sbAPI.toString();
+
+		return queryAPI;
+	}
+	
+	// Build the Query to Send to API
+	public String buildCrimeDetailAPIQuery() {
+
+		String queryAPI = null;
+
+		int lLat = 0;
+		int lLong = 0;
+
+		double dLat = 0.0;
+		double dLong = 0.0;
+
+		String queryDate = Utils.calculateLookbackDate(SafeTravelsPreferences.LOOKBACKDAYSVAL);
+		
+		lLat = LastLocationCounted.lastLatitude;
+		lLong = LastLocationCounted.lastLongitude;
+
+		// Hard code gps coordinates of center of Chicago
+		dLat = (double)(lLat) / 10000;
+		dLong = (double)(lLong) / 10000;
+		//dLat = (double)(lLat + 920) / 10000;
+		//dLong = (double)(lLong + 4236) / 10000;
+
+		StringBuilder sbAPI = new StringBuilder();
+		buildAPIResourceName(sbAPI);
+		sbAPI.append("?$select=primary_type,latitude,longitude,date&");
+		sbAPI.append("$where=date%3E%27");
+		sbAPI.append(queryDate);
+		sbAPI.append("T00:00:00%27%20AND%20");
+		sbAPI.append("within_circle(location,");
+		sbAPI.append(dLat);
+		sbAPI.append(",");
+		sbAPI.append(dLong);
+		sbAPI.append(",");
+		sbAPI.append(String.valueOf(SafeTravelsPreferences.MAPDETAILRADIUSVAL));
+		sbAPI.append("%29%20order%20by%20primary_type");
+		
+		http://data.cityofchicago.org/resource/ijzp-q8t2.json?$select=primary_type,latitude,longitude,date&$where=date%3E%272013-02-02T00:00:00%27%20AND%20within_circle(location,41.855908,-87.6729597,400) order by primary_type
 
 		queryAPI = sbAPI.toString();
 
 		return queryAPI;
 	}
 
+	private void buildAPIResourceName(StringBuilder sbAPI) {
+		
+		sbAPI.append(SafeTravelsPreferences.SERVERNAMEVAL);
+		sbAPI.append(SafeTravelsPreferences.RESOURCENAMEVAL);
+		sbAPI.append(SafeTravelsPreferences.ENDPOINTVAL);
+		
+	}
+	
 
 	static byte[] getUrlBytes(String urlSpec) throws IOException {
 
@@ -346,8 +393,6 @@ public class RestAPICaller {
 			sCrimeTypeCount.add(pType+ " "+ cCount);
 		}
 
-
-
 		return sCrimeTypeCount;
 
 	}
@@ -356,28 +401,25 @@ public class RestAPICaller {
 
 		JSONArray jData = new JSONArray(dataJson);
 
-		List<ChicagoCrime> mBeatCrimes = new ArrayList<ChicagoCrime>();
+		List<ChicagoCrime> mCrimeDetail = new ArrayList<ChicagoCrime>();
 
-		//mBeatCrimes.add("Ward Number of Crimes");
 
 		ChicagoCrime mChicagoCrime;
 
 		for (int i = 0; i < jData.length(); i++) {
 
 			mChicagoCrime = new ChicagoCrime();
-
-			mChicagoCrime.setCrimeid(jData.getJSONObject(i).getString("id"));
-			mChicagoCrime.setBlock(jData.getJSONObject(i).optString("block","none"));
+			
 			mChicagoCrime.setCrimetype(jData.getJSONObject(i).optString("primary_type","none"));
-			mChicagoCrime.setLongitude(jData.getJSONObject(i).optString("longitude","none"));
-			mChicagoCrime.setLatitude(jData.getJSONObject(i).optString("latitude","none"));
+			mChicagoCrime.setLongitude(Double.parseDouble(jData.getJSONObject(i).optString("longitude","0")));
+			mChicagoCrime.setLatitude(Double.parseDouble(jData.getJSONObject(i).optString("latitude","0")));
 			mChicagoCrime.setDate(jData.getJSONObject(i).optString("date","none"));
 
-			mBeatCrimes.add(mChicagoCrime);
+			mCrimeDetail.add(mChicagoCrime);
 
 		}
 
-		return mBeatCrimes;
+		return mCrimeDetail;
 
 	}
 

@@ -59,6 +59,9 @@ public class SafeTravelsPreferences {
 	public static final String SPOTCHECKRADIUSKEY="spot_check_radius";
 	public static final int SPOTCHECKRADIUSVAL=800;
 	
+	public static final String MAPDETAILRADIUSKEY="spot_check_radius";
+	public static final int MAPDETAILRADIUSVAL=400;
+	
 	
 	// Constants used to set coordinates to center of Chicago at 19th and Damen - primarily used so app can be tested from any location
 	public static final String CENTEROFCHICAGOLATDIFFKEY = "chicago_lat_diff";
@@ -95,8 +98,8 @@ public class SafeTravelsPreferences {
 	
 	public static final Boolean DEBUGMODE = false;
 	
-	public static final int SAFETHRESHOLD = 12000;
-	public static final int CAUTIONTHRESHOLD = 24000;
+	public static final int SAFETHRESHOLD = 750;
+	public static final int CAUTIONTHRESHOLD = 1500;
 	
 	public static final int LONGITUDEFACTOR = 85000;
 	public static final int LATITUDEFACTOR = 111000;

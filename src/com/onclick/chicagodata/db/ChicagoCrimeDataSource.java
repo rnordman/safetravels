@@ -44,8 +44,7 @@ public class ChicagoCrimeDataSource {
 		
 		ContentValues cv = new ContentValues();
 		
-		cv.put(SafeTravelsOpenHelperDB.CRIME_ID, crime.getCrimeid());
-		cv.put(SafeTravelsOpenHelperDB.BLOCK, crime.getBlock());
+	
 		cv.put(SafeTravelsOpenHelperDB.CRIME_TYPE, crime.getCrimetype());
 		cv.put(SafeTravelsOpenHelperDB.LONGITUDE, crime.getLongitude());
 		cv.put(SafeTravelsOpenHelperDB.LATITUDE, crime.getLatitude());

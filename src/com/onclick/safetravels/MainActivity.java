@@ -1,7 +1,10 @@
 package com.onclick.safetravels;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -10,11 +13,13 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 
 import com.onclick.utils.CheckNetwork;
-import com.onclick.utils.DialogNoConnection;
+import com.onclick.utils.DialogNoGPSConnection;
+import com.onclick.utils.DialogNoNetworkConnection;
 
 
 public class MainActivity extends AFragmentActivity implements LocationListener {
@@ -199,21 +204,43 @@ public class MainActivity extends AFragmentActivity implements LocationListener 
 
 		}
 
-		if (!CheckNetwork.sfConnected(this)) {
+		if (!CheckNetwork.GPSOn(this)) {
+
+			this.fragmentMiddle.changeNoConnectText();
+			
+				
+			DialogFragment newFragment = new DialogNoGPSConnection();
+			FragmentManager dfm = getSupportFragmentManager();
+			
+			if ( dfm.findFragmentByTag("nogps") == null) {
+			
+				try {
+					newFragment.show(dfm, "nogps");
+					
+				} catch (Exception e) {
+	
+					e.printStackTrace();
+				}
+			}
+		} else if (!CheckNetwork.sfConnected(this)) {
 
 			this.fragmentMiddle.changeNoConnectText();
 
-			DialogFragment newFragment = new DialogNoConnection();
+			DialogFragment newFragment = new DialogNoNetworkConnection();
 			FragmentManager dfm = getSupportFragmentManager();
-
-			try {
-				newFragment.show(dfm, "noconnection");
-			} catch (Exception e) {
-
-				e.printStackTrace();
+			if (dfm.findFragmentByTag("noconnection") == null) {
+				
+				try {
+					newFragment.show(dfm, "noconnection");
+				} catch (Exception e) {
+	
+					e.printStackTrace();
+				}
+		
 			}
 
-		} else
+
+		} else {
 
 			// Location did not change enough to refresh crime count
 			if (!LastLocationCounted.didLocationChange(this.mCurrentLocation)) {
@@ -228,7 +255,7 @@ public class MainActivity extends AFragmentActivity implements LocationListener 
 				}
 			}
 
-
+		}
 	}  // End of middle fragment content handler
 
 

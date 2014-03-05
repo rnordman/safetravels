@@ -22,12 +22,7 @@ public class CheckNetwork {
 			
 		}
 		
-		if (!GPSOn(tContext)) {
 			
-			isConnected = false;
-			
-		}
-		
 		return isConnected;
 		
 	}
@@ -99,11 +94,8 @@ public class CheckNetwork {
 		LocationManager gpsman = (LocationManager) tContext.getSystemService(Context.LOCATION_SERVICE);
 		
 		String gpsProvider = LocationManager.GPS_PROVIDER;
-		
-		GpsStatus sgps = gpsman.getGpsStatus(null);
-		
-		//Location lLoc = gpsman.getLastKnownLocation(gpsProvider);
-		
+					
+	
 		boolean gProvEn = gpsman.isProviderEnabled(gpsProvider);
 				
 

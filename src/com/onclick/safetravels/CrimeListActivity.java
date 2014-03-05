@@ -9,7 +9,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 
 import com.onclick.utils.CheckNetwork;
-import com.onclick.utils.DialogNoConnection;
+import com.onclick.utils.DialogNoGPSConnection;
 
 /**
  * @author Ronald T
@@ -86,7 +86,7 @@ public class CrimeListActivity extends AFragmentActivity  {
 					
 			//this.fragmentMiddle.changeNoConnectText();
 				
-			DialogFragment newFragment = new DialogNoConnection();
+			DialogFragment newFragment = new DialogNoGPSConnection();
 			FragmentManager dfm = getSupportFragmentManager();
 			
 			try {

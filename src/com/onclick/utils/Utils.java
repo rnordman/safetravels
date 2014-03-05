@@ -1,6 +1,7 @@
 package com.onclick.utils;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import com.onclick.safetravels.SafeTravelsPreferences;
 
@@ -46,14 +47,17 @@ public class Utils {
 	
 	public static String calculateLookbackDate(int numberDaysLookBack) {
 		Calendar today = Calendar.getInstance();
+		today.getTime();
 		
-		today.add(Calendar.DATE, -numberDaysLookBack);
+		today.add(Calendar.MONTH, (-12));
+			
 		
-		int lookbackMonth = today.MONTH;
-		int lookbackDay = today.DAY_OF_MONTH;
-		int lookbackYear = today.YEAR;
+		int lookbackMonth = today.get(Calendar.MONTH);
+		int lookbackDay = today.get(Calendar.DAY_OF_MONTH);
+		int lookbackYear = today.get(Calendar.YEAR);
 		
-		String newDate = String.valueOf(lookbackYear)+"-"+String.valueOf(lookbackMonth)+"-"+String.valueOf(lookbackDay);
+				
+		String newDate = String.valueOf(lookbackYear)+"-"+(lookbackMonth < 10 ? String.format("%02d", lookbackMonth) : String.valueOf(lookbackMonth))+"-"+(lookbackDay < 10 ? String.format("%02d", lookbackDay) : String.valueOf(lookbackDay));
 		
 		return newDate;
 		

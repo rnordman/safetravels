@@ -14,7 +14,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 
 import com.onclick.utils.CheckNetwork;
-import com.onclick.utils.DialogNoConnection;
+import com.onclick.utils.DialogNoGPSConnection;
 
 /* Chicago Activity is used for testing purposes only. Sets GPS coordinates to center of Chicago from current location */
 
@@ -190,7 +190,7 @@ public class ChicagoActivity extends AFragmentActivity implements LocationListen
 
 			this.fragmentMiddle.changeNoConnectText();
 
-			DialogFragment newFragment = new DialogNoConnection();
+			DialogFragment newFragment = new DialogNoGPSConnection();
 			FragmentManager dfm = getSupportFragmentManager();
 
 			try {
