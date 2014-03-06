@@ -28,7 +28,9 @@ public class MainActivity extends AFragmentActivity implements LocationListener 
 	public Location mCurrentLocation;
 
 	FragmentCrimeCount fragmentMiddle;
-
+	
+	DialogFragment gpsDialogFragment;
+	DialogFragment networkDialogFragment;
 	
 
 	@Override
@@ -208,37 +210,42 @@ public class MainActivity extends AFragmentActivity implements LocationListener 
 
 			this.fragmentMiddle.changeNoConnectText();
 			
+			if (gpsDialogFragment == null)	 {
 				
-			DialogFragment newFragment = new DialogNoGPSConnection();
-			FragmentManager dfm = getSupportFragmentManager();
-			
-			if ( dfm.findFragmentByTag("nogps") == null) {
-			
+				gpsDialogFragment = new DialogNoGPSConnection();
+				FragmentManager dfm = getSupportFragmentManager();
+								
 				try {
-					newFragment.show(dfm, "nogps");
-					
+
+					gpsDialogFragment.show(dfm, "nogps");
+
 				} catch (Exception e) {
-	
+
 					e.printStackTrace();
 				}
+				
 			}
+			
 		} else if (!CheckNetwork.sfConnected(this)) {
 
 			this.fragmentMiddle.changeNoConnectText();
 
-			DialogFragment newFragment = new DialogNoNetworkConnection();
-			FragmentManager dfm = getSupportFragmentManager();
-			if (dfm.findFragmentByTag("noconnection") == null) {
+			if (networkDialogFragment == null) {
 				
-				try {
-					newFragment.show(dfm, "noconnection");
-				} catch (Exception e) {
-	
-					e.printStackTrace();
-				}
+				networkDialogFragment = new DialogNoNetworkConnection();
+				FragmentManager dfm = getSupportFragmentManager();
+				
+				if (dfm.findFragmentByTag("noconnection") == null) {
+					
+					try {
+						networkDialogFragment.show(dfm, "noconnection");
+					} catch (Exception e) {
 		
+						e.printStackTrace();
+					}
+			
+				}
 			}
-
 
 		} else {
 

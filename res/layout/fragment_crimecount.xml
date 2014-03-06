@@ -17,7 +17,7 @@
           android:paddingTop="50dp"
           android:text="@string/lblCrimeAhead"
           android:textAppearance="?android:attr/textAppearanceLarge"
-          android:textSize="40sp"
+          android:textSize="35sp"
           android:textStyle="bold" />
       
        <TextView
@@ -32,9 +32,9 @@
            android:paddingLeft="20dp"
            android:paddingRight="20dp"
            android:paddingTop="60dp"
-           android:text="@string/lblCrimeHere"
+           android:text="@string/lblBlank"
            android:textAppearance="?android:attr/textAppearanceLarge"
-           android:textSize="40sp"
+           android:textSize="35sp"
            android:textStyle="bold" />
      
 </RelativeLayout>

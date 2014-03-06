@@ -10,6 +10,7 @@ import java.util.List;
 import org.json.JSONException;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.AsyncTask;
@@ -87,14 +88,22 @@ public class FragmentCrimeCount extends Fragment {
 		if (sLastCrimeCount != null) {
 
 			TextView tvCrimeCount = (TextView) lView.findViewById(R.id.textViewCrimeCount);
+			TextView tvAheadCount = (TextView) lView.findViewById(R.id.txtCrimeAhead);
 			
 			tvCrimeCount.setTextColor(getResources().getColor(R.color.white));
 			tvCrimeCount.setText(sLastCrimeCount);
-			if (sLastCrimeCount.equals(getResources().getString(R.string.lblSafeHere))) {
+			
+			if (sLastCrimeCount.equals(getResources().getString(R.string.msgNoCrimeData))) {
+				
+				tvCrimeCount.setBackgroundColor(Color.TRANSPARENT);
+				tvAheadCount.setText(getResources().getString(R.string.lblBlank));
+				
+			} else if (sLastCrimeCount.equals(getResources().getString(R.string.lblSafeHere))) {
 				
 				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.green));
 				
 			} else if (sLastCrimeCount.equals(getResources().getString(R.string.lblCautionHere))) {
+				
 				tvCrimeCount.setTextColor(getResources().getColor(R.color.black));
 				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.yellow));
 				
@@ -240,7 +249,14 @@ public class FragmentCrimeCount extends Fragment {
 			TextView tvAheadCount = (TextView) lView.findViewById(R.id.txtCrimeAhead);
 			
 			tvCrimeCount.setTextColor(getResources().getColor(R.color.white));
-			if (Integer.parseInt(resultList.get(0)) < SafeTravelsPreferences.SAFETHRESHOLD) {
+			tvCrimeCount.setBackgroundColor(Color.TRANSPARENT);
+			
+			if (Integer.parseInt(resultList.get(0)) == 0) {
+				
+				tvCrimeCount.setText(getResources().getString(R.string.msgNoCrimeData));
+				tvCrimeCount.setBackgroundColor(Color.TRANSPARENT);
+				
+			} else if (Integer.parseInt(resultList.get(0)) < SafeTravelsPreferences.SAFETHRESHOLD) {
 				
 				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.green));
 				tvCrimeCount.setText(getResources().getString(R.string.lblSafeHere));
@@ -260,7 +276,15 @@ public class FragmentCrimeCount extends Fragment {
 
 
 			tvAheadCount.setTextColor(getResources().getColor(R.color.white));
-			if (Integer.parseInt(resultList.get(1)) < SafeTravelsPreferences.SAFETHRESHOLD) {
+			tvAheadCount.setBackgroundColor(Color.TRANSPARENT);
+			
+			if (Integer.parseInt(resultList.get(1)) == 0) {
+				
+				tvAheadCount.setText(getResources().getString(R.string.lblBlank));
+				tvAheadCount.setBackgroundColor(Color.TRANSPARENT);
+				
+			} else if (Integer.parseInt(resultList.get(1)) < SafeTravelsPreferences.SAFETHRESHOLD) {
+				
 				tvAheadCount.setBackgroundColor(getResources().getColor(R.color.green));
 				tvAheadCount.setText(getResources().getString(R.string.lblSafeAhead));
 				

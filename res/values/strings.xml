@@ -26,6 +26,7 @@
     <string name="msgNoConnection">Not Connected - Cannot Run Safe Travels</string>
     <string name="msgNoNetwork">Network not connected - Try to connect?</string>
     <string name="msgNoGPS">GPS not connected - Try to connect?</string>
+    <string name="msgNoCrimeData">No crime data detected at this location.</string>
     <string name="msgLocationNotAvailable">Current Location is Not Available</string>
     <string name="msgMapNotAvailable">Map Not Available!</string>
     <string name="dlgConnectionLost">Connection Lost - Try to Restore?</string>
@@ -38,7 +39,7 @@
     <string name="btndrive">DRIVE</string>
     <string name="btnsettings">SETTINGS</string>
     <string name="btnfilters">Filters</string>
-    <string name="btnbackground">Not in Use</string>
+    <string name="btnbackground">HELP</string>
     <string name="btnLocationMap">Map</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="radSet2Blocks">2 Blocks (approx. 1/4 mile or 400 meters)</string>

@@ -12,6 +12,7 @@ import org.json.JSONException;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.AsyncTask;
@@ -165,16 +166,26 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 
 			
 			TextView tvCrimeCount = (TextView) lView.findViewById(R.id.textViewCrimeCount);
-			TextView tvLat = (TextView) lView.findViewById(R.id.txtSpotCurrentLat);
-			TextView tvLong = (TextView) lView.findViewById(R.id.txtSpotCurrentLong);
+			//TextView tvLat = (TextView) lView.findViewById(R.id.txtSpotCurrentLat);
+			//TextView tvLong = (TextView) lView.findViewById(R.id.txtSpotCurrentLong);
 			
-			tvLat.setText(String.valueOf(LastLocationCounted.lastLatitude));
-			tvLong.setText(String.valueOf(LastLocationCounted.lastLongitude));
+			//tvLat.setText(String.valueOf(LastLocationCounted.lastLatitude));
+			//tvLong.setText(String.valueOf(LastLocationCounted.lastLongitude));
 			
 			tvCrimeCount.setTextColor(getResources().getColor(R.color.white));
-			if (Integer.parseInt(resultList.get(0)) < SafeTravelsPreferences.SAFETHRESHOLD) {
+			tvCrimeCount.setTextSize(50);
+						
+			if (Integer.parseInt(resultList.get(0)) == 0) {
+				
+				tvCrimeCount.setTextSize(20);
+				tvCrimeCount.setText(getResources().getString(R.string.msgNoCrimeData));
+								tvCrimeCount.setBackgroundColor(Color.TRANSPARENT);
+				
+			} else if (Integer.parseInt(resultList.get(0)) < SafeTravelsPreferences.SAFETHRESHOLD) {
+				
 				tvCrimeCount.setBackgroundColor(getResources().getColor(R.color.green));
 				tvCrimeCount.setText(getResources().getString(R.string.lblSafeHere));
+				
 			} else if (Integer.parseInt(resultList.get(0)) >= SafeTravelsPreferences.SAFETHRESHOLD && Integer.parseInt(resultList.get(0)) < SafeTravelsPreferences.CAUTIONTHRESHOLD) {
 				
 				tvCrimeCount.setTextColor(getResources().getColor(R.color.black));
@@ -209,11 +220,11 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 					
 		break;
 		
 		case R.id.textViewCrimeCount:
+			
 			this.onClickViewCrimeDetail();
 		
 		}
@@ -224,7 +235,7 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 	 */
 	private void onClickViewCrimeDetail() {
 		
-		Utils.LongToast(tContext, "Here in Crime Detail");
+		//Utils.LongToast(tContext, "Here in Crime Detail");
 		Intent intentCrimeList = new Intent(tContext, CrimeListActivity.class);
 		//intent.putExtra("thetext", et.getText().toString());
 		startActivity(intentCrimeList);

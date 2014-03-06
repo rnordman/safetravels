@@ -140,7 +140,7 @@ public class LastLocationCounted {
 
 		} else {
 
-			return false;
+			return true;
 		}
 	}
 

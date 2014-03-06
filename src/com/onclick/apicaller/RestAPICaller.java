@@ -91,8 +91,8 @@ public class RestAPICaller {
 		latdiff = diffLocation[0];
 		lngdiff = diffLocation[1];
 		
-		dLat = (double)(aheadCoordinates[0] + latdiff);
-		dLong = (double)(aheadCoordinates[1] + lngdiff);
+		dLat = (double)(aheadCoordinates[0] - latdiff);
+		dLong = (double)(aheadCoordinates[1] - lngdiff);
 
 		StringBuilder sbAPI = new StringBuilder();
 		buildAPIResourceName(sbAPI);
@@ -204,8 +204,8 @@ public class RestAPICaller {
 		lLong = LastLocationCounted.lastLongitude;
 
 		// Hard code gps coordinates of center of Chicago
-		dLat = ((double)(lLat) / 10000) + latdiff;
-		dLong = ((double)(lLong) / 10000) + lngdiff;
+		dLat = ((double)(lLat) / 10000) - latdiff;
+		dLong = ((double)(lLong) / 10000) - lngdiff;
 
 		StringBuilder sbAPI = new StringBuilder();
 		buildAPIResourceName(sbAPI);
@@ -262,7 +262,7 @@ public class RestAPICaller {
 		sbAPI.append(String.valueOf(SafeTravelsPreferences.SPOTCHECKRADIUSVAL));
 		sbAPI.append("%29%20group%20by%20primary_type%20order%20by%20count_id%20desc");
 		
-		http://data.cityofchicago.org/resource/ijzp-q8t2.json?$select=primary_type,latitude,longitude,date&$where=date%3E%272013-02-02T00:00:00%27%20AND%20within_circle(location,41.855908,-87.6729597,400) order by primary_type
+		//http://data.cityofchicago.org/resource/ijzp-q8t2.json?$select=primary_type,latitude,longitude,date&$where=date%3E%272013-02-02T00:00:00%27%20AND%20within_circle(location,41.855908,-87.6729597,400) order by primary_type
 
 		queryAPI = sbAPI.toString();
 
@@ -305,7 +305,7 @@ public class RestAPICaller {
 		sbAPI.append(String.valueOf(SafeTravelsPreferences.MAPDETAILRADIUSVAL));
 		sbAPI.append("%29%20order%20by%20primary_type");
 		
-		http://data.cityofchicago.org/resource/ijzp-q8t2.json?$select=primary_type,latitude,longitude,date&$where=date%3E%272013-02-02T00:00:00%27%20AND%20within_circle(location,41.855908,-87.6729597,400) order by primary_type
+		//http://data.cityofchicago.org/resource/ijzp-q8t2.json?$select=primary_type,latitude,longitude,date&$where=date%3E%272013-02-02T00:00:00%27%20AND%20within_circle(location,41.855908,-87.6729597,400) order by primary_type
 
 		queryAPI = sbAPI.toString();
 

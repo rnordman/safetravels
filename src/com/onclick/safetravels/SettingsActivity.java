@@ -121,8 +121,7 @@ public class SettingsActivity extends Activity implements OnClickListener  {
 			this.onSoundSwitchClick();
 				
 				
-			Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
-			startActivity(intent);
+			finish();
 		}
 		
 		

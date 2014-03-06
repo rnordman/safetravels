@@ -204,7 +204,7 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener  {
 		Address add = list.get(0);
 		String locality = add.getLocality();
 
-		Utils.ShortToast(getBaseContext(), locality);
+		//Utils.ShortToast(getBaseContext(), locality);
 
 		double lat = add.getLatitude();
 		double lng = add.getLongitude();
@@ -233,10 +233,24 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener  {
 	
 	private void setCrimeMarker(ChicagoCrime crime) {
 		
+		String sCrimeType = crime.getCrimetype();
+		String sDateTime = crime.getDate();
+		String sDate = sDateTime.substring(0, sDateTime.length()-9);
+		
 		MarkerOptions options = new MarkerOptions()
-		.title(crime.getCrimetype() + " " + crime.getDate().toString())
-		.position(new LatLng(crime.getLatitude(),crime.getLongitude()))
-		.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+		.title(sCrimeType + " " + sDate.toString())
+		.position(new LatLng(crime.getLatitude(),crime.getLongitude()));
+		
+		if (sCrimeType.equals("THEFT") || sCrimeType.equals("BATTERY") || sCrimeType.equals("HOMOCIDE") || sCrimeType.equals("ASSAULT") ||
+				sCrimeType.equals("BURGLARY") || sCrimeType.equals("ROBBERY") || sCrimeType.equals("CRIM SEXUAL ASSAULT")) {
+			
+			options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+			
+		} else {
+			
+			options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+			
+		}
 
 		marker = mMap.addMarker(options);
 	}

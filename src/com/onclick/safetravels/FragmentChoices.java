@@ -31,10 +31,10 @@ public class FragmentChoices extends Fragment implements OnClickListener{
 			break;
 			
 		case R.id.buttonfilters:
-			
-			Intent intentChicago = new Intent(fContext, ChicagoActivity.class);
-			//intent.putExtra("thetext", et.getText().toString());
-			startActivity(intentChicago);
+					
+				Intent intentChicago = new Intent(fContext, ChicagoActivity.class);
+				//intent.putExtra("thetext", et.getText().toString());
+				startActivity(intentChicago);
 			
 			break;
 			

@@ -15,6 +15,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.onclick.utils.CheckNetwork;
 import com.onclick.utils.DialogNoGPSConnection;
+import com.onclick.utils.DialogNoNetworkConnection;
 
 /* Chicago Activity is used for testing purposes only. Sets GPS coordinates to center of Chicago from current location */
 
@@ -24,6 +25,8 @@ public class ChicagoActivity extends AFragmentActivity implements LocationListen
 	public Location mCurrentLocation;
 
 	FragmentCrimeCount fragmentMiddle;
+	DialogFragment gpsDialogFragment;
+	DialogFragment networkDialogFragment;
 
 
 	@Override
@@ -181,26 +184,52 @@ public class ChicagoActivity extends AFragmentActivity implements LocationListen
 
 		// If there is no connection just show message and alert dialog
 		if (this.mCurrentLocation == null) {
-			
 			this.mCurrentLocation = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
 		}
 
-		if (!CheckNetwork.sfConnected(this)) {
+		if (!CheckNetwork.GPSOn(this)) {
+
+			this.fragmentMiddle.changeNoConnectText();
+			
+			if (gpsDialogFragment == null)	 {
+				
+				gpsDialogFragment = new DialogNoGPSConnection();
+				FragmentManager dfm = getSupportFragmentManager();
+								
+				try {
+
+					gpsDialogFragment.show(dfm, "nogps");
+
+				} catch (Exception e) {
+
+					e.printStackTrace();
+				}
+				
+			}
+			
+		} else if (!CheckNetwork.sfConnected(this)) {
 
 			this.fragmentMiddle.changeNoConnectText();
 
-			DialogFragment newFragment = new DialogNoGPSConnection();
-			FragmentManager dfm = getSupportFragmentManager();
-
-			try {
-				newFragment.show(dfm, "noconnection");
-			} catch (Exception e) {
-
-				e.printStackTrace();
+			if (networkDialogFragment == null) {
+				
+				networkDialogFragment = new DialogNoNetworkConnection();
+				FragmentManager dfm = getSupportFragmentManager();
+				
+				if (dfm.findFragmentByTag("noconnection") == null) {
+					
+					try {
+						networkDialogFragment.show(dfm, "noconnection");
+					} catch (Exception e) {
+		
+						e.printStackTrace();
+					}
+			
+				}
 			}
 
-		} else
+		} else {
 
 			// Location did not change enough to refresh crime count
 			if (!LastLocationCounted.didLocationChange(this.mCurrentLocation)) {
@@ -212,12 +241,12 @@ public class ChicagoActivity extends AFragmentActivity implements LocationListen
 
 					LastLocationCounted.setNewLocation(this, this.mCurrentLocation);
 					this.fragmentMiddle.prepareCrimeQueryChicago();
-
 				}
 			}
 
-
+		}
 	}  // End of middle fragment content handler
+
 
 
 	// *************************
