@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="com/onclick/utils/SFConnectionChangeReceiver.java|com/onclick/threads/CrimeListTask.java|com/onclick/safetravels/FragmentNoConnect.java" kind="src" path="src"/>
+	<classpathentry excluding="com/onclick/utils/SFConnectionChangeReceiver.java|com/onclick/threads/CrimeListTask.java|com/onclick/safetravels/FragmentNoConnect.java|com/onclick/safetravels/MapViewActivity.java|com/onclick/safetravels/FiltersActivity.java|com/onclick/utils/LocationReceiver.java|com/onclick/utils/LocationTracker.java|com/onclick/utils/ConnectionChangeReceiver.java|com/onclick/chicagodata/db/ChicagoCrimeDataSource.java|com/onclick/chicagodata/db/SafeTravelsOpenHelperDB.java" kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>

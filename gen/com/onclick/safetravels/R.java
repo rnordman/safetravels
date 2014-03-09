@@ -163,6 +163,14 @@ containing a value of this type.
          */
         public static final int zOrderOnTop=0x7f010010;
     }
+    public static final class bool {
+        /** Enable automatic activity tracking
+         */
+        public static final int ga_autoActivityTracking=0x7f080000;
+        /** Enable automatic exception tracking
+         */
+        public static final int ga_reportUncaughtExceptions=0x7f080001;
+    }
     public static final class color {
         public static final int black=0x7f04000e;
         public static final int common_action_bar_splitter=0x7f040009;
@@ -178,9 +186,11 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f040006;
         public static final int common_signin_btn_light_text_focused=0x7f040007;
         public static final int common_signin_btn_light_text_pressed=0x7f040005;
-        public static final int common_signin_btn_text_dark=0x7f04000f;
-        public static final int common_signin_btn_text_light=0x7f040010;
+        public static final int common_signin_btn_text_dark=0x7f040011;
+        public static final int common_signin_btn_text_light=0x7f040012;
         public static final int green=0x7f04000b;
+        public static final int logoblue=0x7f040010;
+        public static final int logogreen=0x7f04000f;
         public static final int red=0x7f04000a;
         public static final int white=0x7f04000d;
         public static final int yellow=0x7f04000c;
@@ -192,8 +202,8 @@ containing a value of this type.
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f080000;
-        public static final int activity_vertical_margin=0x7f080001;
+        public static final int activity_horizontal_margin=0x7f090000;
+        public static final int activity_vertical_margin=0x7f090001;
     }
     public static final class drawable {
         public static final int common_signin_btn_icon_dark=0x7f020000;
@@ -220,109 +230,115 @@ containing a value of this type.
         public static final int common_signin_btn_text_normal_light=0x7f020015;
         public static final int common_signin_btn_text_pressed_dark=0x7f020016;
         public static final int common_signin_btn_text_pressed_light=0x7f020017;
-        public static final int ic_launcher=0x7f020018;
-        public static final int ic_plusone_medium_off_client=0x7f020019;
-        public static final int ic_plusone_small_off_client=0x7f02001a;
-        public static final int ic_plusone_standard_off_client=0x7f02001b;
-        public static final int ic_plusone_tall_off_client=0x7f02001c;
-        public static final int sf_hdpi=0x7f02001d;
-        public static final int sf_mdpi=0x7f02001e;
-        public static final int sf_xhdpi=0x7f02001f;
-        public static final int sf_xxhdpi=0x7f020020;
+        public static final int corner_radius_10=0x7f020018;
+        public static final int ic_launcher=0x7f020019;
+        public static final int ic_plusone_medium_off_client=0x7f02001a;
+        public static final int ic_plusone_small_off_client=0x7f02001b;
+        public static final int ic_plusone_standard_off_client=0x7f02001c;
+        public static final int ic_plusone_tall_off_client=0x7f02001d;
+        public static final int sf_hdpi=0x7f02001e;
+        public static final int sf_logo_hdpi=0x7f02001f;
+        public static final int sf_logo_mdpi=0x7f020020;
+        public static final int sf_logo_xhdpi=0x7f020021;
+        public static final int sf_logo_xxhdpi=0x7f020022;
+        public static final int sf_mdpi=0x7f020023;
+        public static final int sf_xhdpi=0x7f020024;
+        public static final int sf_xxhdpi=0x7f020025;
     }
     public static final class id {
-        public static final int RadioButton100Meters=0x7f050012;
-        public static final int RadioButton2Blocks=0x7f050013;
-        public static final int RadioButton3Meters=0x7f050011;
-        public static final int RadioButton4Blocks=0x7f050014;
-        public static final int RadioButton8Blocks=0x7f050015;
-        public static final int action_settings=0x7f05002e;
-        public static final int btnLocationMap=0x7f05000c;
-        public static final int btnSpotCheckAddress=0x7f05002d;
-        public static final int buttonSave=0x7f050016;
-        public static final int buttonbackground=0x7f05001c;
-        public static final int buttondrive=0x7f050028;
-        public static final int buttonfilters=0x7f05001b;
-        public static final int buttonsettings=0x7f05001a;
-        public static final int buttonspot=0x7f050027;
-        public static final int buttontrend=0x7f050029;
-        public static final int chkSoundOnOff=0x7f050017;
-        public static final int editTextAddress=0x7f05002a;
-        public static final int edittextLocation=0x7f05000b;
-        public static final int fragmentcontainerbottom=0x7f05000a;
-        public static final int fragmentcontainermid=0x7f050009;
-        public static final int fragmentcontainertop=0x7f050008;
+        public static final int RadioButton100Meters=0x7f050014;
+        public static final int RadioButton2Blocks=0x7f050015;
+        public static final int RadioButton3Meters=0x7f050013;
+        public static final int RadioButton4Blocks=0x7f050016;
+        public static final int RadioButton8Blocks=0x7f050017;
+        public static final int action_settings=0x7f05002d;
+        public static final int btnLocationMap=0x7f05000f;
+        public static final int btnSpotCheckAddress=0x7f05002c;
+        public static final int buttonSave=0x7f050018;
+        public static final int buttonbackground=0x7f05001d;
+        public static final int buttondrive=0x7f050029;
+        public static final int buttonfilters=0x7f05001c;
+        public static final int buttonsettings=0x7f05001b;
+        public static final int buttonspot=0x7f050028;
+        public static final int buttontrend=0x7f05002a;
+        public static final int chkSoundOnOff=0x7f050019;
+        public static final int editTextAddress=0x7f05002b;
+        public static final int edittextLocation=0x7f05000e;
+        public static final int fragmentcontainerbottom=0x7f05000d;
+        public static final int fragmentcontainermid=0x7f05000c;
+        public static final int fragmentcontainertop=0x7f05000b;
         public static final int hybrid=0x7f050004;
-        public static final int map=0x7f05000d;
-        public static final int mapCurrentLocation=0x7f05002f;
-        public static final int mapTypeHybrid=0x7f050033;
-        public static final int mapTypeNone=0x7f050034;
-        public static final int mapTypeNormal=0x7f050030;
-        public static final int mapTypeSatellite=0x7f050031;
-        public static final int mapTypeTerrain=0x7f050032;
-        public static final int mapview1=0x7f05000e;
+        public static final int map=0x7f050010;
+        public static final int mapCurrentLocation=0x7f05002e;
+        public static final int mapTypeHybrid=0x7f050032;
+        public static final int mapTypeNone=0x7f050033;
+        public static final int mapTypeNormal=0x7f05002f;
+        public static final int mapTypeSatellite=0x7f050030;
+        public static final int mapTypeTerrain=0x7f050031;
+        public static final int mapview1=0x7f050011;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
-        public static final int radioGroup1=0x7f050010;
+        public static final int radioGroup1=0x7f050012;
         public static final int satellite=0x7f050002;
         public static final int tab1=0x7f050005;
         public static final int tab2=0x7f050006;
         public static final int tab3=0x7f050007;
         public static final int terrain=0x7f050003;
-        public static final int textView1=0x7f05000f;
-        public static final int textView2=0x7f050018;
-        public static final int textViewCrimeCount=0x7f05001e;
-        public static final int tvFragmentBlank=0x7f050019;
-        public static final int txtAheadLat=0x7f050024;
-        public static final int txtAheadLong=0x7f050025;
-        public static final int txtCrimeAhead=0x7f05001d;
-        public static final int txtCurrentBearing=0x7f050023;
-        public static final int txtCurrentLat=0x7f050021;
-        public static final int txtCurrentLong=0x7f050022;
-        public static final int txtDistanceAhead=0x7f050026;
-        public static final int txtPrevLat=0x7f05001f;
-        public static final int txtPrevLong=0x7f050020;
-        public static final int txtSpotCurrentLat=0x7f05002b;
-        public static final int txtSpotCurrentLong=0x7f05002c;
+        public static final int textView1=0x7f050008;
+        public static final int textView2=0x7f050009;
+        public static final int textView3=0x7f05000a;
+        public static final int textViewCrimeCount=0x7f05001f;
+        public static final int tvFragmentBlank=0x7f05001a;
+        public static final int txtAheadLat=0x7f050025;
+        public static final int txtAheadLong=0x7f050026;
+        public static final int txtCrimeAhead=0x7f05001e;
+        public static final int txtCurrentBearing=0x7f050024;
+        public static final int txtCurrentLat=0x7f050022;
+        public static final int txtCurrentLong=0x7f050023;
+        public static final int txtDistanceAhead=0x7f050027;
+        public static final int txtPrevLat=0x7f050020;
+        public static final int txtPrevLong=0x7f050021;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f070000;
     }
     public static final class layout {
         public static final int activity_filters=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int activity_map=0x7f030002;
-        public static final int activity_map_view=0x7f030003;
-        public static final int activity_mapview=0x7f030004;
-        public static final int activity_settings=0x7f030005;
-        public static final int activity_spotcheck=0x7f030006;
-        public static final int crimelist_layout=0x7f030007;
-        public static final int fragment_blank=0x7f030008;
-        public static final int fragment_choices=0x7f030009;
-        public static final int fragment_crimecount=0x7f03000a;
-        public static final int fragment_crimecount_test=0x7f03000b;
-        public static final int fragment_crimelist=0x7f03000c;
-        public static final int fragment_mode=0x7f03000d;
-        public static final int fragment_spotcheck=0x7f03000e;
-        public static final int locationfragment=0x7f03000f;
+        public static final int activity_help=0x7f030001;
+        public static final int activity_main=0x7f030002;
+        public static final int activity_map=0x7f030003;
+        public static final int activity_map_view=0x7f030004;
+        public static final int activity_mapview=0x7f030005;
+        public static final int activity_settings=0x7f030006;
+        public static final int activity_spotcheck=0x7f030007;
+        public static final int crimelist_layout=0x7f030008;
+        public static final int fragment_blank=0x7f030009;
+        public static final int fragment_choices=0x7f03000a;
+        public static final int fragment_crimecount=0x7f03000b;
+        public static final int fragment_crimecount_test=0x7f03000c;
+        public static final int fragment_crimelist=0x7f03000d;
+        public static final int fragment_mode=0x7f03000e;
+        public static final int fragment_spotcheck=0x7f03000f;
+        public static final int locationfragment=0x7f030010;
     }
     public static final class menu {
-        public static final int a=0x7f0a0000;
-        public static final int main=0x7f0a0001;
-        public static final int map=0x7f0a0002;
-        public static final int map_view=0x7f0a0003;
-        public static final int settings=0x7f0a0004;
-        public static final int spot_check=0x7f0a0005;
+        public static final int a=0x7f0b0000;
+        public static final int main=0x7f0b0001;
+        public static final int map=0x7f0b0002;
+        public static final int map_view=0x7f0b0003;
+        public static final int settings=0x7f0b0004;
+        public static final int spot_check=0x7f0b0005;
     }
     public static final class string {
-        public static final int action_settings=0x7f060021;
-        public static final int activity_name_chicago_gps=0x7f06001e;
-        public static final int activity_name_crime_list=0x7f06001f;
-        public static final int activity_name_crime_map=0x7f060020;
-        public static final int activity_name_drive_mode=0x7f06001b;
-        public static final int activity_name_settings=0x7f06001c;
-        public static final int activity_name_spot_check=0x7f06001d;
-        public static final int app_name=0x7f06001a;
+        public static final int action_settings=0x7f060023;
+        public static final int activity_name_chicago_gps=0x7f06001f;
+        public static final int activity_name_crime_list=0x7f060020;
+        public static final int activity_name_crime_map=0x7f060022;
+        public static final int activity_name_drive_mode=0x7f06001c;
+        public static final int activity_name_help=0x7f060021;
+        public static final int activity_name_settings=0x7f06001d;
+        public static final int activity_name_spot_check=0x7f06001e;
+        public static final int app_name=0x7f06001b;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
          */
@@ -346,17 +362,15 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f060014;
-        public static final int backtomain=0x7f060025;
-        public static final int beatnumber=0x7f060023;
-        public static final int btnLocationMap=0x7f060041;
-        public static final int btnSetSave=0x7f060049;
-        public static final int btnbackground=0x7f060040;
-        public static final int btndrive=0x7f06003d;
-        public static final int btnfilters=0x7f06003f;
-        public static final int btnsettings=0x7f06003e;
-        public static final int btnspot=0x7f06003c;
-        public static final int btntrend=0x7f06003b;
-        public static final int chicago_locality=0x7f060065;
+        public static final int btnLocationMap=0x7f06003d;
+        public static final int btnSetSave=0x7f060045;
+        public static final int btnbackground=0x7f06003c;
+        public static final int btndrive=0x7f060039;
+        public static final int btnfilters=0x7f06003b;
+        public static final int btnsettings=0x7f06003a;
+        public static final int btnspot=0x7f060038;
+        public static final int btntrend=0x7f060037;
+        public static final int chicago_locality=0x7f060061;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -428,64 +442,63 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060013;
-        public static final int dlgConnectionLost=0x7f060036;
-        public static final int enterward=0x7f060027;
-        public static final int fraglocbuttonstartlocation=0x7f060039;
-        public static final int fraglocmanstop=0x7f06003a;
-        public static final int getbeatcrime=0x7f060024;
-        public static final int getwardcrime=0x7f060026;
-        public static final int hello_world=0x7f060022;
-        public static final int lblAheadLat=0x7f060053;
-        public static final int lblAheadLong=0x7f060054;
-        public static final int lblBlank=0x7f06005a;
-        public static final int lblCautionAhead=0x7f060060;
-        public static final int lblCautionHere=0x7f06005d;
-        public static final int lblCheck=0x7f060058;
-        public static final int lblChicagoGPS=0x7f060062;
-        public static final int lblCrimeAhead=0x7f060056;
-        public static final int lblCrimeCountHere=0x7f060059;
-        public static final int lblCrimeHere=0x7f06004d;
-        public static final int lblCurrBearing=0x7f060052;
-        public static final int lblCurrLat=0x7f060050;
-        public static final int lblCurrLong=0x7f060051;
-        public static final int lblDangerAhead=0x7f060061;
-        public static final int lblDangerHere=0x7f06005e;
-        public static final int lblDistanceAhead=0x7f060055;
-        public static final int lblEnterAddress=0x7f060057;
-        public static final int lblPrevLat=0x7f06004e;
-        public static final int lblPrevLong=0x7f06004f;
-        public static final int lblSafeAhead=0x7f06005f;
-        public static final int lblSafeHere=0x7f06005c;
-        public static final int lblSound=0x7f06005b;
-        public static final int lblcurrentlatitude=0x7f06002b;
-        public static final int lblcurrentlongitude=0x7f06002a;
-        public static final int location_hint=0x7f060066;
-        public static final int locationscreen=0x7f060028;
-        public static final int msgLocationNotAvailable=0x7f060034;
-        public static final int msgMapNotAvailable=0x7f060035;
-        public static final int msgMobileOff=0x7f06002e;
-        public static final int msgMobileOn=0x7f06002f;
-        public static final int msgNoConnection=0x7f060030;
-        public static final int msgNoCrimeData=0x7f060033;
-        public static final int msgNoGPS=0x7f060032;
-        public static final int msgNoNetwork=0x7f060031;
-        public static final int msgWiFiOn=0x7f06002d;
-        public static final int msgWifiOff=0x7f06002c;
-        public static final int radSet100Meters=0x7f060047;
-        public static final int radSet2Blocks=0x7f060043;
-        public static final int radSet3MetersTest=0x7f060045;
-        public static final int radSet4Blocks=0x7f060044;
-        public static final int radSet8Blocks=0x7f060046;
-        public static final int sTotalCrimes=0x7f060029;
-        public static final int startlocatonlistener=0x7f060037;
-        public static final int stoplocationlistener=0x7f060038;
-        public static final int title_activity_afragment=0x7f06004c;
-        public static final int title_activity_map=0x7f060063;
-        public static final int title_activity_map_view=0x7f060064;
-        public static final int title_activity_settings=0x7f060042;
-        public static final int title_activity_spot_check=0x7f06004b;
-        public static final int txtNoConnectPleaseWait=0x7f06004a;
-        public static final int txtRefreshInterval=0x7f060048;
+        public static final int dlgConnectionLost=0x7f060032;
+        public static final int fraglocbuttonstartlocation=0x7f060035;
+        public static final int fraglocmanstop=0x7f060036;
+        /** Replace placeholder ID with your tracking ID
+         */
+        public static final int ga_trackingId=0x7f06001a;
+        public static final int lblAheadLat=0x7f06004f;
+        public static final int lblAheadLong=0x7f060050;
+        public static final int lblBlank=0x7f060056;
+        public static final int lblCautionAhead=0x7f06005c;
+        public static final int lblCautionHere=0x7f060059;
+        public static final int lblCheck=0x7f060054;
+        public static final int lblChicagoGPS=0x7f06005e;
+        public static final int lblCrimeAhead=0x7f060052;
+        public static final int lblCrimeCountHere=0x7f060055;
+        public static final int lblCrimeHere=0x7f060049;
+        public static final int lblCurrBearing=0x7f06004e;
+        public static final int lblCurrLat=0x7f06004c;
+        public static final int lblCurrLong=0x7f06004d;
+        public static final int lblDangerAhead=0x7f06005d;
+        public static final int lblDangerHere=0x7f06005a;
+        public static final int lblDistanceAhead=0x7f060051;
+        public static final int lblEnterAddress=0x7f060053;
+        public static final int lblPrevLat=0x7f06004a;
+        public static final int lblPrevLong=0x7f06004b;
+        public static final int lblSafeAhead=0x7f06005b;
+        public static final int lblSafeHere=0x7f060058;
+        public static final int lblSound=0x7f060057;
+        public static final int lblcurrentlatitude=0x7f060027;
+        public static final int lblcurrentlongitude=0x7f060026;
+        public static final int location_hint=0x7f060062;
+        public static final int locationscreen=0x7f060024;
+        public static final int msgLocationNotAvailable=0x7f060030;
+        public static final int msgMapNotAvailable=0x7f060031;
+        public static final int msgMobileOff=0x7f06002a;
+        public static final int msgMobileOn=0x7f06002b;
+        public static final int msgNoConnection=0x7f06002c;
+        public static final int msgNoCrimeData=0x7f06002f;
+        public static final int msgNoGPS=0x7f06002e;
+        public static final int msgNoNetwork=0x7f06002d;
+        public static final int msgWiFiOn=0x7f060029;
+        public static final int msgWifiOff=0x7f060028;
+        public static final int radSet100Meters=0x7f060043;
+        public static final int radSet2Blocks=0x7f06003f;
+        public static final int radSet3MetersTest=0x7f060041;
+        public static final int radSet4Blocks=0x7f060040;
+        public static final int radSet8Blocks=0x7f060042;
+        public static final int sTotalCrimes=0x7f060025;
+        public static final int startlocatonlistener=0x7f060033;
+        public static final int stoplocationlistener=0x7f060034;
+        public static final int title_activity_afragment=0x7f060048;
+        public static final int title_activity_map=0x7f06005f;
+        public static final int title_activity_map_view=0x7f060060;
+        public static final int title_activity_settings=0x7f06003e;
+        public static final int title_activity_spot_check=0x7f060047;
+        public static final int txtNoConnectPleaseWait=0x7f060046;
+        public static final int txtRefreshInterval=0x7f060044;
     }
     public static final class style {
         /** 
@@ -505,14 +518,14 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f090001;
+        public static final int AppBaseTheme=0x7f0a0001;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090000;
+        public static final int AppTheme=0x7f0a0000;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.

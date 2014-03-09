@@ -1,7 +1,6 @@
 package com.onclick.safetravels;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,6 +10,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import com.google.analytics.tracking.android.EasyTracker;
 
 public class SettingsActivity extends Activity implements OnClickListener  {
 	
@@ -156,6 +157,23 @@ public class SettingsActivity extends Activity implements OnClickListener  {
 	    }
 	    
 	    
+	}
+
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+
+	}
+
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		
+		EasyTracker.getInstance(this).activityStop(this);
+		
 	}
 
 	

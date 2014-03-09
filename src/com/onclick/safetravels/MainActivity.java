@@ -1,10 +1,7 @@
 package com.onclick.safetravels;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -13,10 +10,10 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.onclick.utils.CheckNetwork;
 import com.onclick.utils.DialogNoGPSConnection;
 import com.onclick.utils.DialogNoNetworkConnection;
@@ -36,7 +33,8 @@ public class MainActivity extends AFragmentActivity implements LocationListener 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
+		this.setTitle(R.string.activity_name_drive_mode);
 		setContentView(R.layout.activity_main);
 
 		SharedPreferences SPsettings = this.getSharedPreferences(SafeTravelsPreferences.APIFILE,0);
@@ -49,34 +47,12 @@ public class MainActivity extends AFragmentActivity implements LocationListener 
 
 		// Current location - if no GPS_Provide available his will be null
 		this.mCurrentLocation = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-		//	Use to reset values and simulate new start
-
-		// Last Location that a read was taken
-		// this.lastLocation = new LastLocationCounted(this);
-
-		//	long lastLat = this.lastLocation.LastLatitude;
-		//	long lastLong = this.lastLocation.LastLongitude;
-
-		//	lastLocation.setLastLatitude(this.mPrevLocation.getLatitude());
-		//  lastLocation.setLastLongitude(this.mPrevLocation.getLongitude());
-
-
-			/*	LastLocationCounted lastLocation = new LastLocationCounted(this);
-
-			lastLocation.setLongitude(0);
-			lastLocation.setLatitude(0); */
-		
-
-		//lastLong = this.lastLocation.getLastLongitude();
-		//lastLat = this.lastLocation.getLastLatitude();
-
-		//this.isConnected = CheckNetwork.sfConnected(this);
-
+	
 		if (savedInstanceState == null) {
 
 			this.fragmentInflater();
-
+			
+			
 		} else {
 
 			FragmentManager fm = getSupportFragmentManager();
@@ -156,6 +132,7 @@ public class MainActivity extends AFragmentActivity implements LocationListener 
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		EasyTracker.getInstance(this).activityStart(this);  // Add this method.
 
 	}
 
@@ -164,7 +141,8 @@ public class MainActivity extends AFragmentActivity implements LocationListener 
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
-
+		
+		EasyTracker.getInstance(this).activityStop(this);
 
 	}
 
@@ -178,6 +156,7 @@ public class MainActivity extends AFragmentActivity implements LocationListener 
 		super.fragmentInflater();
 
 		FragmentManager fm = getSupportFragmentManager();
+
 
 		this.fragmentMiddle = (FragmentCrimeCount) fm.findFragmentById(R.id.fragmentcontainermid);
 
@@ -195,7 +174,7 @@ public class MainActivity extends AFragmentActivity implements LocationListener 
 
 		}
 
-
+		
 	} /* End of Fragment Inflater */
 
 	public void middleFragmentContentHandler () {

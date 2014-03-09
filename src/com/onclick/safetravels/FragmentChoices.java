@@ -40,6 +40,10 @@ public class FragmentChoices extends Fragment implements OnClickListener{
 			
 		case R.id.buttonbackground:
 			
+			Intent intentHelp = new Intent(fContext, HelpActivity.class);
+			//intent.putExtra("thetext", et.getText().toString());
+			startActivity(intentHelp);
+			
 			break;
 
 		default:
@@ -72,6 +76,8 @@ public class FragmentChoices extends Fragment implements OnClickListener{
 		
 		return v;
 	}
+
+	
 
 	
 }

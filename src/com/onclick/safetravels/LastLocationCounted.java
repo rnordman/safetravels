@@ -4,8 +4,6 @@
 package com.onclick.safetravels;
 
 
-import com.google.android.gms.maps.model.LatLng;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Location;
@@ -140,7 +138,7 @@ public class LastLocationCounted {
 
 		} else {
 
-			return true;
+			return false;
 		}
 	}
 

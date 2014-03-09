@@ -5,6 +5,8 @@
     <color name="yellow">#FFFF00</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="logogreen">#4DE632</color>
+    <color name="logoblue">#379ACC</color>
     
     <!-- Sign-in Button Colors -->
     <color name="common_signin_btn_dark_text_default">@android:color/white</color>

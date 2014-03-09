@@ -4,12 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import org.json.JSONException;
 
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -19,10 +17,10 @@ import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
-import android.widget.TextView;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -44,7 +42,7 @@ import com.onclick.utils.Utils;
 
 public class MapActivity extends FragmentActivity implements 
 GooglePlayServicesClient.ConnectionCallbacks, 
-GooglePlayServicesClient.OnConnectionFailedListener, LocationListener  {
+GooglePlayServicesClient.OnConnectionFailedListener, LocationListener, OnClickListener  {
 
 	private static final int GPS_ERRORDIALOG_REQUEST = 9001;
 
@@ -52,8 +50,7 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener  {
 	LocationClient mLocationClient;
 	Marker marker;
 
-	private static final double WRIGLEY_LAT = 41.9481169, WRIGLEY_LNG = -87.6573788;
-
+	private static final double WRIGLEY_LAT = 41.855908, WRIGLEY_LNG = -87.6729598;
 	private static final float DEFAULTZOOM = 15;
 
 
@@ -63,6 +60,10 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener  {
 
 		if (servicesOK()) {
 			setContentView(R.layout.activity_map);
+			
+			EditText et = (EditText) findViewById(R.id.edittextLocation);
+			et.setOnClickListener(this);
+
 
 			if (initMap()) {
 
@@ -71,7 +72,7 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener  {
 				// mMap.setMyLocationEnabled(true);
 				mLocationClient = new LocationClient(this, this, this);
 				mLocationClient.connect();
-
+				//gotoCurrentLocation();
 
 			} else {
 
@@ -81,7 +82,7 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener  {
 		} else {
 
 			setContentView(R.layout.activity_main);
-
+			
 		}
 
 	}
@@ -132,6 +133,7 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener  {
 
 	}
 
+	
 	public boolean servicesOK() {
 		int isAvailable = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
 
@@ -198,21 +200,29 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener  {
 		EditText et = (EditText) findViewById(R.id.edittextLocation);
 		String location = et.getText().toString();
 
+		mMap.clear();
+		
 		Geocoder gc = new Geocoder(this);
 		List<Address> list = gc.getFromLocationName(location, 1);
 
-		Address add = list.get(0);
-		String locality = add.getLocality();
-
-		//Utils.ShortToast(getBaseContext(), locality);
-
-		double lat = add.getLatitude();
-		double lng = add.getLongitude();
-
-		gotoLocation(lat, lng, DEFAULTZOOM);
-
-		setMarker(locality, lat, lng);
-		prepareCrimeQuery();
+		if (!list.isEmpty()) {
+			
+			Address add = list.get(0);
+			String locality = add.getLocality();
+	
+			//Utils.ShortToast(getBaseContext(), locality);
+	
+			double lat = add.getLatitude();
+			double lng = add.getLongitude();
+	
+			gotoLocation(lat, lng, DEFAULTZOOM);
+	
+			setMarker(locality, lat, lng);
+			prepareCrimeQuery();
+		} else
+		{ 
+			Utils.LongToast(this, "Address not found");
+		}
 
 	}
 
@@ -254,8 +264,16 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener  {
 
 		marker = mMap.addMarker(options);
 	}
+	
 
 
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+
+	}
 
 
 
@@ -264,6 +282,8 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener  {
 		MapStateManager mapMgr = new MapStateManager(this);
 		mapMgr.saveMapState(mMap);
 
+		EasyTracker.getInstance(this).activityStop(this);
+		
 		/*if (this.mLocationClient != null) {
 			this.mLocationClient.removeLocationUpdates(this);
 
@@ -427,8 +447,7 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener  {
 			listIterator = resultList.iterator();
 			while (listIterator.hasNext()) {
 				setCrimeMarker(listIterator.next());
-				
-				
+						
 			}
 		
 			return;
@@ -436,4 +455,22 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener  {
 		}
 
 	}
+	/* (non-Javadoc)
+	 * @see android.view.View.OnClickListener#onClick(android.view.View)
+	 */
+	@Override
+	public void onClick(View v) {
+		
+		switch (v.getId()) {
+		
+			case R.id.edittextLocation:
+				EditText et = (EditText) v.findViewById(R.id.edittextLocation);
+				et.setText(R.string.lblBlank);
+				
+			break;
+
+		}		
+		
+	}
+		
 }

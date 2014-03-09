@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.onclick.utils.CheckNetwork;
 import com.onclick.utils.DialogNoGPSConnection;
 import com.onclick.utils.DialogNoNetworkConnection;
@@ -53,6 +54,9 @@ public class ChicagoActivity extends AFragmentActivity implements LocationListen
 			
 			LastLocationCounted.setCenterofChicagoDiff(latDiff, lngDiff);
 		}
+		
+		LastLocationCounted.setLastLatitude(0);
+		LastLocationCounted.setLastLongitude(0);
 		
 
 		if (savedInstanceState == null) {
@@ -139,6 +143,8 @@ public class ChicagoActivity extends AFragmentActivity implements LocationListen
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+
 
 	}
 
@@ -147,7 +153,7 @@ public class ChicagoActivity extends AFragmentActivity implements LocationListen
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
-
+		EasyTracker.getInstance(this).activityStop(this); 
 
 	}
 

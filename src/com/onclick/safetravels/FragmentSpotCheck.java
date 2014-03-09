@@ -68,6 +68,9 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 		TextView tvCrimeHere = (TextView) lView.findViewById(R.id.textViewCrimeCount);
 		tvCrimeHere.setOnClickListener(this);
 		
+		EditText et = (EditText) lView.findViewById(R.id.editTextAddress);
+		et.setOnClickListener(this);
+		
 		return v;
 	}
 
@@ -226,8 +229,17 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 		case R.id.textViewCrimeCount:
 			
 			this.onClickViewCrimeDetail();
+			
+			
+		break;
+			
 		
-		}
+		case R.id.editTextAddress:
+			EditText et = (EditText) v.findViewById(R.id.editTextAddress);
+			et.setText(R.string.lblBlank);
+		break;
+
+		}	
 	}
 	
 	/**
@@ -251,20 +263,30 @@ public class FragmentSpotCheck extends Fragment implements OnClickListener {
 		EditText tvAddress = (EditText) lView.findViewById(R.id.editTextAddress);
 		String checkAddress = tvAddress.getText().toString();
 		
-		Geocoder geoAddress = 	new Geocoder(tContext,Locale.getDefault());
+		if (checkAddress.isEmpty()) {
+			
+			Utils.LongToast(tContext, "Please enter an address");
+			
+		} else {
+			
+			Geocoder geoAddress = 	new Geocoder(tContext,Locale.getDefault());
+			
+			List<Address> listAddress = geoAddress.getFromLocationName(checkAddress+ " "+ chicagoLocality, 1);
+			if (!listAddress.isEmpty()) {
+				Address cAddress = listAddress.get(0);
+			
+				addLat = cAddress.getLatitude();
+				addLong = cAddress.getLongitude();
+				
+				LastLocationCounted.setLastLatitude(addLat);
+				LastLocationCounted.setLastLongitude(addLong);
+				
+				this.prepareCrimeQuery();
+			}	else {
+				Utils.LongToast(tContext, "Address not found");
+			}
 		
-		List<Address> listAddress = geoAddress.getFromLocationName(checkAddress+ " "+ chicagoLocality, 1);
-		
-		Address cAddress = listAddress.get(0);
-	
-		addLat = cAddress.getLatitude();
-		addLong = cAddress.getLongitude();
-		
-		LastLocationCounted.setLastLatitude(addLat);
-		LastLocationCounted.setLastLongitude(addLong);
-		
-		this.prepareCrimeQuery();
-		
+		}
 		
 	}
 

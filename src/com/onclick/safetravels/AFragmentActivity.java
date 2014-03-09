@@ -24,7 +24,7 @@ public abstract class AFragmentActivity extends FragmentActivity{
 		if (fragmentTop == null) {
 			fragmentTop = new FragmentMode();
 			fm.beginTransaction()
-			.add(R.id.fragmentcontainertop, fragmentTop)
+			.add(R.id.fragmentcontainertop, fragmentTop,"fragmentTop")
 			.commit();
 			
 		}
@@ -34,12 +34,13 @@ public abstract class AFragmentActivity extends FragmentActivity{
 		if (fragmentBottom == null) {
 			fragmentBottom = new FragmentChoices();
 			fm.beginTransaction()
-			.add(R.id.fragmentcontainerbottom, fragmentBottom)
+			.add(R.id.fragmentcontainerbottom, fragmentBottom, "fragmentBottom")
 			.commit();
 			
 		}
 				
 		
+		 
 	}
 		
 }

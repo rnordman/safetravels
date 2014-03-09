@@ -7,15 +7,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SettingsActivity" >
-    
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/radioGroup1"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="46dp"
-        android:text="@string/txtRefreshInterval" />
 
     <RadioGroup
         android:id="@+id/radioGroup1"
@@ -29,6 +20,7 @@
             android:id="@+id/RadioButton3Meters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:text="@string/radSet3MetersTest" />
         
         <RadioButton
@@ -61,12 +53,12 @@
 
        <Button
            android:id="@+id/buttonSave"
-           style="?android:attr/buttonStyleSmall"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_alignParentBottom="true"
            android:layout_centerHorizontal="true"
            android:layout_marginBottom="82dp"
+           android:background="@drawable/corner_radius_10"
            android:text="@string/btnSetSave" />
 
        <CheckBox
@@ -77,5 +69,15 @@
            android:layout_alignLeft="@+id/radioGroup1"
            android:layout_marginBottom="18dp"
            android:text="@string/lblSound" />
+
+       <TextView
+           android:id="@+id/textView1"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignLeft="@+id/radioGroup1"
+           android:layout_alignParentTop="true"
+           android:layout_marginTop="18dp"
+           android:text="@string/txtRefreshInterval"
+           android:textSize="20sp" />
 
 </RelativeLayout>

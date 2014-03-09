@@ -9,28 +9,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="location or address"
+        android:hint="@string/location_hint"
         android:width="250dp" >
      
         <requestFocus />
     </EditText>
-    
-      <TextView
-          android:id="@+id/txtSpotCurrentLat"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignLeft="@+id/textViewCrimeCount"
-          android:layout_below="@+id/textViewCrimeCount"
-          android:layout_marginTop="10dp"
-          android:text="@string/lblCurrLat" />
-
-    <TextView
-        android:id="@+id/txtSpotCurrentLong"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtSpotCurrentLat"
-        android:layout_below="@+id/txtSpotCurrentLat"
-        android:text="@string/lblCurrLong" />
+       
 
     <TextView
         android:id="@+id/textViewCrimeCount"
@@ -52,15 +36,11 @@
 
     <Button
         android:id="@+id/btnSpotCheckAddress"
-        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/editTextAddress"
         android:layout_alignParentRight="true"
-         android:paddingBottom="20dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="20dp"
+        android:background="@drawable/corner_radius_10"
         android:layout_alignBottom="@+id/editTextAddress"
         android:text="@string/lblCheck" />
 

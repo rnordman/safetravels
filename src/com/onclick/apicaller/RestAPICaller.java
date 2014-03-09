@@ -12,7 +12,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.onclick.chicagodata.model.ChicagoCrime;
 import com.onclick.safetravels.LastLocationCounted;
