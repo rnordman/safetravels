@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.onclick.safetravels"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="3"
+    android:versionName="1.3" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -23,7 +23,23 @@
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
-
+    
+ 	<compatible-screens>
+        <!-- all small size screens -->
+        <screen android:screenSize="small" android:screenDensity="ldpi" />
+        <screen android:screenSize="small" android:screenDensity="mdpi" />
+        <screen android:screenSize="small" android:screenDensity="hdpi" />
+        <screen android:screenSize="small" android:screenDensity="xhdpi" />
+        
+        <!-- all normal size screens -->
+        <screen android:screenSize="normal" android:screenDensity="ldpi" />
+        <screen android:screenSize="normal" android:screenDensity="mdpi" />
+        <screen android:screenSize="normal" android:screenDensity="hdpi" />
+        <screen android:screenSize="normal" android:screenDensity="xhdpi" />
+        <screen android:screenSize="normal" android:screenDensity="480" />
+     
+    </compatible-screens>
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/sf_logo_mdpi"
@@ -85,7 +101,7 @@
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAJfwLjXpNPDC1Vq97j8VwRlGH0yu8Qu3A" />
+            android:value="AIzaSyBBOHY9scUc_ANsninVxxAqL2vdBwGqZ9g" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@+integer/google_play_services_version" />
