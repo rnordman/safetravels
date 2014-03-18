@@ -8,9 +8,11 @@ import java.util.List;
 import org.json.JSONException;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -47,7 +49,7 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener, OnClickLi
 	private static final int GPS_ERRORDIALOG_REQUEST = 9001;
 
 	GoogleMap mMap;
-	LocationClient mLocationClient;
+	LocationManager mLocationClient;
 	Marker marker;
 
 	private static final double WRIGLEY_LAT = 41.855908, WRIGLEY_LNG = -87.6729598;
@@ -68,11 +70,13 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener, OnClickLi
 			if (initMap()) {
 
 				//Utils.ShortToast(getBaseContext(), "Map is ready");
-				gotoLocation(WRIGLEY_LAT,WRIGLEY_LNG,DEFAULTZOOM);
-				// mMap.setMyLocationEnabled(true);
-				mLocationClient = new LocationClient(this, this, this);
-				mLocationClient.connect();
-				//gotoCurrentLocation();
+				//gotoLocation(WRIGLEY_LAT,WRIGLEY_LNG,DEFAULTZOOM);
+				 //mMap.setMyLocationEnabled(true);
+	
+				
+				this.mLocationClient = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+				
+				gotoCurrentLocation();
 
 			} else {
 
@@ -175,18 +179,24 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener, OnClickLi
 
 	protected void gotoCurrentLocation() {
 		
-		Location currentLocation = mLocationClient.getLastLocation();
+		Location currentLocation = mLocationClient.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		// Current location - if no GPS_Provide available his will be null
+		
 		
 		if (currentLocation == null) {
 			Utils.ShortToast(this, this.getString(R.string.msgLocationNotAvailable));
 
 		} else {
 			LatLng ll = new LatLng(currentLocation.getLatitude(),currentLocation.getLongitude());
+			setMarker(currentLocation.getLatitude(),currentLocation.getLongitude());
+			
 			CameraUpdate update = CameraUpdateFactory.newLatLngZoom(ll,DEFAULTZOOM);
 			mMap.animateCamera(update);
 			
 			LastLocationCounted.setLastLatitude(ll.latitude);
 			LastLocationCounted.setLastLongitude(ll.longitude);
+			prepareCrimeQuery();
+			
 			
 		}
 
@@ -217,7 +227,7 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener, OnClickLi
 	
 			gotoLocation(lat, lng, DEFAULTZOOM);
 	
-			setMarker(locality, lat, lng);
+			setMarker(lat, lng);
 			prepareCrimeQuery();
 		} else
 		{ 
@@ -227,7 +237,7 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener, OnClickLi
 	}
 
 
-	private void setMarker(String locality, double lat, double lng) {
+	private void setMarker(double lat, double lng) {
 
 		if (marker != null) {
 			marker.remove();
@@ -472,5 +482,7 @@ GooglePlayServicesClient.OnConnectionFailedListener, LocationListener, OnClickLi
 		}		
 		
 	}
-		
+	
 }
+
+

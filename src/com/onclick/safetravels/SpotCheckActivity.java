@@ -18,6 +18,7 @@ import com.google.analytics.tracking.android.EasyTracker;
 import com.onclick.utils.CheckNetwork;
 import com.onclick.utils.DialogNoGPSConnection;
 import com.onclick.utils.DialogNoNetworkConnection;
+import com.onclick.utils.Utils;
 
 /**
  * @author Ronald T
@@ -90,6 +91,11 @@ public class SpotCheckActivity extends AFragmentActivity implements LocationList
 	public void middleFragmentContentHandler () {
 		
 		// If there is no connection just show message and alert dialog
+		if (this.mCurrentLocation == null) {
+			
+			this.mCurrentLocation= mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		}
+		
 		if (!CheckNetwork.GPSOn(this)) {
 
 			//this.fragmentMiddle.changeNoConnectText();
@@ -119,14 +125,17 @@ public class SpotCheckActivity extends AFragmentActivity implements LocationList
 			}
 							
 		} else {
-			
-				if (this.mCurrentLocation == null) {
-					this.mCurrentLocation= mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-				}
-				LastLocationCounted.setNewLocation(this, this.mCurrentLocation);
-				this.fragmentMiddle.prepareCrimeQuery();
+				
+			if (this.mCurrentLocation == null) {
 					
-			
+				Utils.LongToast(this, "Can not find location on device");
+				
+			} else {
+					
+				this.fragmentMiddle.prepareCrimeQuery();
+				
+			}
+				
 		}
 		
 		
